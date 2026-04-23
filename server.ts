@@ -24,42 +24,6 @@ async function startServer() {
   const ai = new GoogleGenAI({ apiKey: apiKey || "" });
 
   // API Routes
-  app.post("/api/chat", async (req, res) => {
-    try {
-      const { prompt, history } = req.body;
-      
-      // Convert history to compatible format for generateContent
-      // The skill suggests generateContent can handle contents as an array
-      const contents = [
-        ...(history || []).map((h: any) => ({
-          role: h.role,
-          parts: [{ text: h.content || (h.parts && h.parts[0].text) }]
-        })),
-        { role: 'user', parts: [{ text: prompt }] }
-      ];
-
-      const response = await ai.models.generateContent({
-        model: "gemini-3.1-pro-preview",
-        contents,
-        config: {
-          systemInstruction: `你是 MathWhiz 的 AI 數學導師。
-你的目標是以親切、耐心的態度教導學生數學。
-請使用繁體中文回答。
-當學生問問題時：
-1. 逐步解釋概念，不要只給答案。
-2. 使用 LaTeX 格式包裹數學公式（例如 $x^2$ 或 $$y = mx + c$$）。
-3. 如果學生不理解，嘗試用簡單的比喻。
-4. 鼓勵學生思考。`,
-        },
-      });
-
-      res.json({ text: response.text });
-    } catch (error: any) {
-      console.error("Chat API Error:", error);
-      res.status(500).json({ error: error.message });
-    }
-  });
-
   app.post("/api/generate-problems", async (req, res) => {
     try {
       const { topic, difficulty } = req.body;

@@ -4,7 +4,6 @@
  */
 
 import { GraduationCap, Github, Twitter, Info } from 'lucide-react';
-import { MathTutor } from './components/MathTutor';
 import { ProblemGenerator } from './components/ProblemGenerator';
 import { FormulaSheet } from './components/FormulaSheet';
 import { motion } from 'motion/react';
@@ -38,7 +37,6 @@ export default function App() {
           >
             <Info className="w-4 h-4" /> 公式庫
           </button>
-          <a href="#tutor" className="hover:text-slate-800 transition-colors py-1">AI 導師</a>
           <a href="#practice" className="hover:text-slate-800 transition-colors py-1">練習挑戰</a>
         </nav>
         <div className="flex items-center gap-4">
@@ -123,12 +121,8 @@ export default function App() {
           </section>
 
           {/* Interactive Sections */}
-          <div className="grid grid-cols-1 xl:grid-cols-5 gap-10">
-            <div id="tutor" className="xl:col-span-3 flex flex-col">
-              <h3 className="section-header">智能導師系統</h3>
-              <MathTutor />
-            </div>
-            <div id="practice" className="xl:col-span-2 flex flex-col">
+          <div className="flex flex-col gap-10">
+            <div id="practice" className="w-full flex flex-col">
               <h3 className="section-header">實戰練習模組</h3>
               <ProblemGenerator />
             </div>
