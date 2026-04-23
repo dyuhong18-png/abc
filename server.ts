@@ -14,9 +14,9 @@ async function startServer() {
   app.use(express.json());
 
   // Initialize Gemini
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.api_key || process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    console.error("Missing GEMINI_API_KEY environment variable");
+    console.error("Missing api_key environment variable");
   }
   const ai = new GoogleGenAI(apiKey || "");
 
