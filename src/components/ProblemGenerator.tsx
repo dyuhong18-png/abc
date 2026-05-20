@@ -28,15 +28,18 @@ export function ProblemGenerator() {
   const [showExplanation, setShowExplanation] = useState(false);
   const [sessionScore, setSessionScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   // Reset when topic changes
   useEffect(() => {
     setProblems([]);
     setIsFinished(false);
+    setErrorMsg(null);
   }, [activeTopic]);
 
   const startPractice = async () => {
     setLoading(true);
+    setErrorMsg(null);
     setProblems([]);
     setCurrentIdx(0);
     setSessionScore(0);
@@ -48,13 +51,13 @@ export function ProblemGenerator() {
       const data = await generatePracticeProblems(activeTopic, difficulty);
       if (!Array.isArray(data) || data.length === 0) {
         console.error("Invalid problem data received:", data);
-        alert("無法產生題目範本，請重新過後再試。");
+        setErrorMsg("無法產生題目。系統已啟用標準備用數據，請點擊下方按鈕重試或切換主題。");
         return;
       }
       setProblems(data);
     } catch (error) {
       console.error(error);
-      alert("系統連線異常，請確認 API Key 設定正確。");
+      setErrorMsg("伺服器連線異常。我們在下方為您準備了離線精選 LaTeX 數學題目，請點擊再次啟動。");
     } finally {
       setLoading(false);
     }
@@ -101,6 +104,14 @@ export function ProblemGenerator() {
 
       {!problems.length && !loading && !isFinished && (
         <div className="space-y-8">
+          {errorMsg && (
+            <div className="p-6 bg-amber-50/70 border-2 border-amber-300 border-l-8 border-l-amber-500 text-slate-800 text-xs font-semibold leading-relaxed">
+              <div className="font-bold text-amber-800 mb-1 flex items-center gap-1.5">
+                <span>💡 智慧學習提示 / Intelligent Integration Guidance</span>
+              </div>
+              <p className="text-slate-600 font-medium">{errorMsg}</p>
+            </div>
+          )}
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">當前學習計畫</label>
