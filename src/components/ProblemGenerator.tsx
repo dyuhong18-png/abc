@@ -194,12 +194,17 @@ export function ProblemGenerator() {
                 className="flex flex-col gap-6"
               >
                 {userAnswer === problems[currentIdx].answer ? (
-                  /* Correct Answer Mode - Clean Slate/Dark style */
-                  <div className="p-6 bg-slate-900 text-white border-t-2 border-emerald-500 flex flex-col gap-3">
-                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400">
-                      ✓ 解答正確 - 邏輯解析 Correct Explanation
-                    </h4>
-                    <div className="text-sm font-medium text-slate-300 leading-relaxed markdown-body">
+                  /* Correct Answer Mode - High-contrast Emerald Diagnostic style */
+                  <div className="p-8 bg-emerald-50 border-2 border-emerald-400 border-l-8 border-l-emerald-500 flex flex-col gap-4 shadow-xl shadow-emerald-500/5">
+                    <div className="flex items-center gap-2 pb-3 border-b border-emerald-200">
+                      <span className="bg-emerald-500 text-white text-[9px] font-black uppercase tracking-widest px-2 py-0.5">
+                        ✓ 答對了！恭喜核心突破
+                      </span>
+                      <span className="text-xs font-black text-emerald-900 uppercase tracking-tight">
+                        完整公式推導與解析 Correct Explanation
+                      </span>
+                    </div>
+                    <div className="diagnostic-explanation correct text-[15px] text-slate-900 leading-relaxed font-semibold self-stretch">
                       <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
                         {problems[currentIdx].explanation}
                       </ReactMarkdown>
@@ -216,7 +221,7 @@ export function ProblemGenerator() {
                         錯誤解析 & 公式精要
                       </span>
                     </div>
-                    <div className="diagnostic-explanation text-[15px] text-slate-900 leading-relaxed font-semibold self-stretch">
+                    <div className="diagnostic-explanation wrong text-[15px] text-slate-900 leading-relaxed font-semibold self-stretch">
                       <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
                         {problems[currentIdx].explanation}
                       </ReactMarkdown>

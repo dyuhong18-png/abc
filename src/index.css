@@ -55,7 +55,7 @@
   @apply text-slate-800;
 }
 
-/* High-contrast diagnostic emphasis for wrong answers */
+/* High-contrast diagnostic emphasis for answers */
 .diagnostic-explanation {
   @apply font-semibold text-slate-900 leading-relaxed;
 }
@@ -64,11 +64,25 @@
   @apply text-indigo-950 font-bold text-[1.05em];
 }
 
-.diagnostic-explanation .katex-display {
+.diagnostic-explanation strong {
+  @apply text-indigo-900 font-bold px-1 py-0.5 rounded-sm;
+}
+
+/* Wrong answer styles (Amber emphasis) */
+.diagnostic-explanation.wrong .katex-display {
   @apply bg-amber-100/60 p-5 border-l-4 border-amber-600 my-5 shadow-sm overflow-x-auto text-[1.1em];
 }
 
-.diagnostic-explanation strong {
-  @apply text-indigo-900 font-bold bg-indigo-50 px-1 py-0.5 rounded-sm;
+.diagnostic-explanation.wrong strong {
+  @apply bg-indigo-50;
+}
+
+/* Correct answer styles (Emerald emphasis) */
+.diagnostic-explanation.correct .katex-display {
+  @apply bg-emerald-100/60 p-5 border-l-4 border-emerald-600 my-5 shadow-sm overflow-x-auto text-[1.1em];
+}
+
+.diagnostic-explanation.correct strong {
+  @apply bg-emerald-50 text-emerald-950;
 }
 
