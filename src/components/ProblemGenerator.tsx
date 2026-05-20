@@ -46,9 +46,15 @@ export function ProblemGenerator() {
     
     try {
       const data = await generatePracticeProblems(activeTopic, difficulty);
+      if (!Array.isArray(data) || data.length === 0) {
+        console.error("Invalid problem data received:", data);
+        alert("無法產生題目範本，請重新過後再試。");
+        return;
+      }
       setProblems(data);
     } catch (error) {
       console.error(error);
+      alert("系統連線異常，請確認 API Key 設定正確。");
     } finally {
       setLoading(false);
     }
@@ -187,17 +193,39 @@ export function ProblemGenerator() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="flex flex-col gap-6"
               >
-                <div className="p-6 bg-slate-900 text-white border-t-2 border-indigo-600 flex flex-col gap-3">
-                  <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-400">邏輯解析 Log Description</h4>
-                  <div className="text-sm font-medium text-slate-300 leading-relaxed">
-                    <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-                      {problems[currentIdx].explanation}
-                    </ReactMarkdown>
+                {userAnswer === problems[currentIdx].answer ? (
+                  /* Correct Answer Mode - Clean Slate/Dark style */
+                  <div className="p-6 bg-slate-900 text-white border-t-2 border-emerald-500 flex flex-col gap-3">
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400">
+                      ✓ 解答正確 - 邏輯解析 Correct Explanation
+                    </h4>
+                    <div className="text-sm font-medium text-slate-300 leading-relaxed markdown-body">
+                      <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                        {problems[currentIdx].explanation}
+                      </ReactMarkdown>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  /* Wrong Answer Mode - High-contrast Warning/Diagnostic style with distinct background & borders */
+                  <div className="p-8 bg-amber-50 border-2 border-amber-400 border-l-8 border-l-amber-500 flex flex-col gap-4 shadow-xl shadow-amber-500/5">
+                    <div className="flex items-center gap-2 pb-3 border-b border-amber-200">
+                      <span className="bg-amber-500 text-white text-[9px] font-black uppercase tracking-widest px-2 py-0.5">
+                        💡 觀念診斷與核心指引
+                      </span>
+                      <span className="text-xs font-black text-amber-900 uppercase tracking-tight">
+                        錯誤解析 & 公式精要
+                      </span>
+                    </div>
+                    <div className="diagnostic-explanation text-[15px] text-slate-900 leading-relaxed font-semibold self-stretch">
+                      <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                        {problems[currentIdx].explanation}
+                      </ReactMarkdown>
+                    </div>
+                  </div>
+                )}
                 <button 
                   onClick={nextProblem}
-                  className="w-full py-4 bg-indigo-600 text-white text-[10px] font-black uppercase tracking-[0.2em] hover:bg-slate-900 transition-all"
+                  className="w-full py-4 bg-indigo-600 text-white text-[10px] font-black uppercase tracking-[0.2em] hover:bg-slate-900 transition-all cursor-pointer"
                 >
                   {currentIdx === problems.length - 1 ? '完成單元內容' : '進入下一核心題目'}
                 </button>
@@ -214,7 +242,7 @@ export function ProblemGenerator() {
           </div>
           <div>
             <h3 className="text-2xl font-black text-slate-900 font-sans uppercase tracking-tight">單元實測結束</h3>
-            <p className="text-sm font-mono text-slate-400 mt-2 uppercase">Success Rate: {(score / problems.length * 100).toFixed(0)}%</p>
+            <p className="text-sm font-mono text-slate-400 mt-2 uppercase">Success Rate: {(sessionScore / problems.length * 100).toFixed(0)}%</p>
           </div>
           <button 
             onClick={() => { setProblems([]); setIsFinished(false); }}
