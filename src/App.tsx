@@ -11,7 +11,7 @@ import { useLearning } from './context/LearningContext';
 import { useState } from 'react';
 import { cn } from './lib/utils';
 
-const TOPICS = ['基礎代數', '平面幾何', '三角函數', '微積分初步', '統計與機率'];
+const TOPICS = ['基礎代數', '平面幾何', '三角函數', '向量單元', '微積分初步', '統計與機率'];
 
 export default function App() {
   const { activeTopic, setActiveTopic, progress } = useLearning();
@@ -102,7 +102,7 @@ export default function App() {
               </div>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {['基礎代數', '平面幾何', '三角函數'].map((t) => (
+              {TOPICS.map((t) => (
                 <div key={t} className="bg-white border border-slate-200 p-8">
                   <h3 className="text-sm font-black uppercase text-indigo-600 mb-6">{t}</h3>
                   <div className="space-y-6">

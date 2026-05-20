@@ -28,6 +28,30 @@ const FORMULA_DATA: Record<string, { title: string, formulas: { label: string, m
       { label: '正弦定理', math: '\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}' },
       { label: '倍角公式', math: '\\sin(2\\theta) = 2\\sin\\theta\\cos\\theta' }
     ]
+  },
+  '向量單元': {
+    title: '向量運算與幾何',
+    formulas: [
+      { label: '向量長度 (模長)', math: '\\|\\vec{a}\\| = \\sqrt{x^2 + y^2}' },
+      { label: '向量內積', math: '\\vec{a} \\cdot \\vec{b} = x_1 x_2 + y_1 y_2 = \\|\\vec{a}\\| \\|\\vec{b}\\| \\cos \\theta' },
+      { label: '二維法向量', math: '\\vec{n} = (-b, a) \\perp \\vec{v}(a, b)' }
+    ]
+  },
+  '微積分初步': {
+    title: '微積分基本定理',
+    formulas: [
+      { label: '導數定義', math: 'f\'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}' },
+      { label: '微分冪法則', math: '\\frac{d}{dx} x^n = n x^{n-1}' },
+      { label: '微積分基本定理', math: '\\int_{a}^{b} f(x)\\,dx = F(b) - F(a)' }
+    ]
+  },
+  '統計與機率': {
+    title: '統計機率常用公式',
+    formulas: [
+      { label: '算術平均數', math: '\\mu = \\frac{1}{N} \\sum_{i=1}^{N} x_i' },
+      { label: '樣本標準差', math: 's = \\sqrt{\\frac{1}{n-1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2}' },
+      { label: '貝氏定理', math: 'P(A|B) = \\frac{P(B|A)P(A)}{P(B)}' }
+    ]
   }
 };
 
