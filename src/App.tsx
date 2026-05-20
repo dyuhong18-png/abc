@@ -3,19 +3,20 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { GraduationCap, Github, Twitter, Info, ChevronRight } from 'lucide-react';
+import { GraduationCap, Github, Twitter, Info, ChevronRight, Database } from 'lucide-react';
 import { ProblemGenerator } from './components/ProblemGenerator';
 import { FormulaSheet } from './components/FormulaSheet';
+import { ImportProblems } from './components/ImportProblems';
 import { motion } from 'motion/react';
 import { useLearning } from './context/LearningContext';
 import { useState } from 'react';
 import { cn } from './lib/utils';
 
-const TOPICS = ['基礎代數', '平面幾何', '三角函數', '向量單元', '微積分初步', '統計與機率'];
+const TOPICS = ['基礎代數', '平面幾何', '三角函數', '向量單元', '微積分初步', '統計與機率', '邏輯推理'];
 
 export default function App() {
   const { activeTopic, setActiveTopic, progress } = useLearning();
-  const [currentPage, setCurrentPage] = useState<'home' | 'practice' | 'formulas' | 'profile'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'practice' | 'formulas' | 'profile' | 'import'>('home');
   const [isFormulaOpen, setIsFormulaOpen] = useState(false);
 
   const completedCount = progress.completedTopics.length;
@@ -66,9 +67,10 @@ export default function App() {
               </div>
               <div className="bg-slate-900 p-8 text-white">
                 <h4 className="text-[10px] font-black uppercase tracking-widest text-indigo-400 mb-4">快速入口</h4>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap gap-4">
                   <button onClick={() => setCurrentPage('formulas')} className="text-xs font-bold underline underline-offset-4 decoration-indigo-400">查閱公式手冊</button>
                   <button onClick={() => setCurrentPage('profile')} className="text-xs font-bold underline underline-offset-4 decoration-indigo-400">查看我的 XP 排名</button>
+                  <button onClick={() => setCurrentPage('import')} className="text-xs font-bold text-indigo-300 hover:text-indigo-200 underline underline-offset-4 decoration-indigo-300">⚙️ 後端數據庫管理</button>
                 </div>
               </div>
             </div>
@@ -120,6 +122,8 @@ export default function App() {
             </div>
           </div>
         );
+      case 'import':
+        return <ImportProblems />;
       case 'profile':
         return (
           <div className="flex flex-col gap-10">
@@ -175,7 +179,7 @@ export default function App() {
           <div className="w-10 h-10 bg-indigo-600 flex items-center justify-center rounded-none shadow-sm">
              <GraduationCap className="w-6 h-6 text-white" />
           </div>
-          <span className="text-2xl font-bold tracking-tight text-slate-800 uppercase">MathWhiz<span className="text-indigo-600">.Lab</span></span>
+          <span className="text-2xl font-black tracking-tight text-slate-800">偉傑數學<span className="text-indigo-600 font-bold text-sm ml-1 uppercase">.Lab</span></span>
         </div>
         <nav className="hidden md:flex gap-8 text-sm font-semibold uppercase tracking-widest text-slate-500">
           <button 
@@ -201,6 +205,12 @@ export default function App() {
             className={cn("hover:text-indigo-600 transition-colors py-1 cursor-pointer", currentPage === 'profile' && "text-indigo-600 border-b-2 border-indigo-600")}
           >
             檔案
+          </button>
+          <button 
+            onClick={() => setCurrentPage('import')}
+            className={cn("hover:text-indigo-600 transition-colors py-1 cursor-pointer", currentPage === 'import' && "text-indigo-600 border-b-2 border-indigo-600")}
+          >
+            題庫管理
           </button>
         </nav>
         <div className="flex items-center gap-4">
@@ -276,7 +286,7 @@ export default function App() {
             
             <div className="flex flex-col items-center sm:items-end gap-3 text-right">
               <div className="text-[9px] font-mono text-slate-300 uppercase tracking-[0.2em] italic">
-                © 2026 MathWhiz.Lab - Precision Education
+                © 2026 偉傑數學.Lab - Precision Education
               </div>
             </div>
           </footer>

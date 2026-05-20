@@ -52,6 +52,14 @@ const FORMULA_DATA: Record<string, { title: string, formulas: { label: string, m
       { label: '樣本標準差', math: 's = \\sqrt{\\frac{1}{n-1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2}' },
       { label: '貝氏定理', math: 'P(A|B) = \\frac{P(B|A)P(A)}{P(B)}' }
     ]
+  },
+  '邏輯推理': {
+    title: '數學邏輯與推理常用定理',
+    formulas: [
+      { label: '笛摩根定律 (De Morgan\'s Laws)', math: '\\neg(P \\land Q) \\iff \\neg P \\lor \\neg Q' },
+      { label: '若且唯若 (If and Only If)', math: 'P \\iff Q \\equiv (P \\implies Q) \\land (Q \\implies P)' },
+      { label: '三段論法 (Syllogism)', math: '((P \\implies Q) \\land P) \\implies Q' }
+    ]
   }
 };
 

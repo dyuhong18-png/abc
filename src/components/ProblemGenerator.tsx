@@ -29,17 +29,22 @@ export function ProblemGenerator() {
   const [sessionScore, setSessionScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [fallbackReason, setFallbackReason] = useState<'MISSING_KEY' | 'QUOTA_LIMIT' | 'GENERIC_ERROR' | 'CONNECTION_ERROR' | null>(null);
+  const [useCustomOnly, setUseCustomOnly] = useState(false);
+  const [isCustomRecord, setIsCustomRecord] = useState(false);
 
   // Reset when topic changes
   useEffect(() => {
     setProblems([]);
     setIsFinished(false);
     setErrorMsg(null);
+    setFallbackReason(null);
   }, [activeTopic]);
 
   const startPractice = async () => {
     setLoading(true);
     setErrorMsg(null);
+    setFallbackReason(null);
     setProblems([]);
     setCurrentIdx(0);
     setSessionScore(0);
@@ -48,13 +53,24 @@ export function ProblemGenerator() {
     setIsFinished(false);
     
     try {
-      const data = await generatePracticeProblems(activeTopic, difficulty);
-      if (!Array.isArray(data) || data.length === 0) {
-        console.error("Invalid problem data received:", data);
+      const response = await generatePracticeProblems(activeTopic, difficulty, useCustomOnly);
+      const problemList = response.problems;
+      
+      if (!Array.isArray(problemList) || problemList.length === 0) {
+        if (useCustomOnly) {
+          setErrorMsg(`後端自訂題庫中尚無此單元且難度為「${difficulty}」的自訂題目。您可以在頂部選單的「題庫管理」導入題目，或選擇其他難度及單元！`);
+          return;
+        }
+        console.error("Invalid problem data received:", response);
         setErrorMsg("無法產生題目。系統已啟用標準備用數據，請點擊下方按鈕重試或切換主題。");
         return;
       }
-      setProblems(data);
+      setProblems(problemList);
+      setIsCustomRecord(!!response.isCustom);
+      
+      if (response.isFallback) {
+        setFallbackReason(response.fallbackReason || 'GENERIC_ERROR');
+      }
     } catch (error) {
       console.error(error);
       setErrorMsg("伺服器連線異常。我們在下方為您準備了離線精選 LaTeX 數學題目，請點擊再次啟動。");
@@ -112,6 +128,45 @@ export function ProblemGenerator() {
               <p className="text-slate-600 font-medium">{errorMsg}</p>
             </div>
           )}
+          {fallbackReason && (
+            <div className="p-6 bg-amber-50 border-2 border-amber-300 border-l-8 border-l-amber-500 text-slate-800 text-xs font-semibold leading-relaxed">
+              {fallbackReason === 'QUOTA_LIMIT' ? (
+                <div>
+                  <div className="font-bold text-amber-800 flex items-center gap-1.5 mb-1 text-sm">
+                    ⚠️ <span>Gemini API 額度已達免費上限 / Quota Limit Exceeded</span>
+                  </div>
+                  <p className="text-slate-700 font-medium">
+                    您的當前金鑰已達 `gemini-3.5-flash` 免費每日限制（20 次請求）。
+                    為了解鎖即時生成全新的高難度演算法題目，您可在 **Settings &gt; Secrets** 內設定您個人的付費 API 金鑰，或在部署環境（如 Render）中設定 `GEMINI_API_KEY`。
+                  </p>
+                  <p className="text-slate-500 font-normal mt-2">
+                    * 為了保證學習不中斷，系統已為您動態啟用<strong>離線精選 LaTeX 核心題庫（共 10 題）</strong>。您仍可以自由進行解題訓練與賺取學習積分！
+                  </p>
+                </div>
+              ) : fallbackReason === 'MISSING_KEY' ? (
+                <div>
+                  <div className="font-bold text-amber-800 flex items-center gap-1.5 mb-1 text-sm">
+                    ⚠️ <span>未設定 API 金鑰 / API Key Missing</span>
+                  </div>
+                  <p className="text-slate-700 font-medium">
+                    未偵測到您的 API 金鑰。請在 **Settings &gt; Secrets** 內設定 `api_key`（或專屬的付費 API 金鑰），或在您的部署環境設定 `GEMINI_API_KEY`。
+                  </p>
+                  <p className="text-slate-500 font-normal mt-2">
+                    * 系統已為您啟用<strong>高品質備用 LaTeX 題庫</strong>，支援完美的公式渲染與即時解析！
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <div className="font-bold text-amber-800 flex items-center gap-1.5 mb-1 text-sm">
+                    ⚠️ <span>連線超時或生成限制 / Service Notice</span>
+                  </div>
+                  <p className="text-slate-700 font-medium">
+                    AI 伺服器回傳：當前無法配置新算式。我們已為您切換至<strong>精選 LaTeX 離線題目</strong>，完美照常累計積分。
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">當前學習計畫</label>
@@ -128,6 +183,19 @@ export function ProblemGenerator() {
               >
                 {DIFFICULTIES.map(d => <option key={d} value={d}>{d}</option>)}
               </select>
+            </div>
+            
+            <div className="flex items-center gap-2 mt-2">
+              <input 
+                type="checkbox" 
+                id="useCustomOnly" 
+                checked={useCustomOnly} 
+                onChange={(e) => setUseCustomOnly(e.target.checked)}
+                className="w-4 h-4 text-indigo-600 border-slate-300 focus:ring-indigo-500 cursor-pointer"
+              />
+              <label htmlFor="useCustomOnly" className="text-xs font-semibold text-slate-600 cursor-pointer select-none">
+                優先載入後端自訂題庫模式 (Use Custom Database)
+              </label>
             </div>
           </div>
           <button 
@@ -151,13 +219,32 @@ export function ProblemGenerator() {
           <div className="flex justify-between items-center mb-8">
             <div className="flex flex-col">
               <span className="text-[10px] font-bold text-indigo-600 uppercase">進度</span>
-              <span className="text-sm font-black font-mono">0{currentIdx + 1} <span className="text-slate-300">/</span> 0{problems.length}</span>
+              <span className="text-sm font-black font-mono">{(currentIdx + 1) < 10 ? `0${currentIdx + 1}` : currentIdx + 1} <span className="text-slate-300">/</span> {problems.length < 10 ? `0${problems.length}` : problems.length}</span>
             </div>
             <div className="flex flex-col items-end">
               <span className="text-[10px] font-bold text-slate-400 uppercase">階段得分</span>
               <span className="text-sm font-black font-mono">{sessionScore}</span>
             </div>
           </div>
+
+          {isCustomRecord && (
+            <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 text-xs text-slate-700 font-medium">
+              <span className="font-bold text-emerald-800">⚙️ 後端自訂題庫模式：</span>
+              您目前正在練習由老師或管理者手動導入、直接存在伺服器（In-House DB）的專屬高難度 LaTeX 題目。答題同步可累計 XP 積分！
+            </div>
+          )}
+
+          {fallbackReason && (
+            <div className="mb-6 p-4 bg-amber-50/80 border border-amber-200 text-xs text-slate-700 font-medium">
+              <span className="font-bold text-amber-800">💡 離線精選 LaTeX 題庫模式：</span>
+              {fallbackReason === 'QUOTA_LIMIT' 
+                ? '您的 API 免費請求次數 (20/日) 已達上限。如需無限客製新題，請於 Settings > Secrets 或部署平台(Render)設定您的付費金鑰。' 
+                : fallbackReason === 'MISSING_KEY'
+                ? '未偵測到有效的 API 金鑰。請設定金鑰以解鎖無限 AI 智能出題，當前已為您啟用精選標準考題。'
+                : 'AI 生成服務受限，已自動切換為備用精選考題，答題仍可累計積分。'
+              }
+            </div>
+          )}
 
           <div className="mb-10 p-8 border border-slate-100 bg-slate-50/50 relative overflow-hidden">
             <div className="absolute top-0 right-0 p-2 opacity-5 font-mono text-4xl font-bold italic">Q</div>

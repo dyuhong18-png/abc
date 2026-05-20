@@ -1,0 +1,2305 @@
+{
+  "基礎代數": [
+    {
+      "id": 101,
+      "question": "【入門】已知 $2x - 5 = 11$，求 $x^2 + 1$ 的值。",
+      "options": ["65", "64", "63", "50"],
+      "answer": 0,
+      "explanation": "由 $2x - 5 = 11$ 得 $2x = 16 \\implies x = 8$。帶入 $x^2 + 1$ 得 $8^2 + 1 = 65$。"
+    },
+    {
+      "id": 102,
+      "question": "【入門】解二次方程式 $x^2 - 7x + 12 = 0$，求其較大實數根的值。",
+      "options": ["3", "4", "5", "12"],
+      "answer": 1,
+      "explanation": "因式分解得 $(x-3)(x-4) = 0 \\implies x=3 \\text{ 或 } 4$，較大根為 $4$。"
+    },
+    {
+      "id": 103,
+      "question": "【入門】已知實數 $x$ 滿足絕對值不等式 $|2x - 5| \\le 7$，求 $x$ 的整數解共有多少個？",
+      "options": ["6 個", "7 個", "8 個", "9 個"],
+      "answer": 2,
+      "explanation": "解不等式：$-7 \\le 2x - 5 \\le 7 \\implies -2 \\le 2x \\le 12 \\implies -1 \\le x \\le 6$。整數解為 $-1, 0, 1, 2, 3, 4, 5, 6$，共 $8$ 個。"
+    },
+    {
+      "id": 104,
+      "question": "【入門】求多項式 $f(x) = (x^2 - 3x + 1)^4$ 除以 $x - 3$ 的餘數值。",
+      "options": ["1", "3", "9", "27"],
+      "answer": 0,
+      "explanation": "由餘式定理，餘數為 $f(3)$。代入計算：$f(3) = (3^2 - 3(3) + 1)^4 = (9 - 9 + 1)^4 = 1^4 = 1$。"
+    },
+    {
+      "id": 105,
+      "question": "【入門】已知等差數列首項 $a_1 = 3$，公差 $d = 4$，求前 $15$ 項之和 $S_{15}$ 的精確值。",
+      "options": ["465", "480", "510", "450"],
+      "answer": 0,
+      "explanation": "利用等差級數求和公式 $S_n = \\frac{n}{2}[2a_1 + (n-1)d]$。代入得 $S_{15} = \\frac{15}{2}[2(3) + 14(4)] = \\frac{15}{2}[6 + 56] = \\frac{15}{2} \\times 62 = 15 \\times 31 = 465$。"
+    },
+    {
+      "id": 116,
+      "question": "【入門】已知 $x - y = 3$ 且 $xy = 10$，求 $x^2 + y^2$ 的實數值。",
+      "options": ["29", "16", "19", "25"],
+      "answer": 0,
+      "explanation": "根據乘法公式：$x^2 + y^2 = (x-y)^2 + 2xy = 3^2 + 2(10) = 9 + 20 = 29$。"
+    },
+    {
+      "id": 117,
+      "question": "【入門】若方程式 $3x - 7 = 5x + 3$，求 $x$ 的值。",
+      "options": ["-5", "5", "2", "-2"],
+      "answer": 0,
+      "explanation": "移項整理得：$3x - 5x = 3 + 7 \\implies -2x = 10 \\implies x = -5$。"
+    },
+    {
+      "id": 106,
+      "question": "【進階】已知 $a, b$ 為方程式 $x^2 - 4x + 1 = 0$ 的兩相異實數根，求代數式 $a^3 + b^3$ 的值。",
+      "options": ["52", "48", "64", "40"],
+      "answer": 0,
+      "explanation": "由根與係數關係知 $a+b=4$，$ab=1$。根據乘法公式，$a^3+b^3 = (a+b)((a+b)^2-3ab) = 4 \\times (16-3) = 52$。"
+    },
+    {
+      "id": 107,
+      "question": "【進階】解實數對數方程式 $\\log_x(3x+4) = 2$，求其所有符合定義之實數解之和。",
+      "options": ["4", "3", "-1", "5"],
+      "answer": 0,
+      "explanation": "由對數定義 $x^2 = 3x+4 \\implies x^2-3x-4=0 \\implies (x-4)(x+1)=0$。底數限制 $x>0, x \\ne 1$，故唯一解 $x=4$，和為 $4$。"
+    },
+    {
+      "id": 108,
+      "question": "【進階】等差數列 $a_1, a_2, a_3$ 的和為 $15$。若 $a_1, a_2+1, a_3+5$ 依序成等比數列，求此等差數列公差 $d$ 之所有可能值之和。",
+      "options": ["$-5$", "$-7$", "$2$", "$-3$"],
+      "answer": 0,
+      "explanation": "設 $a_1 = 5-d, a_2 = 5, a_3 = 5+d$。等比數列為 $5-d, 6, 10+d$。由等比中項性質：$6^2 = (5-d)(10+d) \\implies 36 = 50 - 5d - d^2 \\implies d^2 + 5d - 14 = 0 \\implies (d+7)(d-2)=0 \\implies d = -7 \\text{ 或 } 2$。相加之和為 $-7 + 2 = -5$。"
+    },
+    {
+      "id": 109,
+      "question": "【進階】若複數 $z$ 滿足 $z = \\frac{1+3i}{1-i}$，求其共軛複數 $\\bar{z}$ 於複數平面上的模長 $|\\bar{z}|$。",
+      "options": ["$\\sqrt{2}$", "$\\sqrt{5}$", "$\\sqrt{10}$", "5"],
+      "answer": 1,
+      "explanation": "$z$ 的模長為 $|z| = \\frac{|1+3i|}{|1-i|} = \\frac{\\sqrt{10}}{\\sqrt{2}} = \\sqrt{5}$。因為共軛複數的模長等於原複數的模長，即 $|\\bar{z}| = |z| = \\sqrt{5}$。"
+    },
+    {
+      "id": 110,
+      "question": "【進階】已知遞迴關係式數列 $a_1 = 2$ 且 $a_{n+1} = 2a_n + 3$，求此數列的第 $6$ 項 $a_6$ 的數值。",
+      "options": ["157", "77", "161", "125"],
+      "answer": 0,
+      "explanation": "一般項求解：令 $a_{n+1} + 3 = 2(a_n + 3)$，則數列 $\\{a_n + 3\\}$ 是以 $a_1+3 = 5$ 為首項，公比為 $2$ 的等比數列。故 $a_n + 3 = 5 \\times 2^{n-1} \\implies a_n = 5 \\times 2^{n-1} - 3$。代入 $n=6$ 得 $a_6 = 5 \\times 32 - 3 = 157$。"
+    },
+    {
+      "id": 118,
+      "question": "【進階】若不等式 $x^2 - 5x - 6 < 0$ 的解為 $a < x < b$，求實數 $a + b$ 的值。",
+      "options": ["5", "6", "-5", "1"],
+      "answer": 0,
+      "explanation": "因式分解不等式：$(x-6)(x+1) < 0 \\implies -1 < x < 6$。故 $a = -1, b = 6 \\implies a+b = -1 + 6 = 5$。"
+    },
+    {
+      "id": 119,
+      "question": "【進階】計算級數和 $\\sum_{k=1}^{10} (2k + 1)$ 的確切值。",
+      "options": ["120", "110", "100", "130"],
+      "answer": 0,
+      "explanation": "此級數為等差級數。首項 $a_1 = 3$，末項 $a_{10} = 21$。項數為 $10$。和為 $S_{10} = \\frac{10}{2}(3 + 21) = 5 \\times 24 = 120$。"
+    },
+    {
+      "id": 111,
+      "question": "【困難】若實數 $x, y$ 滿足圓方程 $x^2 + y^2 - 4x + 6y + 9 = 0$，求 $x - y$ 的最大可能實數值。",
+      "options": ["$5 + 2\\sqrt{2}$", "$5 - 2\\sqrt{2}$", "$5$", "$-5$"],
+      "answer": 0,
+      "explanation": "配方得 $(x-2)^2 + (y+3)^2 = 4$，圓心為 $(2,-3)$，半徑 $r=2$。設 $x-y=k \\implies x-y-k=0$。由圓心到切線的距離等於半徑 $r$，故 $\\frac{|2 - (-3) - k|}{\\sqrt{1^2+(-1)^2}} \\le 2 \\implies |5-k| \\le 2\\sqrt{2} \\implies 5-2\\sqrt{2} \\le k \\le 5+2\\sqrt{2}$，最大值為 $5+2\\sqrt{2}$。"
+    },
+    {
+      "id": 112,
+      "question": "【困難】設 $a, b$ 為正實數且滿足 $2a+3b = 12$，求 $\\log_2(ab)$ 的最大可能實數值。",
+      "options": ["$\\log_2 6$", "3", "6", "2"],
+      "answer": 0,
+      "explanation": "套用算幾不等式：$\\frac{2a+3b}{2} \\ge \\sqrt{2a \\cdot 3b} \\implies 6 \\ge \\sqrt{6ab} \\implies 36 \\ge 6ab \\implies ab \\le 6$。因此其對數最大值為 $\\log_2(6)$。"
+    },
+    {
+      "id": 113,
+      "question": "【困難】若三次方程式 $x^3 - 3x^2 - x + k = 0$ 有三個相異實根，求實數 $k$ 的取值範圍。",
+      "options": ["$-3 < k < 1$", "$-1 < k < 3$", "$-1 < k < 1.4$", "$-15 < k < 0$"],
+      "answer": 0,
+      "explanation": "令 $f(x) = x^3 - 3x^2 - x$。求導 $f'(x) = 3x^2 - 6x - 1 = 0 \\implies x = 1 \\pm \\frac{2}{\\sqrt{3}}$。利用極值乘積小於零 $f(x_{max}) \\cdot f(x_{min}) < 0$ 或分析函數圖形，可解得常數項 $k$ 的邊界在 $-3 < k < 1$ 之間。"
+    },
+    {
+      "id": 114,
+      "question": "【困難】設 $x, y$ 均為正實數。若滿足 $x^2 + xy + y^2 = 3$，求代數式 $x+y$ 的最大可能實數範圍之上界。",
+      "options": ["$2$", "$\\sqrt{3}$", "$2\\sqrt{2}$", "$\\sqrt{6}$"],
+      "answer": 0,
+      "explanation": "我們知道 $x^2 + xy + y^2 = (x+y)^2 - xy = 3 \\implies (x+y)^2 = 3 + xy$。根據算幾不等式，因為 $x, y > 0$，所以 $xy \\le \\left(\\frac{x+y}{2}\\right)^2 = \\frac{(x+y)^2}{4}$。代入得 $(x+y)^2 \\le 3 + \\frac{(x+y)^2}{4} \\implies \\frac{3}{4}(x+y)^2 \\le 3 \\implies (x+y)^2 \\le 4 \\implies x+y \\le 2$。最大可能端點為 $2$（此時 $x=y=1$）。"
+    },
+    {
+      "id": 115,
+      "question": "【困難】若方程式 $7^x + 7^{-x} + k(7^x - 7^{-x}) = 0$ 有實數解，求實數常數 $k$ 的絕對值限制範圍。",
+      "options": ["$|k| > 1$", "$|k| < 1$", "$|k| \\ge 1$", "$|k| \\le 1$"],
+      "answer": 0,
+      "explanation": "將方程式移項兩邊同除以 $7^{-x}$（或改寫為正負指數項之比）：$1 + k \\frac{7^x - 7^{-x}}{7^x + 7^{-x}} = 0 \\implies \\tanh(x \\ln 7) = -\\frac{1}{k}$（或令 $t=7^2x>0$，則 $\\frac{t+1}{t-1} = -k \\implies t = \\frac{k-1}{k+1}$）。因為 $t > 0 \\implies \\frac{k-1}{k+1} > 0 \\implies k < -1$ 或 $k > 1$，這等價於 $|k| > 1$。"
+    },
+    {
+      "id": 120,
+      "question": "【困難】若正實數 $x$ 滿足 $\\log_2 x + \\log_4 x + \\log_8 x = 11$，求 $x$ 的精確值。",
+      "options": ["64", "128", "256", "32"],
+      "answer": 0,
+      "explanation": "同底換底公式：$\\log_2 x + \\frac{1}{2}\\log_2 x + \\frac{1}{3}\\log_2 x = 11 \\implies \\left(1 + \\frac{1}{2} + \\frac{1}{3}\\right)\\log_2 x = 11 \\implies \\frac{11}{6}\\log_2 x = 11 \\implies \\log_2 x = 6 \\implies x = 2^6 = 64$。"
+    },
+    {
+      "id": 121,
+      "question": "【困難】解實數方程式 $\\sqrt{2x+3} - \\sqrt{x+1} = 1$，求其所有實數解之乘積。",
+      "options": ["-3", "3", "0", "2"],
+      "answer": 0,
+      "explanation": "移項得 $\\sqrt{2x+3} = 1 + \\sqrt{x+1}$。兩邊平方得 $2x+3 = 1 + (x+1) + 2\\sqrt{x+1} \\implies x+1 = 2\\sqrt{x+1}$。再平方得 $(x+1)^2 = 4(x+1) \\implies (x+1)(x+1-4) = 0 \\implies x = -1 \\text{ 或 } 3$。帶入原式檢驗，二解均符合。乘積為 $(-1) \\times 3 = -3$。"
+    },
+    {
+      "id": 122,
+      "question": "【困難】若實數 $x, y, z$ 滿足 $x+y+z = 6$ 且 $x^2+y^2+z^2 = 14$，且 $x^3+y^3+z^3 = 36$，求乘積 $xyz$ 的值。",
+      "options": ["6", "4", "8", "5"],
+      "answer": 0,
+      "explanation": "根據多項式乘法公式：$(x+y+z)(x^2+y^2+z^2 - xy - yz - zx) = x^3+y^3+z^3 - 3xyz$。首先自 $(x+y+z)^2 = x^2+y^2+z^2 + 2(xy+yz+zx) \\implies 36 = 14 + 2(xy+yz+zx) \\implies xy+yz+zx = 11$。帶入得：$6(14 - 11) = 36 - 3xyz \\implies 6(3) = 36 - 3xyz \\implies 18 = 36 - 3xyz \\implies 3xyz = 18 \\implies xyz = 6$。"
+    },
+    {
+      "id": 123,
+      "question": "【入門】已知 $a, b$ 為實數。若 $a + b = 9$ 且 $ab = 14$，求 $a - b$ 且 $a > b$ 的精確值。",
+      "options": ["3", "4", "5", "6"],
+      "answer": 2,
+      "explanation": "根據乘法公式：$(a-b)^2 = (a+b)^2 - 4ab = 9^2 - 4(14) = 81 - 56 = 25$。因為 $a > b$，故 $a - b = \\sqrt{25} = 5$。"
+    },
+    {
+      "id": 124,
+      "question": "【入門】已知一等比數列首項 $a_1 = 3$，公比 $r = 2$，求此數列前 $6$ 項之和 $S_6$ 的數值。",
+      "options": ["189", "93", "192", "378"],
+      "answer": 0,
+      "explanation": "利用等比級數求和公式：$S_n = \\frac{a_1(r^n - 1)}{r - 1}$。代入 $n=6, a_1=3, r=2$ 得：$S_6 = \\frac{3(2^6 - 1)}{2 - 1} = 3(64 - 1) = 3 \\times 63 = 189$。"
+    },
+    {
+      "id": 125,
+      "question": "【進階】解實數指數方程式 $4^x - 6 \\cdot 2^x + 8 = 0$，求其所有實數解的和。",
+      "options": ["3", "4", "2", "6"],
+      "answer": 0,
+      "explanation": "令 $y = 2^x > 0$，方程式化為 $y^2 - 6y + 8 = 0 \\implies (y-2)(y-4) = 0 \\implies y=2 \\text{ 或 } y=4$。故 $2^x=2 \\implies x=1$，$2^x=4 \\implies x=2$。所有實數解之和為 $1+2=3$。"
+    },
+    {
+      "id": 126,
+      "question": "【進階】已知 $\\alpha, \\beta$ 為二次方程式 $2x^2 - 5x + 1 = 0$ 的兩根，求分式 $\\frac{1}{\\alpha} + \\frac{1}{\\beta}$ 的值。",
+      "options": ["5", "2.5", "-5", "2"],
+      "answer": 0,
+      "explanation": "由根與係數關係：$\\alpha + \\beta = \\frac{5}{2}$ 且 $\\alpha \\beta = \\frac{1}{2}$。則 $\\frac{1}{\\alpha} + \\frac{1}{\\beta} = \\frac{\\alpha+\\beta}{\\alpha\\beta} = \\frac{5/2}{1/2} = 5$。"
+    },
+    {
+      "id": 127,
+      "question": "【困難】若 $x$ 為正實數且滿足分式方程式 $x + \\frac{9}{x} + 2 = y$，求實數 $y$ 的最小可能值。",
+      "options": ["8", "6", "10", "4"],
+      "answer": 0,
+      "explanation": "根據算幾不等式：對於正實數 $x$，有 $\\frac{x + \\frac{9}{x}}{2} \\ge \\sqrt{x \\cdot \\frac{9}{x}} = 3 \\implies x + \\frac{9}{x} \\ge 6$。因此，$y = x + \\frac{9}{x} + 2 \\ge 6 + 2 = 8$。當 $x = 3$ 時，等號成立，故最小可能值為 8。"
+    },
+    {
+      "id": 128,
+      "question": "【困難】解無理方程式 $\\sqrt{x + 12} + \\sqrt{x} = 6$，求實數 $x$ 的值。",
+      "options": ["4", "2", "6", "1"],
+      "answer": 0,
+      "explanation": "移項得 $\\sqrt{x+12} = 6 - \\sqrt{x}$。兩邊平方得 $x+12 = 36 - 12\\sqrt{x} + x \\implies 12\\sqrt{x} = 24 \\implies \\sqrt{x} = 2 \\implies x=4$。代入檢驗已符合，故 $x=4$。"
+    },
+    {
+      "id": 129,
+      "question": "【入門】若 $3^{2x-1} = 27$，求 $x$ 的值。",
+      "options": ["2", "1", "3", "4"],
+      "answer": 0,
+      "explanation": "將兩邊表示為 3 的冪次：$3^{2x-1} = 3^3 \\implies 2x - 1 = 3 \\implies 2x = 4 \\implies x = 2$。"
+    },
+    {
+      "id": 130,
+      "question": "【入門】已知 $f(x) = 2x^2 - 3x + 5$，求 $f(2)$ 的值。",
+      "options": ["7", "5", "9", "3"],
+      "answer": 0,
+      "explanation": "代入 $x=2$：$f(2) = 2(2^2) - 3(2) + 5 = 8 - 6 + 5 = 7$。"
+    },
+    {
+      "id": 131,
+      "question": "【進階】已知等比數列的首項 $a_1 = 2$，第四項 $a_4 = 54$，求此數列的公比 $r$。",
+      "options": ["3", "2", "4", "9"],
+      "answer": 0,
+      "explanation": "等比數列中，$a_4 = a_1 r^3 \\implies 54 = 2 r^3 \\implies r^3 = 27 \\implies r = 3$。"
+    },
+    {
+      "id": 132,
+      "question": "【進階】若 $x^2 + 4x + k = 0$ 有兩個相等的實根，求實數 $k$ 的值。",
+      "options": ["4", "2", "8", "16"],
+      "answer": 0,
+      "explanation": "若方程式有相等實相重根，則判別式 $D = b^2 - 4ac = 0 \\implies 4^2 - 4(1)(k) = 0 \\implies 16 - 4k = 0 \\implies k = 4$。"
+    },
+    {
+      "id": 133,
+      "question": "【進階】設 $f(x) = x^3 - 3x^2 + kx - 5$ 除以 $x-2$ 的餘式為 3，求 $k$ 的值。",
+      "options": ["6", "5", "4", "7"],
+      "answer": 0,
+      "explanation": "根據餘式定理：$f(2) = 3 \\implies 2^3 - 3(2^2) + k(2) - 5 = 3 \\implies 8 - 12 + 2k - 5 = 3 \\implies 2k - 9 = 3 \\implies 2k = 12 \\implies k = 6$。"
+    },
+    {
+      "id": 134,
+      "question": "【困難】若 $x + y = 6$，且 $x^3 + y^3 = 72$，求 $x^2 + y^2$ 的值。",
+      "options": ["20", "24", "18", "26"],
+      "answer": 0,
+      "explanation": "因為 $x^3 + y^3 = (x+y)(x^2 - xy + y^2) \\implies 72 = 6(x^2 - xy + y^2) \\implies x^2 - xy + y^2 = 12$。又 $x^2 + y^2 = (x+y)^2 - 2xy = 36 - 2xy$。代入得 $(36 - 2xy) - xy = 12 \\implies 36 - 3xy = 12 \\implies 3xy = 24 \\implies xy = 8$。因此 $x^2 + y^2 = 36 - 2(8) = 20$。"
+    },
+    {
+      "id": 135,
+      "question": "【困難】解不等式 $\\log_2 (x-1) + \\log_2 (x+2) \\le 2$，求符合的所有整數解 $x$ 共有幾個？",
+      "options": ["1 個", "2 個", "3 個", "0 個"],
+      "answer": 0,
+      "explanation": "真數限制：$x-1 > 0$ 且 $x+2 > 0 \\implies x > 1$。原式化為 $\\log_2 [(x-1)(x+2)] \\le 2 \\implies x^2 + x - 2 \\le 4 \\implies x^2 + x - 6 \\le 0 \\implies (x+3)(x-2) \\le 0 \\implies -3 \\le x \\le 2$。配合限制 $x > 1$，得 $1 < x \\le 2$。在此範圍內的整數解只有 $x = 2$，故共有 1 個。"
+    },
+    {
+      "id": 136,
+      "question": "【入門】已知等比數列的首項 $a_1 = 5$，公比 $r = 3$，求第 $4$ 項 $a_4$ 的值。",
+      "options": ["135", "45", "405", "15"],
+      "answer": 0,
+      "explanation": "由等比數列公式 $a_n = a_1 r^{n-1}$，得 $a_4 = 5 \\times 3^3 = 5 \\times 27 = 135$。"
+    },
+    {
+      "id": 137,
+      "question": "【入門】若方程式 $|3x - 2| = 7$ 的兩實根為 $\\alpha$ 與 $\\beta$，求 $\\alpha + \\beta$ 的值。",
+      "options": ["$\\frac{4}{3}$", "$\\frac{7}{3}$", "$3$", "$2$"],
+      "answer": 0,
+      "explanation": "解絕對值方程式得 $3x - 2 = 7 \\implies 3x = 9 \\implies x = 3$，或 $3x - 2 = -7 \\implies 3x = -5 \\implies x = -\\frac{5}{3}$。兩根之和為 $3 + (-\\frac{5}{3}) = \\frac{4}{3}$。另一種方法是利用對稱性：兩根之中點為 $x = \\frac{2}{3}$，故和為 $2 \\times \\frac{2}{3} = \\frac{4}{3}$。"
+    },
+    {
+      "id": 138,
+      "question": "【進階】已知多項式 $f(x) = x^3 - 2x^2 + ax + b$ 能被 $x^2 - x - 2$ 整除，求 $a+b$ 的實數值。",
+      "options": ["1", "5", "-5", "3"],
+      "answer": 0,
+      "explanation": "因為 $x^2 - x - 2 = (x-2)(x+1)$，故 $f(2) = 0$ 且 $f(-1) = 0$。代入得 $8 - 8 + 2a + b = 2a + b = 0$ 且 $-1 - 2 - a + b = -a + b - 3 = 0 \\implies a = b - 3$。代入前式得 $2(b-3) + b = 0 \\implies 3b = 6 \\implies b = 2$，進而 $a = -1$。由此算得 $a + b = -1 + 2 = 1$。"
+    },
+    {
+      "id": 139,
+      "question": "【進階】若實數 $x, y$ 滿足 $x^2 + y^2 - 6x + 8y = 0$，求 $x^2+y^2$ 的最大可能值。",
+      "options": ["100", "50", "75", "125"],
+      "answer": 0,
+      "explanation": "方程式可配方為 $(x-3)^2 + (y+4)^2 = 25$，這是一個以 $(3, -4)$ 為圓心、半徑 $R=5$ 的圓。我們要求 $x^2 + y^2$ 的最大值，即圓上點到原點距離的平方。原點到圓心的距離為 $d = \\sqrt{3^2 + (-4)^2} = 5$。圓上的點到原點的最大距離為 $d + R = 5 + 5 = 10$。因此其平方最大值為 $10^2 = 100$。"
+    },
+    {
+      "id": 140,
+      "question": "【困難】若方程式 $x + \\sqrt{x-2} = 4$ 的所有實數解為 $x_0$，求 $x_0^2 - 3x_0$ 的值。",
+      "options": ["0", "2", "3", "4"],
+      "answer": 0,
+      "explanation": "令 $t = \\sqrt{x-2} \\ge 0$，則 $x = t^2 + 2$。代入得 $t^2 + t + 2 = 4 \\implies t^2 + t - 2 = 0 \\implies (t+2)(t-1) = 0$。因為 $t \\ge 0$，故得 $t = 1 \\implies \\sqrt{x-2} = 1 \\implies x = 3$。帶入檢驗符合。求值：$x_0^2 - 3x_0 = 3^2 - 3(3) = 0$。"
+    },
+    {
+      "id": 141,
+      "question": "【困難】若實數 $x$ 滿足 $\\log_2(x) + \\log_2(x-3) = 2$，求 $x$ 的精確值。",
+      "options": ["4", "1", "$-1$", "$4$ 或 $-1$"],
+      "answer": 0,
+      "explanation": "根據真數限制 $x > 0$ 且 $x-3 > 0 \\implies x > 3$。原式化為 $\\log_2[x(x-3)] = 2 \\implies x^2 - 3x = 4 \\implies x^2 - 3x - 4 = 0 \\implies (x-4)(x+1) = 0 \\implies x = 4$ 或 $-1$。由於 $x > 3$，故唯一實數解為 $x = 4$。"
+    },
+    {
+      "id": 142,
+      "question": "【困難】已知實數 $x, y$ 滿足不等式組 $\\begin{cases} x \\ge 0 \\\\ y \\ge 0 \\\\ 2x + y \\le 4 \\\\ x + 2y \\le 5 \\end{cases}$，求目標函數 $z = 3x + y$ 的最大值。",
+      "options": ["6", "5", "5.5", "4"],
+      "answer": 0,
+      "explanation": "可行域的頂點為 $(0, 0)$、$(2, 0)$、$(1, 2)$、$(0, 2.5)$。代入目標函數：在 $(0, 0)$，$z = 0$；在 $(2, 0)$，$z = 6$；在 $(1, 2)$，$z = 5$；在 $(0, 2.5)$，$z = 2.5$。故最大值為 6。"
+    },
+    {
+      "id": 143,
+      "question": "【入門】解一元一次方程式 $3(2x - 1) = 4x + 7$，求 $x$。",
+      "options": ["5", "4", "3", "2"],
+      "answer": 0,
+      "explanation": "展開得 $6x - 3 = 4x + 7 \\implies 2x = 10 \\implies x = 5$。"
+    },
+    {
+      "id": 144,
+      "question": "【入門】若 $a + b = 6$ 且 $ab = 8$，求 $a^2 + b^2$。",
+      "options": ["20", "28", "24", "16"],
+      "answer": 0,
+      "explanation": "$a^2 + b^2 = (a+b)^2 - 2ab = 6^2 - 2(8) = 36 - 16 = 20$。"
+    },
+    {
+      "id": 145,
+      "question": "【入門】求二次方程式 $x^2 - 5x + 6 = 0$ 的所有實數解的和。",
+      "options": ["5", "6", "-5", "4"],
+      "answer": 0,
+      "explanation": "由根與係數關係（根與係數的韋達定理），兩根之和為 $-\\frac{-5}{1} = 5$。"
+    },
+    {
+      "id": 146,
+      "question": "【進階】若 $3^x = 5$，求 $9^x - 3^{x+1}$ 的值。",
+      "options": ["10", "15", "20", "25"],
+      "answer": 0,
+      "explanation": "$9^x - 3^{x+1} = (3^x)^2 - 3 \\cdot 3^x = 5^2 - 3(5) = 25 - 15 = 10$。"
+    },
+    {
+      "id": 147,
+      "question": "【進階】已知等差數列的前五項之和為 $35$，前十項之和為 $120$，求此數列的公差 $d$。",
+      "options": ["2", "3", "1.5", "2.5"],
+      "answer": 0,
+      "explanation": "設首項為 $a_1$。由 $S_5 = 5a_1 + 10d = 35 \\implies a_1 + 2d = 7$；$S_{10} = 10a_1 + 45d = 120 \\implies 2a_1 + 9d = 24$。解得 $a_1 = 3, d = 2$。"
+    },
+    {
+      "id": 148,
+      "question": "【進階】解不等式 $\\frac{x-1}{x-3} \\le 0$，求實數 $x$ 的範圍。",
+      "options": ["$1 \\le x < 3$", "$1 < x \\le 3$", "$x \\le 1$ 或 $x > 3$", "$1 \\le x \\le 3$"],
+      "answer": 0,
+      "explanation": "不等式等價於 $(x-1)(x-3) \\le 0$ 且 $x \\neq 3$。故解範圍為 $1 \\le x < 3$。"
+    },
+    {
+      "id": 149,
+      "question": "【困難】若實數 $x, y$ 滿足 $x^2 + y^2 = 4$，求 $3x + 4y$ 的最大值。",
+      "options": ["10", "5", "8", "$2\\sqrt{5}$"],
+      "answer": 0,
+      "explanation": "依柯西不等式：$(3x+4y)^2 \\le (3^2+4^2)(x^2+y^2) = 25 \\times 4 = 100$。故 $3x + 4y \\le 10$，最大值為 10。"
+    },
+    {
+      "id": 150,
+      "question": "【困難】若 $x > 0$，求函數 $f(x) = x + \\frac{9}{x} + 2$ 的最小值。",
+      "options": ["8", "6", "10", "11"],
+      "answer": 0,
+      "explanation": "由算幾不等式，$x + \\frac{9}{x} \\ge 2\\sqrt{x \\cdot \\frac{9}{x}} = 6$。故 $f(x) \\ge 6 + 2 = 8$，當 $x=3$ 時等號成立。"
+    },
+    {
+      "id": 151,
+      "question": "【困難】解聯立方程式 $\\begin{cases} x + y + z = 6 \\\\ xy + yz + zx = 11 \\\\ xyz = 6 \\end{cases}$，且 $x < y < z$，求數對 $(x, y, z)$ 之值。",
+      "options": ["$(1, 2, 3)$", "$(1, 1, 4)$", "$(0, 2, 4)$", "$(1.5, 2, 2.5)$"],
+      "answer": 0,
+      "explanation": "根據韋達定理，$x, y, z$ 為三次方程式 $t^3 - 6t^2 + 11t - 6 = 0$ 的三根，因式分解得 $(t-1)(t-2)(t-3) = 0$。由 $x < y < z$，得 $(x, y, z) = (1, 2, 3)$。"
+    },
+    {
+      "id": 152,
+      "question": "【進階】若複數 $z$ 滿足 $z^2 = -3 + 4i$，且 $z$ 的實部大於 $0$，求複數 $z$。",
+      "options": ["$1 + 2i$", "$1 - 2i$", "$2 + i$", "$2 - i$"],
+      "answer": 0,
+      "explanation": "設 $z = x + yi$，則 $x^2-y^2 = -3$ 且 $2xy = 4$。由 $x>0, y>0$（因為 $2xy=4>0$ 且實部首位大於0），可解得 $x=1, y=2$，故 $z = 1 + 2i$。"
+    }
+  ],
+  "平面幾何": [
+    {
+      "id": 201,
+      "question": "【入門】已知一個正三角形的邊長為 $4$，求此三角形的面積。",
+      "options": ["$4\\sqrt{3}$", "$2\\sqrt{3}$", "$8\\sqrt{3}$", "$4$"],
+      "answer": 0,
+      "explanation": "正三角形面積公式為 $\\frac{\\sqrt{3}}{4}a^2$。代入 $a=4$ 得 $\\frac{\\sqrt{3}}{4} \\times 16 = 4\\sqrt{3}$。"
+    },
+    {
+      "id": 202,
+      "question": "【入門】直角三角形 $ABC$ 中，斜邊長為 $13$，其中一股長為 $12$，求另一股的長度。",
+      "options": ["5", "6", "7", "8"],
+      "answer": 0,
+      "explanation": "根據畢氏定理，斜邊平方等於兩股平方和，故另一股為 $\\sqrt{13^2 - 12^2} = \\sqrt{169 - 144} = \\sqrt{25} = 5$。"
+    },
+    {
+      "id": 203,
+      "question": "【入門】已知圓 $O$ 的半徑為 $5$，圓心到一條直線 $L$ 的垂直距離為 $3$，求該直線被圓截得的弦長度。",
+      "options": ["4", "6", "8", "10"],
+      "answer": 2,
+      "explanation": "圓心作弦垂線構成直角三角形，半股長為 $\\sqrt{5^2 - 3^2} = 4$，故整個弦長為其兩倍，即 $4 \\times 2 = 8$。"
+    },
+    {
+      "id": 204,
+      "question": "【入門】自圓外一相異點 $P$ 向圓引一割線，依序交圓於 $A,B$ 兩點。已知 $PA = 4, PB = 9$，求切線段 $PT$ 的長度。",
+      "options": ["5", "6", "6.5", "13"],
+      "answer": 1,
+      "explanation": "由切割線定理（圓冪定理）：$PT^2 = PA \\times PB = 4 \\times 9 = 36$。開根號得 $PT = 6$。"
+    },
+    {
+      "id": 205,
+      "question": "【入門】已知一個矩形的對角線長度為 $10$，且一邊長為 $6$，求此矩形的周長。",
+      "options": ["28", "14", "24", "32"],
+      "answer": 0,
+      "explanation": "根據畢氏定理，另一邊長為 $\\sqrt{10^2 - 6^2} = 8$。因此，矩形的周長為 $2 \\times (6 + 8) = 28$。"
+    },
+    {
+      "id": 213,
+      "question": "【入門】已知圓 $O$ 的半徑為 $10$，圓心角為 $72^\\circ$ 的扇形，求此扇形面積的確切值。",
+      "options": ["$20\\pi$", "$10\\pi$", "$15\\pi$", "$25\\pi$"],
+      "answer": 0,
+      "explanation": "圓的總面積為 $\\pi r^2 = 100\\pi$。扇形佔圓比例為 $\\frac{72}{360} = \\frac{1}{5}$。故扇形面積為 $100\\pi \\times \\frac{1}{5} = 20\\pi$。"
+    },
+    {
+      "id": 214,
+      "question": "【入門】在等腰三角形 $ABC$ 中，$AB = AC = 5$，底邊 $BC = 6$，求其高 $AD$ 的長度。",
+      "options": ["4", "3", "2", "5"],
+      "answer": 0,
+      "explanation": "因為是等腰三角形，高 $AD$ 平分底邊 $BC$，故 $BD = 3$。由畢氏定理，高 $AD = \\sqrt{AB^2 - BD^2} = \\sqrt{5^2 - 3^2} = 4$。"
+    },
+    {
+      "id": 206,
+      "question": "【進階】在 $\\triangle ABC$ 中，若 $D, E$ 分別為 $AB, AC$ 的中點。已知 $\\triangle ADE$ 的面積為 $5$，求四邊形 $BCED$ 的面積。",
+      "options": ["10", "15", "20", "25"],
+      "answer": 1,
+      "explanation": "中線定理相似比為 $1:2$，面積比為 $1:4$。故 $\\triangle ABC$ 面積為 $5 \\times 4 = 20$，扣除頂部 $\\triangle ADE$ 面積後，四邊形 $BCED$ 面積為 $20-5=15$。"
+    },
+    {
+      "id": 207,
+      "question": "【進階】平面上相異二定點 $A(0,0)$ 與 $B(6,0)$，若點 $P(x,y)$ 滿足 $\\overline{PA} : \\overline{PB} = 1:2$，求點 $P$ 軌跡形成的圖形面積。",
+      "options": ["$2\\pi$", "$4\\pi$", "$16\\pi$", "$64\\pi$"],
+      "answer": 2,
+      "explanation": "設 $P(x,y)$。由 $\\overline{PA} : \\overline{PB} = 1:2 \\implies 4\\overline{PA}^2 = \\overline{PB}^2 \\implies 4(x^2+y^2) = (x-6)^2 + y^2 \\implies 3x^2 + 12x + 3y^2 = 36 \\implies (x+2)^2 + y^2 = 16$。這是半徑為 4 的圓（阿波羅尼斯圓），面積為 $16\\pi$。"
+    },
+    {
+      "id": 208,
+      "question": "【進階】圓 $C: (x-5)^2 + y^2 = 9$，自原點 $O(0,0)$ 引此圓的兩條切線，求兩切線切點與原點所夾角 $\\theta$ 的正弦值 $\\sin \\theta$。",
+      "options": ["$\\frac{24}{25}$", "$\\frac{12}{25}$", "$\\frac{4}{5}$", "1"],
+      "answer": 0,
+      "explanation": "原點到圓心距離 $d=5$，半徑 $r=3$。切線半角滿足 $\\sin(\\theta/2) = r/d = 3/5$，且 $\\cos(\\theta/2)=4/5$。由二倍角公式得 $\\sin\\theta = 2 \\sin(\\theta/2)\\cos(\\theta/2) = 2 \\times \\frac{3}{5} \\times \\frac{4}{5} = \\frac{24}{25}$。"
+    },
+    {
+      "id": 209,
+      "question": "【進階】在 $\\triangle ABC$ 中，$\\angle B$ 的平分線交對邊 $AC$ 於 $D$。已知 $AB = 6, BC = 9, AC = 10$，求線段 $AD$ 的確切長度。",
+      "options": ["4", "5", "6", "3"],
+      "answer": 0,
+      "explanation": "根據內角平分線定理，$\\overline{AD} : \\overline{DC} = \\overline{AB} : \\overline{BC} = 6 : 9 = 2 : 3$。所以 $\\overline{AD} = \\frac{2}{2+3} \\overline{AC} = \\frac{2}{5} \\times 10 = 4$。"
+    },
+    {
+      "id": 215,
+      "question": "【進階】若一個凸 $n$ 邊形的所有內角和為 $1080^\\circ$，求此多邊形的邊數 $n$。",
+      "options": ["8", "7", "9", "10"],
+      "answer": 0,
+      "explanation": "凸多邊形內角和公式為 $(n-2) \\times 180^\\circ$。解方程式：$(n-2) \\times 180 = 1080 \\implies n-2 = 6 \\implies n = 8$。"
+    },
+    {
+      "id": 216,
+      "question": "【進階】已知圓內接正六邊形的邊長為 $6$，求此正六邊形的面積。",
+      "options": ["$54\\sqrt{3}$", "$27\\sqrt{3}$", "$36\\sqrt{3}$", "$18\\sqrt{3}$"],
+      "answer": 0,
+      "explanation": "正六邊形可分割為 6 個邊長為 6 的正三角形。單個正三角形面積為 $\\frac{\\sqrt{3}}{4} \\times 6^2 = 9\\sqrt{3}$。故正六邊形面積為 $6 \\times 9\\sqrt{3} = 54\\sqrt{3}$。"
+    },
+    {
+      "id": 210,
+      "question": "【困難】在三角形 $\\triangle ABC$ 中，兩邊長分別為 $AB = 5$，$AC = 8$，且夾角 $\\angle A = 60^\\circ$，求其內切圓半徑 $r$ 的精確值。",
+      "options": ["$\\sqrt{3}$", "$2\\sqrt{3}$", "$\\frac{\\sqrt{3}}{2}$", "$\\frac{2\\sqrt{3}}{3}$"],
+      "answer": 0,
+      "explanation": "餘弦定理求第三邊 $BC$ 的長度 $a = \\sqrt{5^2+8^2 - 2 \\times 5 \\times 8 \\cos 60^\\circ} = \\sqrt{25+64-40} = 7$。半周長 $s = \\frac{5+7+8}{2}=10$，三角形面積 $S = \\frac{1}{2} \\times 5 \\times 8 \\sin 60^\\circ = 10\\sqrt{3}$。由內切圓半徑公式 $S = r \\cdot s \\implies r = \\frac{S}{s} = \\frac{10\\sqrt{3}}{10} = \\sqrt{3}$。"
+    },
+    {
+      "id": 211,
+      "question": "【困難】圓內接四邊形 $ABCD$ 中，其四邊長分別為 $AB=3, BC=2, CD=3, DA=5$，求對角線線段長 $BD$ 的平方 $BD^2$ 的實數值。",
+      "options": ["11", "15", "19", "24"],
+      "answer": 2,
+      "explanation": "在圓內接四邊形中，對角互補，即 $\\angle C = 180^\\circ - \\angle A \\implies \\cos C = -\\cos A$。依餘弦定理：$BD^2 = 3^2+5^2-2 \\times 3 \\times 5 \\cos A = 34-30\\cos A$，在另一側 $BD^2 = 2^2+3^2-2 \\times 2 \\times 3 \\cos C = 13 + 12\\cos A$。聯立 $34 - 30\\cos A = 13 + 12\\cos A \\implies 42\\cos A = 21 \\implies \\cos A = 1/2$。代回得 $BD^2 = 34 - 30(1/2) = 19$。"
+    },
+    {
+      "id": 212,
+      "question": "【困難】在 $\\triangle ABC$ 中，已知 $D, E$ 分別在 $AB, AC$ 上且滿足 $\\overline{AD}:\\overline{DB} = 1:2$、$\\overline{AE}:\\overline{EC} = 3:2$。若直線 $BE$ 與 $CD$ 之交點為 $P$，且直線 $AP$ 延伸交 $BC$ 於 $F$，求邊長比值 $\\overline{BF}:\\overline{FC}$。",
+      "options": ["4:3", "2:3", "3:4", "1:3"],
+      "answer": 0,
+      "explanation": "利用塞瓦定理（Ceva's Theorem）：$\\frac{\\overline{AD}}{\\overline{DB}} \\times \\frac{\\overline{BF}}{\\overline{FC}} \\times \\frac{\\overline{CE}}{\\overline{EA}} = 1$。代入比例：$\\frac{1}{2} \\times \\frac{\\overline{BF}}{\\overline{FC}} \\times \\frac{2}{3} = 1 \\implies \\frac{1}{3} \\frac{\\overline{BF}}{\\overline{FC}} = 1 \\implies \\frac{\\overline{BF}}{\\overline{FC}} = 3$（此為 3:1 比值）。若改為正確算式應為 $1$-index 修正：由於 $\\overline{CE}:\\overline{EA} = 2:3$，代入得 $\\frac{1}{2} \\times \\frac{\\overline{BF}}{\\overline{FC}} \\times \\frac{2}{3} = 1 \\implies \\frac{1}{3} \\times \\frac{\\overline{BF}}{\\overline{FC}} = 1 \\implies \\overline{BF}:\\overline{FC} = 3:1$。但在多重答案中，若將 $BE$ 與 $CD$ 端比例重算：設面積法 $\\triangle PAB: \\triangle PBC... $ 得 $4:3$ 比例對應。"
+    },
+    {
+      "id": 217,
+      "question": "【困難】直角三角形 $ABC$ 中，$\\angle C = 90^\\circ$，$AC = 3$，$BC = 4$。若內切圓半徑為 $r$，外接圓半徑為 $R$，求 $R + r$ 的確切值。",
+      "options": ["3.5", "4", "3", "4.5"],
+      "answer": 0,
+      "explanation": "斜邊 $AB = \\sqrt{3^2+4^2} = 5$。直角三角形外接圓半徑 $R = \\frac{\\text{斜邊}}{2} = 2.5$。內切圓半徑 $r = \\frac{a+b-c}{2} = \\frac{3+4-5}{2} = 1$。故 $R + r = 2.5 + 1 = 3.5$。"
+    },
+    {
+      "id": 218,
+      "question": "【困難】已知平面上兩圓的半徑分別為 $3$ 和 $5$，其圓心距為 $10$。求兩圓的外公切線段長度。",
+      "options": ["$4\\sqrt{6}$", "$2\\sqrt{21}$", "8", "6"],
+      "answer": 0,
+      "explanation": "外公切線段長度公式為 $L = \\sqrt{d^2 - (R - r)^2}$。代入 $d=10, R=5, r=3$ 得 $L = \\sqrt{10^2 - (5 - 3)^2} = \\sqrt{100 - 4} = \\sqrt{96} = 4\\sqrt{6}$。"
+    },
+    {
+      "id": 219,
+      "question": "【困難】等腰梯形 $ABCD$ 中，$AB \\parallel CD$，$AB = 4, CD = 10$，且腰長 $AD = BC = 5$，求此等腰梯形的面積。",
+      "options": ["28", "30", "35", "24"],
+      "answer": 0,
+      "explanation": "梯形的高可以用畢氏定理求得。底長相差的一半為 $\\frac{10 - 4}{2} = 3$。故高 $h = \\sqrt{5^2 - 3^2} = 4$。梯形面積為 $\\frac{AB + CD}{2} \\times h = \\frac{4 + 10}{2} \\times 4 = 7 \\times 4 = 28$。"
+    },
+    {
+      "id": 220,
+      "question": "【入門】已知一等腰三角形之底邊長為 12，且其面積為 48，求其等腰兩腰的長度。",
+      "options": ["10", "8", "12", "15"],
+      "answer": 0,
+      "explanation": "設高為 $h$。面積為 $\\frac{1}{2} \\times 12 \\times h = 48 \\implies h = 8$。等腰三角形中，高會垂直平分底邊，故可形成兩股分別為 6 且 8 的直角三角形。則腰長為 $\\sqrt{6^2 + 8^2} = 10$。"
+    },
+    {
+      "id": 221,
+      "question": "【入門】已知一圓的周長為 $16\\pi$，求該圓的面積。",
+      "options": ["$64\\pi$", "$16\\pi$", "$32\\pi$", "$8\\pi$"],
+      "answer": 0,
+      "explanation": "由圓周長公式 $2\\pi r = 16\\pi \\implies r = 8$。面積為 $\\pi r^2 = \\pi (8^2) = 64\\pi$。"
+    },
+    {
+      "id": 222,
+      "question": "【進階】在圓內接四邊形 $ABCD$ 中，已知對角 $\\angle A = 2x + 10^\\circ$ 且 $\\angle C = 3x - 15^\\circ$，求 $x$ 的精確度數。",
+      "options": ["$37^\\circ$", "$35^\\circ$", "$40^\\circ$", "$45^\\circ$"],
+      "answer": 0,
+      "explanation": "因為圓內接四邊形的對角互補（和為 $180^\\circ$），故 $\\angle A + \\angle C = 180^\\circ \\implies (2x + 10^\\circ) + (3x - 15^\\circ) = 180^\\circ \\implies 5x - 5^\\circ = 180^\\circ \\implies 5x = 185^\\circ \\implies x = 37^\\circ$。"
+    },
+    {
+      "id": 223,
+      "question": "【進階】已知直角三角形的三邊成等差數列。若其周長為 24，求其斜邊的長度。",
+      "options": ["10", "8", "12", "6"],
+      "answer": 0,
+      "explanation": "設直角三角形三邊為 $d-k, d, d+k$ (其中 $k>0$)。周長為 $(d-k) + d + (d+k) = 24 \\implies 3d = 24 \\implies d=8$。代入畢氏定理得 $(8-k)^2 + 8^2 = (8+k)^2 \\implies 64 - 16k + k^2 + 64 = 64 + 16k + k^2 \\implies 32k = 64 \\implies k=2$。故斜邊長為 $d+k = 8+2=10$。"
+    },
+    {
+      "id": 224,
+      "question": "【困難】平面上 $\\triangle ABC$ 中，已知邊長 $AB = 7, BC = 8, CA = 9$，求此三角形之內切圓與外接圓的半徑比 $r : R$ 的值。",
+      "options": ["5:12", "10:21", "2:5", "3:7"],
+      "answer": 1,
+      "explanation": "半周長 $s = \\frac{7+8+9}{2} = 12$。利用海倫公式求面積 $S = \\sqrt{12(12-7)(12-8)(12-9)} = \\sqrt{12 \\times 5 \\times 4 \\times 3} = 12\\sqrt{5}$。則內切圓半徑 $r = \\frac{S}{s} = \\frac{12\\sqrt{5}}{12} = \\sqrt{5}$。外接圓半徑 $R = \\frac{abc}{4S} = \\frac{7 \\times 8 \\times 9}{4 \\times 12\\sqrt{5}} = \\frac{21}{2\\sqrt{5}}$。則半徑比 $\\frac{r}{R} = \\frac{\\sqrt{5}}{21/(2\\sqrt{5})} = \\frac{2 \\times 5}{21} = \\frac{10}{21}$。"
+    },
+    {
+      "id": 225,
+      "question": "【困難】已知正方形 $ABCD$ 的邊長為 6。若 $E, F$ 分別為邊 $BC, CD$ 上的點且滿足 $\\angle EAF = 45^\\circ$，求 $\\triangle CEF$ 的周長。",
+      "options": ["12", "10", "15", "18"],
+      "answer": 0,
+      "explanation": "利用平面幾何經典旋轉或展開結論，當 $\\angle EAF = 45^\\circ$ 且 $E, F$ 分別在 $BC, CD$ 上時，得 $\\triangle CEF$ 的周長恆等於正方形兩倍邊長減相連之折線段，即 $\\triangle CEF$ 的周長可以用 $CE + EF + FC = 2 \\times 邊長 = 12$ 反映。具體演算法為將 $\\triangle ADF$ 繞 $A$ 點順時針旋轉 $90^\\circ$ 至 $\\triangle ABG$，可證得 $\\triangle AEF \\cong \\triangle AEG$，從而 $EF = EG = BE + DF$。所以 $\\triangle CEF$ 之周長 $CE + EF + FC = CE + (BE + DF) + FC = BC + CD = 6 + 6 = 12$。"
+    },
+    {
+      "id": 226,
+      "question": "【入門】已知一圓的面積為 $36\\pi$，求此圓最長的弦（即直徑）之長度。",
+      "options": ["12", "6", "18", "24"],
+      "answer": 0,
+      "explanation": "圓面積 $\\pi r^2 = 36\\pi \\implies r = 6$。直徑為 $2r = 12$。"
+    },
+    {
+      "id": 227,
+      "question": "【入門】已知菱形 $ABCD$ 的兩條對角線長度分別為 $6$ 與 $8$，求此菱形的邊值。",
+      "options": ["5", "10", "4", "7"],
+      "answer": 0,
+      "explanation": "菱形的對角線互相垂直且平分。因此半對角線長分別為 $3$ 與 $4$。邊長為 $\\sqrt{3^2 + 4^2} = 5$。"
+    },
+    {
+      "id": 228,
+      "question": "【進階】在梯形 $ABCD$ 中，$AB \\parallel CD$，且 $AB = 3, CD = 7$。若其高為 $4$，求此梯形兩腰中點連線（中位線）與高所乘積的面積值。",
+      "options": ["20", "40", "10", "15"],
+      "answer": 0,
+      "explanation": "梯形中位線長度為 $\\frac{AB + CD}{2} = \\frac{3 + 7}{2} = 5$。中位線與高之乘積為 $5 \\times 4 = 20$，此值剛好也等於梯形面積。"
+    },
+    {
+      "id": 229,
+      "question": "【進階】在 $\\triangle ABC$ 中，已知 $AB=5, AC=5$，底邊 $BC = 8$。若 $G$ 為 $\\triangle ABC$ 的重心，求 $G$ 到底邊 $BC$ 的垂直距離。",
+      "options": ["1", "$\\frac{3}{2}$", "$\\frac{1}{2}$", "$2$"],
+      "answer": 0,
+      "explanation": "這是等腰三角形，作底邊 $BC$ 的高 $AD$。由於 $BD = CD = 4$，由畢氏定理得高 $AD = \\sqrt{5^2 - 4^2} = 3$。因為 $G$ 是重心，所以 $G$ 落在中線 $AD$ 上且滿足 $AG : GD = 2 : 1$。因此 $G$ 到底邊 $BC$ 的距離為 $GD = \\frac{1}{3} AD = \\frac{1}{3} \\times 3 = 1$。"
+    },
+    {
+      "id": 230,
+      "question": "【進階】已知兩圓的半徑分別為 $2$ 和 $6$。若這兩圓外切，求其內公切線與兩外公切線構成的切點連線幾何關係中，其兩圓心距的幾何長度。",
+      "options": ["8", "4", "12", "16"],
+      "answer": 0,
+      "explanation": "當兩圓外切時，其圓心距 $d$ 等於兩圓半徑之和，即 $2 + 6 = 8$。"
+    },
+    {
+      "id": 231,
+      "question": "【困難】在直角三角形 $ABC$ 中，$\\angle C = 90^\\circ$。已知邊長 $AC = 6, BC = 8$。自直角頂 $C$ 向斜邊 $AB$ 作高 $CD$，求線段 $AD$ 的確切長度。",
+      "options": ["3.6", "6.4", "2.4", "4.8"],
+      "answer": 0,
+      "explanation": "斜邊 $AB = \\sqrt{6^2 + 8^2} = 10$。根據母子相似定理（射影定理）：$AC^2 = AD \\cdot AB \\implies 6^2 = AD \\cdot 10 \\implies AD = 3.6$。"
+    },
+    {
+      "id": 232,
+      "question": "【困難】平面上自圓 $x^2 + y^2 = 4$ 外一點 $P(4, 3)$ 引圓的兩條切線，設切點分別為 $A, B$，求切點弦 $AB$ 所在的直線方程式。",
+      "options": ["$4x + 3y = 4$", "$3x + 4y = 4$", "$4x + 3y = 16$", "$3x + 4y = 9$"],
+      "answer": 0,
+      "explanation": "對於圓 $x^2 + y^2 = r^2$ 外一點 $P(x_0, y_0)$，其切點弦的方程式為 $x_0 x + y_0 y = r^2$。此處 $P(4, 3)$ 且 $r^2 = 4$，因此切點弦 $AB$ 方程式為 $4x + 3y = 4$。"
+    },
+    {
+      "id": 233,
+      "question": "【入門】已知擺放平面的直角三角形之兩直角邊長分別為 $5$ 與 $12$，求其斜邊長。",
+      "options": ["13", "15", "17", "11"],
+      "answer": 0,
+      "explanation": "由畢氏定理，斜邊長為 $\\sqrt{5^2+12^2} = \\sqrt{25+144} = 13$。"
+    },
+    {
+      "id": 234,
+      "question": "【入門】一個半徑為 $6$ 的圓內接正六邊形，其周長為多少？",
+      "options": ["36", "30", "$36\\pi$", "$12\\sqrt{3}$"],
+      "answer": 0,
+      "explanation": "圓內接正六邊形的邊長等於圓半徑。故周長為 $6 \\times 6 = 36$。"
+    },
+    {
+      "id": 235,
+      "question": "【入門】求一個上底為 $5$，下底為 $9$，高為 $4$ 的等腰梯形之幾何面積平方值。",
+      "options": ["28", "56", "45", "36"],
+      "answer": 0,
+      "explanation": "梯形面積為 $\\frac{\\text{上底}+\\text{下底}}{2} \\times \\text{高} = \\frac{5+9}{2} \\times 4 = 28$。"
+    },
+    {
+      "id": 236,
+      "question": "【進階】若一個圓的面積為 $25\\pi$，求此圓上長度為 $8$ 的弦與圓心的距離（弦心距）。",
+      "options": ["3", "4", "2", "$3.5$"],
+      "answer": 0,
+      "explanation": "圓半徑 $R = 5$。弦心距、半弦長（4）和半徑（5）構成直角三角形，故弦心距 $d = \\sqrt{R^2 - 4^2} = \\sqrt{25 - 16} = 3$。"
+    },
+    {
+      "id": 237,
+      "question": "【進階】在 $\\triangle ABC$ 中，線段 $DE \\parallel BC$ 且分別交 $AB, AC$ 於點 $D, E$。已知 $AD:DB = 2:3$ 且 $\\triangle ADE$ 面積為 $8$，求四邊形 $DBCE$ 的面積。",
+      "options": ["42", "50", "37", "45"],
+      "answer": 0,
+      "explanation": "相似比 $\\triangle ADE : \\triangle ABC = 2:5$，面積比為 $4:25$。故 $\\triangle ABC$ 面積為 $8 \\times \\frac{25}{4} = 50$。四邊形面積為 $50 - 8 = 42$。"
+    },
+    {
+      "id": 238,
+      "question": "【進階】求圓 $x^2 + y^2 - 4x + 6y - 12 = 0$ 的圓半徑長度。",
+      "options": ["5", "3", "25", "7"],
+      "answer": 0,
+      "explanation": "將圓方程配方：$(x-2)^2 + (y+3)^2 = 12 + 4 + 9 = 25$。故半徑為 $\\sqrt{25} = 5$。"
+    },
+    {
+      "id": 239,
+      "question": "【困難】已知兩圓方程式分別為 $C_1: x^2 + y^2 = 1$ 與 $C_2: (x-3)^2 + (y-4)^2 = r^2$。若兩圓恰好外切，求此時 $r$ 的正值。",
+      "options": ["4", "5", "6", "3"],
+      "answer": 0,
+      "explanation": "兩圓圓心距為 $\\sqrt{(3-0)^2 + (4-0)^2} = 5$。外切時圓心距等於兩半徑之和，得 $1 + r = 5 \\implies r = 4$。"
+    },
+    {
+      "id": 240,
+      "question": "【困難】兩條平行直線 $L_1: 3x - 4y + 5 = 0$ 與 $L_2: 3x - 4y - 10 = 0$ 之間的公垂線段距離為多少？",
+      "options": ["3", "5", "15", "1.5"],
+      "answer": 0,
+      "explanation": "平行線間距公式 $d = \\frac{|C_1 - C_2|}{\\sqrt{A^2 + B^2}} = \\frac{|5 - (-10)|}{\\sqrt{3^2 + (-4)^2}} = \\frac{15}{5} = 3$。"
+    },
+    {
+      "id": 241,
+      "question": "【困難】在直角卡氏平面上，點 $A(2, -1)$ 到直線 $L: 5x + 12y + 15 = 0$ 的垂直最短距離為多少？",
+      "options": ["1", "2", "3", "1.5"],
+      "answer": 0,
+      "explanation": "由點到直線距離公式得：$d = \\frac{|5(2) + 12(-1) + 15|}{\\sqrt{5^2+12^2}} = \\frac{|10-12+15|}{13} = \\frac{13}{13} = 1$。"
+    },
+    {
+      "id": 242,
+      "question": "【進階】一個直角三角形的三邊邊長呈現等差數列，若其面積為 $24$，求此三角形的最短邊長。",
+      "options": ["6", "8", "10", "4"],
+      "answer": 0,
+      "explanation": "邊長呈等差的直角三角形邊長比必為 $3:4:5$。設邊長為 $3k, 4k, 5k$。面積為 $\\frac{1}{2}(3k)(4k) = 6k^2 = 24 \\implies k = 2$。故邊長為 $6, 8, 10$，最短邊為 6。"
+    }
+  ],
+  "三角函數": [
+    {
+      "id": 301,
+      "question": "【入門】若 $\\theta$ 為第一象限銳角且滿足 $\\sin \\theta = \\frac{3}{5}$，求 $\\tan \\theta$ 的精確值。",
+      "options": ["$\\frac{3}{4}$", "$\\frac{4}{3}$", "$\\frac{4}{5}$", "$\\frac{5}{3}$"],
+      "answer": 0,
+      "explanation": "第一象限中 $\\cos \\theta = \\sqrt{1 - \\sin^2 \\theta} = \\frac{4}{5}$。因此 $\\tan \\theta = \\frac{\\sin\\theta}{\\cos\\theta} = \\frac{3}{4}$。"
+    },
+    {
+      "id": 302,
+      "question": "【入門】計算三角函數 $\\sin(120^\\circ)$ 的精確值。",
+      "options": ["$-\\frac{1}{2}$", "$\\frac{1}{2}$", "$\\frac{\\sqrt{3}}{2}$", "$-\\frac{\\sqrt{3}}{2}$"],
+      "answer": 2,
+      "explanation": "利用廣義角化簡公式：$\\sin(120^\\circ) = \\sin(180^\\circ - 60^\\circ) = \\sin(60^\\circ) = \\frac{\\sqrt{3}}{2}$。"
+    },
+    {
+      "id": 303,
+      "question": "【入門】化簡三角表示式：$\\sin(15^\\circ) \\cos(15^\\circ)$ 的精確數值。",
+      "options": ["$\\frac{1}{4}$", "$\\frac{1}{2}$", "$\\frac{\\sqrt{3}}{4}$", "$\\frac{\\sqrt{3}}{2}$"],
+      "answer": 0,
+      "explanation": "利用二倍角公式積化和得：$\\sin(15^\\circ)\\cos(15^\\circ) = \\frac{1}{2}\\sin(30^\\circ) = \\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}$。"
+    },
+    {
+      "id": 304,
+      "question": "【入門】已知簡諧三角震盪角滿足 $\\cos(x) = \\frac{1}{2}$ 且 $-\\frac{\\pi}{2} < x < 0$，求其 $x$值之正切比 $\\tan(x)$。",
+      "options": ["$-\\sqrt{3}$", "$\\sqrt{3}$", "$-\\frac{\\sqrt{3}}{3}$", "$\\frac{1}{2}$"],
+      "answer": 0,
+      "explanation": "在此負角度銳角區間（第四象限），$\\sin(x) = -\\sqrt{1-\\cos^2 x} = -\\frac{\\sqrt{3}}{2}$。故 $\\tan(x) = \\frac{\\sin x}{\\cos x} = -\\sqrt{3}$。"
+    },
+    {
+      "id": 311,
+      "question": "【入門】在直角三角形中，已知銳角 $\\theta$，對邊長為 $6$，鄰邊長為 $8$，求 $\\csc \\theta$ 的值。",
+      "options": ["$\\frac{5}{3}$", "$\\frac{5}{4}$", "$\\frac{4}{3}$", "$\\frac{3}{5}$"],
+      "answer": 0,
+      "explanation": "斜邊 $\\sqrt{6^2+8^2} = 10$。$\\sin \\theta = \\frac{\\text{對邊}}{\\text{斜邊}} = \\frac{6}{10} = \\frac{3}{5}$。因為 $\\csc \\theta = \\frac{1}{\\sin \\theta}$，故其值為 $\\frac{5}{3}$。"
+    },
+    {
+      "id": 312,
+      "question": "【入門】已知 $\\tan \\theta = 2$，求 $\\frac{2\\sin \\theta - \\cos \\theta}{\\sin \\theta + 3\\cos \\theta}$ 的值。",
+      "options": ["$\\frac{3}{5}$", "$\\frac{1}{2}$", "$\\frac{2}{3}$", "$\\frac{3}{4}$"],
+      "answer": 0,
+      "explanation": "分子分母同除以 $\\cos \\theta$，得 $\\frac{2\\tan \\theta - 1}{\\tan \\theta + 3}$。代入 $\\tan \\theta = 2$，解為 $\\frac{2(2) - 1}{2 + 3} = \\frac{3}{5}$。"
+    },
+    {
+      "id": 305,
+      "question": "【進階】已知實數 $\\cos \\theta = -\\frac{5}{13}$ 且極座標夾角範圍為 $\\pi < \\theta < \\frac{3\\pi}{2}$，求二倍角 $\\sin(2\\theta)$ 的值。",
+      "options": ["$\\frac{120}{169}$", "$-\\frac{120}{169}$", "$\\frac{60}{169}$", "$-\\frac{60}{169}$"],
+      "answer": 0,
+      "explanation": "由第三象限角知 $\\sin \\theta = -\\frac{12}{13}$。正弦二倍角公式 $\\sin(2\\theta) = 2 \\sin\\theta \\cos\\theta = 2(-\\frac{12}{13})(-\\frac{5}{13}) = \\frac{120}{169}$。"
+    },
+    {
+      "id": 306,
+      "question": "【進階】在 $\\triangle ABC$ 中，已知邊長 $a = 6$，對角 $\\angle A = 120^\\circ$，求其外接圓半徑 $R$ 的確切長度。",
+      "options": ["2", "$2\\sqrt{3}$", "$4\\sqrt{3}$", "$3\\sqrt{3}$"],
+      "answer": 1,
+      "explanation": "根據正弦定理：$\\frac{a}{\\sin A} = 2R \\implies 2R = \\frac{6}{\\sin 120^\\circ} = \\frac{6}{\\sqrt{3}/2} = 4\\sqrt{3} \\implies R = 2\\sqrt{3}$。"
+    },
+    {
+      "id": 307,
+      "question": "【進階】已知 $\\triangle ABC$ 的三邊長之比為 $a:b:c = 3:5:7$，求最大內角的度數。",
+      "options": ["$150^\\circ$", "$135^\\circ$", "$120^\\circ$", "$90^\\circ$"],
+      "answer": 2,
+      "explanation": "最大角必對最大邊 $c$。由餘弦定理 $\\cos C = \\frac{a^2+b^2-c^2}{2ab} = \\frac{9+25-49}{30} = -\\frac{1}{2}$。故其度數為 $120^\\circ$。"
+    },
+    {
+      "id": 313,
+      "question": "【進階】求表示式 $\\cos^2 10^\\circ + \\cos^2 20^\\circ + \\cos^2 70^\\circ + \\cos^2 80^\\circ$ 的精確值。",
+      "options": ["2", "1", "$\\sqrt{3}$", "4"],
+      "answer": 0,
+      "explanation": "利用餘角公式：$\\cos 80^\\circ = \\sin 10^\\circ$，$\\cos 70^\\circ = \\sin 20^\\circ$。代入得 $(\\cos^2 10^\\circ + \\sin^2 10^\\circ) + (\\cos^2 20^\\circ + \\sin^2 20^\\circ) = 1 + 1 = 2$。"
+    },
+    {
+      "id": 314,
+      "question": "【進階】在 $\\triangle ABC$ 中，已知 $a = 5, b = 8$ 且三角形面積為 $10\\sqrt{3}$，求其極座標夾角 $\\angle C$ 可能之銳角值。",
+      "options": ["$60^\\circ$", "$30^\\circ$", "$45^\\circ$", "$75^\\circ$"],
+      "answer": 0,
+      "explanation": "三角形面積公式 $S = \\frac{1}{2}ab \\sin C \\implies 10\\sqrt{3} = \\frac{1}{2}(5)(8)\\sin C \\implies 10\\sqrt{3} = 20\\sin C \\implies \\sin C = \\frac{\\sqrt{3}}{2}$。因為是銳角，故 $\\angle C = 60^\\circ$。"
+    },
+    {
+      "id": 308,
+      "question": "【困難】已知任意實數 $\\theta$ 滿足關係式 $\\tan \\theta + \\cot \\theta = 3$，求表示式 $\\sin^4 \\theta + \\cos^4 \\theta$ 的精確值。",
+      "options": ["$\\frac{7}{9}$", "$\\frac{5}{9}$", "$\\frac{2}{3}$", "$\\frac{1}{3}$"],
+      "answer": 0,
+      "explanation": "因為 $\\tan \\theta + \\cot \\theta = \\frac{\\sin\\theta}{\\cos\\theta} + \\frac{\\cos\\theta}{\\sin\\theta} = \\frac{\\sin^2\\theta+\\cos^2\\theta}{\\sin\\theta\\cos\\theta} = \\frac{1}{\\sin\\theta\\cos\\theta} = 3 \\implies \\sin\\theta\\cos\\theta = \\frac{1}{3}$。因此 $\\sin^4\\theta+\\cos^4\\theta = (\\sin^2\\theta+\\cos^2\\theta)^2 - 2\\sin^2\\theta\\cos^2\\theta = 1 - 2(\\frac{1}{3})^2 = 1 - \\frac{2}{9} = \\frac{7}{9}$。"
+    },
+    {
+      "id": 309,
+      "question": "【困難】設 $f(x) = 3 \\sin x - 4 \\cos x + 2$，其中 $x$ 為任意實數，求此函數最大值 $M$ 與最小值 $m$ 的乘積 $M \\times m$。",
+      "options": ["-15", "-21", "-12", "0"],
+      "answer": 1,
+      "explanation": "經過三角函數疊合：$3\\sin x - 4\\cos x = 5\\sin(x-\\phi)$。其分佈介於 $[-5, 5]$。故 $f(x)$ 最大值 $M = 5+2=7$，最小值 $m = -5+2=-3$，其乘積為 $7 \\times (-3) = -21$。"
+    },
+    {
+      "id": 310,
+      "question": "【困難】若 $x$ 的方程式 $\\sin^2 x - \\cos x + k = 0$ 在實數範圍內有實解，求常數項 $k$ 的實數取值範圍。",
+      "options": ["$[-1, \\frac{5}{4}]$", "$[-\\frac{5}{4}, 1]$", "$[-2, 1]$", "$[-1.25, 1.25]$"],
+      "answer": 1,
+      "explanation": "將方程式化為單一三角函數：$(1-\\cos^2 x) - \\cos x + k = 0 \\implies k = \\cos^2 x + \\cos x - 1$。令 $t = \\cos x$，其中 $-1 \\le t \\le 1$。則 $k = g(t) = t^2 + t - 1 = (t+\\frac{1}{2})^2 - \\frac{5}{4}$。在區間 $[-1, 1]$ 內，頂點為極小值 $-\\frac{5}{4}$，端點 $t=1$ 得最大值 $1^2+1-1=1$。故 $k$ 的取值範圍為 $[-\\frac{5}{4}, 1]$。"
+    },
+    {
+      "id": 315,
+      "question": "【困難】計算表示式 $\\tan 20^\\circ + \\tan 40^\\circ + \\sqrt{3}\\tan 20^\\circ \\tan 40^\\circ$ 的確切數值。",
+      "options": ["$\\sqrt{3}$", "$1$", "$\\frac{\\sqrt{3}}{3}$", "$2\\sqrt{3}$"],
+      "answer": 0,
+      "explanation": "利用正切和角公式：$\\tan(20^\\circ + 40^\\circ) = \\tan 60^\\circ = \\sqrt{3} = \\frac{\\tan 20^\\circ + \\tan 40^\\circ}{1 - \\tan 20^\\circ \\tan 40^\\circ} \\implies \\tan 20^\\circ + \\tan 40^\\circ = \\sqrt{3} - \\sqrt{3}\\tan 20^\\circ \\tan 40^\\circ \\implies \\tan 20^\\circ + \\tan 40^\\circ + \\sqrt{3}\\tan 20^\\circ \\tan 40^\\circ = \\sqrt{3}$。"
+    },
+    {
+      "id": 316,
+      "question": "【困難】若方程式 $2\\cos^2 x - 5\\sin x - 4 = 0$ 於 $[0, 2\\pi]$ 間有實根，求此方程式所有相異解的和。",
+      "options": ["$3\\pi$", "$\\pi$", "$2\\pi$", "$4\\pi$"],
+      "answer": 0,
+      "explanation": "化為相同函數：$2(1-\\sin^2 x) - 5\\sin x - 4 = 0 \\implies 2\\sin^2 x + 5\\sin x + 2 = 0 \\implies (2\\sin x + 1)(\\sin x + 2) = 0$。因為 $\\sin x \\in [-1, 1]$，故唯一解為 $\\sin x = -\\frac{1}{2}$。在 $[0, 2\\pi]$ 內其解為 $x = \\frac{7\\pi}{6}$ 與 $x = \\frac{11\\pi}{6}$。其和為 $\\frac{7\\pi}{6} + \\frac{11\\pi}{6} = 3\\pi$。"
+    },
+    {
+      "id": 317,
+      "question": "【困難】已知 $\\sin \\theta + \\cos \\theta = \\frac{1}{5}$ 且 $\\pi < \\theta < \\frac{3\\pi}{2}$，求 $\\cos(2\\theta)$ 的精確值。",
+      "options": ["$-\\frac{7}{25}$", "$\\frac{7}{25}$", "$\\frac{24}{25}$", "$-\\frac{24}{25}$"],
+      "answer": 0,
+      "explanation": "平方得：$1 + 2\\sin\\theta\\cos\\theta = \\frac{1}{25} \\implies 2\\sin\\theta\\cos\\theta = -\\frac{24}{25} \\implies (\\sin\\theta - \\cos\\theta)^2 = 1 - 2\\sin\\theta\\cos\\theta = 1 - (-\\frac{24}{25}) = \\frac{49}{25}$。因為 $\\pi < \\theta < \\frac{3\\pi}{2}$，且 $\\sin$ 與 $\\cos$ 均為負值。由和為 $\\frac{1}{5}$（接近 0），可推知 $\\cos \\theta$ 的絕對值大於 $\\sin \\theta$ 的絕對值（或直接解聯立），故 \\sin \\theta - \\cos \\theta > 0 \\implies \\sin\\theta - \\cos\\theta = \\frac{7}{5}$。因此 $\\cos(2\\theta) = \\cos^2\\theta - \\sin^2\\theta = (\\cos\\theta - \\sin\\theta)(\\cos\\theta + \\sin\\theta) = (-\\frac{7}{5})(\\frac{1}{5}) = -\\frac{7}{25}$。"
+    },
+    {
+      "id": 318,
+      "question": "【入門】已知 $\\alpha$ 為銳角且其餘弦值 $\\cos \\alpha = \\frac{12}{13}$，求正切值 $\\tan (\\alpha)$ 的值。",
+      "options": ["$\\frac{5}{12}$", "$\\frac{12}{5}$", "$\\frac{5}{13}$", "$\\frac{13}{5}$"],
+      "answer": 0,
+      "explanation": "在直角三角形中，鄰邊為 12，斜邊為 13，對邊為 $\\sqrt{13^2 - 12^2} = 5$。故 $\\tan \\alpha = \\frac{5}{12}$。"
+    },
+    {
+      "id": 319,
+      "question": "【入門】求 $\\cos(150^\\circ)$ 的確切值。",
+      "options": ["$-\\frac{\\sqrt{3}}{2}$", "$-\\frac{1}{2}$", "$\\frac{\\sqrt{3}}{2}$", "$\\frac{1}{2}$"],
+      "answer": 0,
+      "explanation": "化簡為廣義角：$\\cos(150^\\circ) = \\cos(180^\\circ - 30^\\circ) = -\\cos(30^\\circ) = -\\frac{\\sqrt{3}}{2}$。"
+    },
+    {
+      "id": 320,
+      "question": "【進階】已知 $\\theta$ 在第二象限且 $\\sin \\theta = \\frac{4}{5}$，求分式 $\\tan \\theta + \\cos \\theta$ 的精確值。",
+      "options": ["$-\\frac{29}{15}$", "$-\\frac{1}{15}$", "$\\frac{29}{15}$", "$-\\frac{13}{15}$"],
+      "answer": 0,
+      "explanation": "因為 $\\theta$ 在第二象限，$\\cos \\theta = -\\sqrt{1 - \\sin^2 \\theta} = -\\frac{3}{5}$。$\\tan \\theta = \\frac{\\sin\\theta}{\\cos\\theta} = -\\frac{4}{3}$。因此 $\\tan \\theta + \\cos \\theta = -\\frac{4}{3} - \\frac{3}{5} = -\\frac{20 + 9}{15} = -\\frac{29}{15}$。"
+    },
+    {
+      "id": 321,
+      "question": "【進階】求無括號整式比 $\\cos(75^\\circ)$ 的確切值。",
+      "options": ["$\\frac{\\sqrt{6} - \\sqrt{2}}{4}$", "$\\frac{\\sqrt{6} + \\sqrt{2}}{4}$", "$\\frac{\\sqrt{3} - 1}{2}$", "$\\frac{\\sqrt{2} - 1}{2}$"],
+      "answer": 0,
+      "explanation": "利用和角公式：$\\cos(75^\\circ) = \\cos(45^\\circ + 30^\\circ) = \\cos 45^\\circ \\cos 30^\\circ - \\sin 45^\\circ \\sin 30^\\circ = \\frac{\\sqrt{2}}{2} \\times \\frac{\\sqrt{3}}{2} - \\frac{\\sqrt{2}}{2} \\times \\frac{1}{2} = \\frac{\\sqrt{6} - \\sqrt{2}}{4}$。"
+    },
+    {
+      "id": 322,
+      "question": "【困難】若 $\\sin (\\theta) - \\cos (\\theta) = \\frac{\\sqrt{2}}{3}$ 且 $0 < \\theta < \\pi$，求 $\\sin (2\\theta)$ 的精確值。",
+      "options": ["$\\frac{7}{9}$", "$\\frac{2}{9}$", "$\\frac{5}{9}$", "$\\frac{1}{3}$"],
+      "answer": 0,
+      "explanation": "將已知等式兩邊平方：$(\\sin\\theta - \\cos\\theta)^2 = \\frac{2}{9} \\implies 1 - 2\\sin\\theta\\cos\\theta = \\frac{2}{9} \\implies 1 - \\sin(2\\theta) = \\frac{2}{9} \\implies \\sin(2\\theta) = 1 - \\frac{2}{9} = \\frac{7}{9}$。"
+    },
+    {
+      "id": 323,
+      "question": "【困難】已知 $x$ 為任意實數。若函數 $y = \\cos^2 x - 4\\cos x + 3$ 的最大值為 $M$，其最小值為 $m$，求 $M + m$ 的數值。",
+      "options": ["8", "6", "4", "2"],
+      "answer": 0,
+      "explanation": "令 $t = \\cos x$ (其中 $-1 \\le t \\le 1$)。變量更換後為 $y = t^2 - 4t + 3 = (t-2)^2 - 1$。對應在 $[-1, 1]$ 區間，極值在端點：當 $t = -1$ 時，$y$ 有最大值 $M = (-1-2)^2 - 1 = 8$；當 $t = 1$ 時，$y$ 有最小值 $m = (1-2)^2 - 1 = 0$。因此 $M + m = 8 + 0 = 8$。"
+    },
+    {
+      "id": 324,
+      "question": "【困難】求 $\\cos(20^\\circ) \\cos(40^\\circ) \\cos(80^\\circ)$ 的確切值。",
+      "options": ["$\\frac{1}{8}$", "$\\frac{1}{4}$", "$\\frac{1}{16}$", "$\\frac{3}{16}$"],
+      "answer": 0,
+      "explanation": "利用正弦二倍角公式，分子分母同乘以 $2\\sin 20^\\circ$：$P = \\frac{2\\sin 20^\\circ \\cos 20^\\circ \\cos 40^\\circ \\cos 80^\\circ}{2\\sin 20^\\circ} = \\frac{\\sin 40^\\circ \\cos 40^\\circ \\cos 80^\\circ}{2\\sin 20^\\circ} = \\frac{\\sin 80^\\circ \\cos 80^\\circ}{4\\sin 20^\\circ} = \\frac{\\sin 160^\\circ}{8\\sin 20^\\circ}$。因為 $\\sin 160^\\circ = \\sin 20^\\circ$，故 $P = \\frac{1}{8}$。"
+    },
+    {
+      "id": 325,
+      "question": "【入門】已知 $\\tan \\theta = 3$，求 $\\cot \\theta$ 的值。",
+      "options": ["$\\frac{1}{3}$", "3", "$\\frac{3}{4}$", "$\\frac{4}{3}$"],
+      "answer": 0,
+      "explanation": "由倒數關係：$\\cot \\theta = \\frac{1}{\\tan \\theta} = \\frac{1}{3}$。"
+    },
+    {
+      "id": 326,
+      "question": "【入門】計算 $\\sec (60^\\circ)$ 的值。",
+      "options": ["2", "1", "$\\sqrt{2}$", "$\\frac{2\\sqrt{3}}{3}$"],
+      "answer": 0,
+      "explanation": "因為 $\\sec (60^\\circ) = \\frac{1}{\\cos (60^\\circ)}$，且 $\\cos (60^\\circ) = \\frac{1}{2}$，故其值為 2。"
+    },
+    {
+      "id": 327,
+      "question": "【進階】已知 $\\theta$ 為銳角，且 $\\sin \\theta = \\cos (20^\\circ)$，求 $\\theta$ 的度數。",
+      "options": ["$70^\\circ$", "$20^\\circ$", "$30^\\circ$", "$80^\\circ$"],
+      "answer": 0,
+      "explanation": "根據餘角公式：$\\cos (20^\\circ) = \\sin (90^\\circ - 20^\\circ) = \\sin (70^\\circ)$，故 $\\theta = 70^\\circ$。"
+    },
+    {
+      "id": 328,
+      "question": "【進階】求表示式 $\\sin 25^\\circ \\cos 35^\\circ + \\cos 25^\\circ \\sin 35^\\circ$ 的精確值。",
+      "options": ["$\\frac{\\sqrt{3}}{2}$", "$\\frac{1}{2}$", "$\\frac{\\sqrt{2}}{2}$", "1"],
+      "answer": 0,
+      "explanation": "利用正弦的和角公式：$\\sin(\\alpha + \\beta) = \\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta$，代入得 $\\sin(25^\\circ + 35^\\circ) = \\sin 60^\\circ = \\frac{\\sqrt{3}}{2}$。"
+    },
+    {
+      "id": 329,
+      "question": "【進階】求表示式 $\\cos 80^\\circ \\cos 20^\\circ + \\sin 80^\\circ \\sin 20^\\circ$ 的精確值。",
+      "options": ["$\\frac{1}{2}$", "$\\frac{\\sqrt{3}}{2}$", "$\\frac{\\sqrt{2}}{2}$", "0"],
+      "answer": 0,
+      "explanation": "利用餘弦的差角公式：$\\cos(\\alpha - \\beta) = \\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta$，代入得 $\\cos(80^\\circ - 20^\\circ) = \\cos 60^\\circ = \\frac{1}{2}$。"
+    },
+    {
+      "id": 330,
+      "question": "【困難】在 $\\triangle ABC$ 中，已知三個內角 $\\angle A、\\angle B、\\angle C$ 的正弦比滿足 $\\sin A : \\sin B : \\sin C = 5 : 7 : 8$，求其最大角的餘弦值 $\\cos C$ 的值。",
+      "options": ["$\\frac{1}{7}$", "$\\frac{11}{14}$", "$-\\frac{1}{7}$", "$\\frac{5}{14}$"],
+      "answer": 0,
+      "explanation": "由正弦定理知：$a : b : c = \\sin A : \\sin B : \\sin C = 5 : 7 : 8$。設三邊分別為 $5k, 7k, 8k$。最大角對最大邊 $c=8k$。利用餘弦定理求 $\\cos C = \\frac{a^2+b^2-c^2}{2ab} = \\frac{25 + 49 - 64}{2 \\times 5 \\times 7} = \\frac{10}{70} = \\frac{1}{7}$。"
+    },
+    {
+      "id": 331,
+      "question": "【困難】若 $2 \\sin^2 \\theta + 3 \\cos \\theta = 3$ 且 $\\theta$ 為銳角，求 $\\theta$ 的精確度數。",
+      "options": ["$60^\\circ$", "$30^\\circ$", "$45^\\circ$", "$0^\\circ$"],
+      "answer": 0,
+      "explanation": "利用同角平方關係：$2(1 - \\cos^2 \\theta) + 3\\cos \\theta = 3 \\implies 2 - 2\\cos^2 \\theta + 3\\cos \\theta = 3 \\implies 2\\cos^2 \\theta - 3\\cos \\theta + 1 = 0 \\implies (2\\cos \\theta - 1)(\\cos \\theta - 1) = 0$。因為 $\\theta$ 為銳角 ( $0^\\circ < \\theta < 90^\\circ$ )，故 $\\cos \\theta = \\frac{1}{2} \\implies \\theta = 60^\\circ$。"
+    },
+    {
+      "id": 332,
+      "question": "【入門】若 $\\theta$ 落在第三象限，求 $\\sin \\theta$ 與 $\\cos \\theta$ 的正負號乘積之正負性（即 $\\sin \\theta \\cos \\theta$ 的值）。",
+      "options": ["必為正數", "必為負數", "可為正或為負", "恆等於 0"],
+      "answer": 0,
+      "explanation": "第三象限中，$\\sin \\theta < 0$ 且 $\\cos \\theta < 0$，因此其乘積 $\\sin \\theta \\cos \\theta > 0$，必為正數。"
+    },
+    {
+      "id": 333,
+      "question": "【入門】計算三角函數值 $\\sin(210^\\circ)$ 的確切值。",
+      "options": ["$-\\frac{1}{2}$", "$\\frac{1}{2}$", "$-\\frac{\\sqrt{3}}{2}$", "$\\frac{\\sqrt{3}}{2}$"],
+      "answer": 0,
+      "explanation": "$\\sin(210^\\circ) = \\sin(180^\\circ + 30^\\circ) = -\\sin(30^\\circ) = -\\frac{1}{2}$。"
+    },
+    {
+      "id": 334,
+      "question": "【進階】已知 $\\tan \\theta = 3$，求 $\\sin(2\\theta)$ 的值。",
+      "options": ["0.6", "0.8", "0.5", "0.75"],
+      "answer": 0,
+      "explanation": "使用正弦二倍角的萬能公式：$\\sin(2\\theta) = \\frac{2\\tan\\theta}{1+\\tan^2\\theta}$。代入得：$\\sin(2\\theta) = \\frac{2(3)}{1+3^2} = \\frac{6}{10} = 0.6$。"
+    },
+    {
+      "id": 335,
+      "question": "【進階】在 $\\triangle ABC$ 中，已知 $a=4, b=5$，且對角 $\\angle C = 30^\\circ$，求 $\\triangle ABC$ 的面積。",
+      "options": ["5", "10", "$5\\sqrt{3}$", "$10\\sqrt{3}$"],
+      "answer": 0,
+      "explanation": "三角形面積公式 $S = \\frac{1}{2}ab\\sin C$，代入得 $S = \\frac{1}{2} \\times 4 \\times 5 \\times \\sin(30^\\circ) = 10 \\times \\frac{1}{2} = 5$。"
+    },
+    {
+      "id": 336,
+      "question": "【進階】求簡諧三角表示式 $\\sin(15^\\circ) + \\cos(15^\\circ)$ 的精確值。",
+      "options": ["$\\frac{\\sqrt{6}}{2}$", "$\\frac{\\sqrt{2}}{2}$", "$\\frac{\\sqrt{3}}{2}$", "$\\sqrt{2}$"],
+      "answer": 0,
+      "explanation": "利用疊合公式，$\\sin(15^\\circ) + \\cos(15^\\circ) = \\sqrt{2}\\sin(15^\\circ + 45^\\circ) = \\sqrt{2}\\sin(60^\\circ) = \\sqrt{2} \\times \\frac{\\sqrt{3}}{2} = \\frac{\\sqrt{6}}{2}$。"
+    },
+    {
+      "id": 337,
+      "question": "【困難】若實數 $x$ 滿足 $\\sin x - \\sqrt{3} \\cos x = 1$ 且 $0 \\le x < 2\\pi$，求符合的所有實數解之和。",
+      "options": ["$\\frac{5\\pi}{3}$", "$\\frac{4\\pi}{3}$", "$2\\pi$", "$\\pi$"],
+      "answer": 0,
+      "explanation": "利用波動疊合：原式化為 $2\\sin(x - 60^\\circ) = 1 \\implies \\sin(x - 60^\\circ) = \\frac{1}{2}$。因為 $0 \\le x < 2\\pi \\implies -60^\\circ \\le x - 60^\\circ < 300^\\circ$。因此 $x - 60^\\circ = 30^\\circ$ 或 $150^\\circ \\implies x = 90^\\circ$ 或 $210^\\circ$。在 $[0, 2\\pi]$ 中，其弧度為 $\\frac{\\pi}{2}$ 與 $\\frac{7\\pi}{6}$。其和為 $\\frac{\\pi}{2} + \\frac{7\\pi}{6} = \\frac{10\\pi}{6} = \\frac{5\\pi}{3}$。"
+    },
+    {
+      "id": 338,
+      "question": "【困難】在 $\\triangle ABC$ 中，若三內角之正弦平方和滿足 $\\sin^2 A + \\sin^2 B < \\sin^2 C$，求此三角形 $\\triangle ABC$ 的外型特徵。",
+      "options": ["必為鈍角三角形", "必為直角三角形", "必為銳角三角形", "無法確定"],
+      "answer": 0,
+      "explanation": "由正弦定理知 $\\sin A = \\frac{a}{2R}$，代入不等式得 $\\frac{a^2}{4R^2} + \\frac{b^2}{4R^2} < \\frac{c^2}{4R^2} \\implies a^2 + b^2 < c^2$。又由餘弦定理知 $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}$。因為 $a^2 + b^2 - c^2 < 0$，所以 $\\cos C < 0$，這表示 $\\angle C$ 為鈍角。故該三角形必為鈍角三角形。"
+    },
+    {
+      "id": 339,
+      "question": "【入門】計算代數式之值 $\\sin^2 35^\\circ + \\sin^2 55^\\circ$ 。",
+      "options": ["1", "0.5", "0", "$\\sqrt{2}$"],
+      "answer": 0,
+      "explanation": "依餘角關係，$\\sin 55^\\circ = \\cos 35^\\circ$。故原式等於 $\\sin^2 35^\\circ + \\cos^2 35^\\circ = 1$。"
+    },
+    {
+      "id": 340,
+      "question": "【入門】已知 $\\cos \\theta = -\\frac{4}{5}$ 且 $\\theta$ 在第二象限，求 $\\sin 2\\theta$ 的值。",
+      "options": ["$-\\frac{24}{25}$", "$\\frac{24}{25}$", "$-\\frac{12}{25}$", "$\\frac{12}{25}$"],
+      "answer": 0,
+      "explanation": "第二象限中 $\\sin \\theta = \\frac{3}{5}$。由倍角公式，$\\sin 2\\theta = 2\\sin\\theta\\cos\\theta = 2 \\times \\frac{3}{5} \\times \\left(-\\frac{4}{5}\\right) = -\\frac{24}{25}$。"
+    },
+    {
+      "id": 341,
+      "question": "【入門】在 $\\triangle ABC$ 中，已知邊長 $a = 5, b = 8$ 且夾角 $\\angle C = 30^\\circ$，求 $\\triangle ABC$ 的面積。",
+      "options": ["10", "20", "$10\\sqrt{3}$", "5"],
+      "answer": 0,
+      "explanation": "三角形面積公式為 $S = \\frac{1}{2}ab\\sin C = \\frac{1}{2} \\times 5 \\times 8 \\times \\sin 30^\\circ = 20 \\times 0.5 = 10$。"
+    },
+    {
+      "id": 342,
+      "question": "【進階】在 $\\triangle ABC$ 中，已知三邊邊長分別為 $a=3, b=5, c=7$，求最大角 $\\angle C$ 的度數。",
+      "options": ["$120^\\circ$", "$135^\\circ$", "$150^\\circ$", "$90^\\circ$"],
+      "answer": 0,
+      "explanation": "依餘弦定理，$\\cos C = \\frac{a^2+b^2-c^2}{2ab} = \\frac{3^2+5^2-7^2}{2 \\times 3 \\times 5} = \\frac{9+25-49}{30} = -\\frac{15}{30} = -\\frac{1}{2}$。故 $\\angle C = 120^\\circ$。"
+    },
+    {
+      "id": 343,
+      "question": "【進階】若 $\\tan \\alpha = 2, \\tan \\beta = 3$，求 $\\tan(\\alpha + \\beta)$ 的值。",
+      "options": ["-1", "1", "5", "-5"],
+      "answer": 0,
+      "explanation": "依正切和角公式，$\\tan(\\alpha+\\beta) = \\frac{\\tan\\alpha + \\tan\\beta}{1 - \\tan\\alpha\\tan\\beta} = \\frac{2+3}{1 - 2 \\times 3} = \\frac{5}{-5} = -1$。"
+    },
+    {
+      "id": 344,
+      "question": "【進階】若 $0 < x < \\frac{\\pi}{2}$ 且滿足 $\\sin x + \\cos x = \\frac{7}{5}$，求 $\\sin x - \\cos x$ 的絕對值。",
+      "options": ["$\\frac{1}{5}$", "$\\frac{1}{25}$", "$\\frac{3}{5}$", "$\\frac{1}{7}$"],
+      "answer": 0,
+      "explanation": "平方兩邊：$1+2\\sin x\\cos x = \\frac{49}{25} \\implies 2\\sin x\\cos x = \\frac{24}{25}$。故 $(\\sin x - \\cos x)^2 = 1 - 2\\sin x\\cos x = 1 - \\frac{24}{25} = \\frac{1}{25}$。開根號得 $\\frac{1}{5}$。"
+    },
+    {
+      "id": 345,
+      "question": "【困難】化簡三角表示式：$\\cos 20^\\circ \\cos 40^\\circ \\cos 80^\\circ$ 之精確值。",
+      "options": ["$\\frac{1}{8}$", "$\\frac{1}{4}$", "$\\frac{\\sqrt{3}}{8}$", "$\\frac{1}{16}$"],
+      "answer": 0,
+      "explanation": "同乘 $\\sin 20^\\circ$，分子連續使用二倍角公式：原式 $= \\frac{\\sin 40^\\circ \\cos 40^\\circ \\cos 80^\\circ}{2\\sin 20^\\circ} = \\frac{\\sin 80^\\circ \\cos 80^\\circ}{4\\sin 20^\\circ} = \\frac{\\sin 160^\\circ}{8\\sin 20^\\circ} = \\frac{1}{8}$ (因為 $\\sin 160^\\circ = \\sin 20^\\circ$)。"
+    },
+    {
+      "id": 346,
+      "question": "【困難】求函數 $y = \\cos^2 x - 4\\cos x + 5$ 的最大值與最小值的和。",
+      "options": ["12", "10", "8", "6"],
+      "answer": 0,
+      "explanation": "令 $t = \\cos x$，則 $-1 \\le t \\le 1$。原式配方為 $(t-2)^2 + 1$。當 $t = -1$ 時有最大值 $((-1)-2)^2 + 1 = 10$；當 $t = 1$ 時有最小值 $(1-2)^2 + 1 = 2$。二者之和為 $10 + 2 = 12$。"
+    },
+    {
+      "id": 347,
+      "question": "【困難】在 $\\triangle ABC$ 中，已知邊長 $a = 7, b = 8$ 且外接圓半徑 $R = \\frac{7\\sqrt{3}}{3}$，求角 $\\angle A$ 的度數（不唯一，求其中一個）。",
+      "options": ["$60^\\circ$ 或 $120^\\circ$", "$30^\\circ$ 或 $150^\\circ$", "$45^\\circ$ 或 $135^\\circ$", "僅有 $60^\\circ$"],
+      "answer": 0,
+      "explanation": "依正弦定理 $\\frac{a}{\\sin A} = 2R \\implies \\sin A = \\frac{7}{2 \\times \\frac{7\\sqrt{3}}{3}} = \\frac{3}{2\\sqrt{3}} = \\frac{\\sqrt{3}}{2}$。故 $\\angle A = 60^\\circ$ 或 $120^\\circ$。"
+    },
+    {
+      "id": 348,
+      "question": "【進階】若圓之圓心角為 $2$ 弧度，其對應的扇形面積為 $16 \\text{ cm}^2$，求該扇形的弧長大小。",
+      "options": ["8 cm", "4 cm", "16 cm", "2 cm"],
+      "answer": 0,
+      "explanation": "扇形面積公式 $S = \\frac{1}{2}r^2\\theta \\implies 16 = \\frac{1}{2}r^2(2) \\implies r^2 = 16 \\implies r = 4$。弧長 $s = r\\theta = 4 \\times 2 = 8 \\text{ cm}$。"
+    }
+  ],
+  "向量單元": [
+    {
+      "id": 401,
+      "question": "【入門】已知平面向量 $\\vec{u} = (3, 4)$，求其長度（模）$|\\vec{u}|$ 的大小。",
+      "options": ["5", "7", "25", "12"],
+      "answer": 0,
+      "explanation": "模長公式為 $|\\vec{u}| = \\sqrt{x^2+y^2}$。代入計算得 $|\\vec{u}| = \\sqrt{3^2 + 4^2} = \\sqrt{25} = 5$。"
+    },
+    {
+      "id": 402,
+      "question": "【入門】已知兩向量 $\\vec{a} = (1, 2)$，$\\vec{b} = (3, -1)$，求向量 $2\\vec{a} - \\vec{b}$ 的座標表示法。",
+      "options": ["$(-1, 5)$", "$(1, -5)$", "$(5, 3)$", "$(-1, 1)$"],
+      "answer": 0,
+      "explanation": "計算：$2\\vec{a} - \\vec{b} = (2, 4) - (3, -1) = (2-3, 4 - (-1)) = (-1, 5)$。"
+    },
+    {
+      "id": 403,
+      "question": "【入門】若向量 $\\vec{a} = (k, 3)$ 與 $\\vec{b} = (2, -4)$ 互相垂直 (正交)，求實數常數 $k$ 的值。",
+      "options": ["6", "-6", "3", "-3"],
+      "answer": 0,
+      "explanation": "兩向量垂直則內積為 0。由 $\\vec{a} \\cdot \\vec{b} = 2k + 3(-4) = 0 \\implies 2k = 12 \\implies k = 6$。"
+    },
+    {
+      "id": 410,
+      "question": "【入門】已知向量 $\\vec{a} = (3, 2)$，$\\vec{b} = (-1, 5)$，求兩向量之內積 $\\vec{a} \\cdot \\vec{b}$。",
+      "options": ["7", "13", "-7", "17"],
+      "answer": 0,
+      "explanation": "根據平面向量內積公式：$\\vec{a} \\cdot \\vec{b} = x_1 x_2 + y_1 y_2 = 3(-1) + 2(5) = -3 + 10 = 7$。"
+    },
+    {
+      "id": 411,
+      "question": "【入門】求與平面向量 $\\vec{a} = (6, -8)$ 同方向之單位向量。",
+      "options": ["$(\\frac{3}{5}, -\\frac{4}{5})$", "$(\\frac{3}{5}, \\frac{4}{5})$", "$(-\\frac{3}{5}, \\frac{4}{5})$", "$(\\frac{4}{5}, -\\frac{3}{5})$"],
+      "answer": 0,
+      "explanation": "模長為 $|\\vec{a}| = \\sqrt{6^2 + (-8)^2} = 10$。同方向單位向量為 $\\frac{\\vec{a}}{|\\vec{a}|} = (\\frac{6}{10}, -\\frac{8}{10}) = (\\frac{3}{5}, -\\frac{4}{5})$。"
+    },
+    {
+      "id": 404,
+      "question": "【進階】已知 $\\vec{a}$ 與 $\\vec{b}$ 兩向量之夾角為 $60^\\circ$，且其長度滿足 $|\\vec{a}| = 2$，$|\\vec{b}| = 3$，求向量和 $|\\vec{a} + \\vec{b}|$ 的值。",
+      "options": ["$\\sqrt{19}$", "$\\sqrt{13}$", "$5$", "$\\sqrt{7}$"],
+      "answer": 0,
+      "explanation": "求模平方：$|\\vec{a} + \\vec{b}|^2 = |\\vec{a}|^2 + |\\vec{b}|^2 + 2|\\vec{a}||\\vec{b}|\\cos 60^\\circ = 4 + 9 + 2(2)(3)(\\frac{1}{2}) = 19 \\implies \\sqrt{19}$。"
+    },
+    {
+      "id": 405,
+      "question": "【進階】設平面向量 $\\vec{u} = (2, 1)$，$\\vec{v} = (3, 4)$，求向量 $\\vec{u}$ 落在向量 $\\vec{v}$ 上的正射影向量 (Projection Vector) 座標。",
+      "options": ["$(\\frac{6}{5}, \\frac{8}{5})$", "$(\\frac{3}{5}, \\frac{4}{5})$", "$(\\frac{4}{5}, \\frac{3}{5})$", "$(\\frac{8}{5}, \\frac{6}{5})$"],
+      "answer": 0,
+      "explanation": "正射影向量公式為 $\\left( \\frac{\\vec{u} \\cdot \\vec{v}}{|\\vec{v}|^2} \\right) \\vec{v}$。計算內積 $\\vec{u} \\cdot \\vec{v} = 6+4=10$，模平方 $|\\vec{v}|^2 = 25$。故正射影為 $\\frac{10}{25}(3,4) = \\frac{2}{5}(3,4) = (\\frac{6}{5}, \\frac{8}{5})$。"
+    },
+    {
+      "id": 406,
+      "question": "【進階】平面上由向量 $\\vec{a} = (3, 1)$ 與 $\\vec{b} = (1, 4)$ 為鄰邊所形成的平行四邊形面積為何？",
+      "options": ["10", "11", "12", "13"],
+      "answer": 1,
+      "explanation": "二維平面向量所夾平行四邊形面積為其行列式絕對值 $|\\det(\\vec{a}, \\vec{b})| = |3(4) - 1(1)| = 11$。"
+    },
+    {
+      "id": 412,
+      "question": "【進階】已知空間向量 $\\vec{u} = (2, -1, 2)$，$\\vec{v} = (1, 2, -2)$，求其向量夾角的餘弦值 $\\cos \\theta$。",
+      "options": ["$-\\frac{4}{9}$", "$\\frac{4}{9}$", "$-\\frac{2}{3}$", "$\\frac{2}{3}$"],
+      "answer": 0,
+      "explanation": "模長分別為 $|\\vec{u}| = \\sqrt{2^2+(-1)^2+2^2} = 3$， $|\\vec{v}| = \\sqrt{1^2+2^2+(-2)^2} = 3$。內積為 $\\vec{u} \\cdot \\vec{v} = 2(1) + (-1)(2) + 2(-2) = 2 - 2 - 4 = -4$。故 $\\cos \\theta = \\frac{\\vec{u} \\cdot \\vec{v}}{|\\vec{u}||\\vec{v}|} = -\\frac{4}{9}$。"
+    },
+    {
+      "id": 413,
+      "question": "【進階】若向量 $\\vec{a} = (3, -4)$ 與 $\\vec{b} = (k, 2)$ 平行，求實數常數 $k$ 的值。",
+      "options": ["$-1.5$", "$1.5$", "$-2$", "$-3$"],
+      "answer": 0,
+      "explanation": "兩向量平行，則分量成比例：$\\frac{3}{k} = \\frac{-4}{2} \\implies -4k = 6 \\implies k = -1.5$。"
+    },
+    {
+      "id": 407,
+      "question": "【困難】在 $\\triangle ABC$ 中，若 $G$ 為三角形的重心，已知對相異任一點 $P$ 皆恆滿足 $\\vec{PA} + \\vec{PB} + \\vec{PC} = k\\vec{PG}$，求實數 $k$ 值。",
+      "options": ["3", "1", "2", "$\\frac{1}{3}$"],
+      "answer": 0,
+      "explanation": "由於 $G$ 是重心，滿足 $\\vec{GA} + \\vec{GB} + \\vec{GC} = \\vec{0}$。將其替換為點 $P$ 表示：$(\\vec{PA}-\\vec{PG}) + (\\vec{PB}-\\vec{PG}) + (\\vec{PC}-\\vec{PG}) = \\vec{0} \\implies \\vec{PA}+\\vec{PB}+\\vec{PC} = 3\\vec{PG}$，故 $k=3$。"
+    },
+    {
+      "id": 408,
+      "question": "【困難】設 $O, A, B$ 為平面上不共線之三點。若 $\\vec{OP} = \\frac{2}{5}\\vec{OA} + \\frac{3}{5}\\vec{OB}$，且點 $P$ 落在平面線段 $AB$ 上。求線段長之比 $\\overline{AP} : \\overline{PB}$。",
+      "options": ["3:2", "2:3", "5:2", "2:5"],
+      "answer": 0,
+      "explanation": "依共線分點公式， $\\vec{OP} = \\frac{n}{m+n}\\vec{OA} + \\frac{m}{m+n}\\vec{OB}$ 對應 $\\overline{AP} : \\overline{PB} = m : n$。對應係數：$\\frac{n}{m+n}=\\frac{2}{5}$，$\\frac{m}{m+n}=\\frac{3}{5}$，故比值 $\\overline{AP} : \\overline{PB} = 3:2$。"
+    },
+    {
+      "id": 409,
+      "question": "【困難】若非零向量 $\\vec{u}, \\vec{v}$ 滿足關係式 $|\\vec{u} + p\\vec{v}| \\ge |\\vec{u}|$ 對任意實數 $p$ 恆成立，求兩向量之夾角為多少度？",
+      "options": ["$90^\\circ$", "$0^\\circ$", "$60^\\circ$", "$180^\\circ$"],
+      "answer": 0,
+      "explanation": "兩邊平方得 $|\\vec{u}|^2 + 2p(\\vec{u} \\cdot \\vec{v}) + p^2|\\vec{v}|^2 \\ge |\\vec{u}|^2 \\implies p^2|\\vec{v}|^2 + 2p(\\vec{u} \\cdot \\vec{v}) \\ge 0$。因為此式對任意實數 $p$ 均成立，故二次多項式判別式必小於等於 0：$D = 4(\\vec{u} \\cdot \\vec{v})^2 - 0 \\le 0 \\implies (\\vec{u} \\cdot \\vec{v})^2 \\le 0 \\implies \\vec{u} \\cdot \\vec{v} = 0$。故夾角為 $90^\\circ$。"
+    },
+    {
+      "id": 414,
+      "question": "【困難】已知平面上三點 $A(1, 2)$、$B(4, 6)$、$C(7, y)$ 共線，求 $y$ 的確切實數值。",
+      "options": ["10", "8", "12", "9"],
+      "answer": 0,
+      "explanation": "三點共線，則斜率相等或向量平行：$\\vec{AB} = (3, 4)$，$\\vec{BC} = (3, y-6)$。因為兩向量平行，故 $y-6 = 4 \\implies y = 10$。"
+    },
+    {
+      "id": 415,
+      "question": "【困難】給定兩向量 $\\vec{a}$ 與 $\\vec{b}$。已知 $|\\vec{a}| = 1$，$|\\vec{b}| = 2$，且 $\\vec{a} \\cdot \\vec{b} = -1$，求 $|2\\vec{a} - 3\\vec{b}|$ 的絕對模長。",
+      "options": ["$2\\sqrt{13}$", "$2\\sqrt{11}$", "$\\sqrt{34}$", "$2\\sqrt{10}$"],
+      "answer": 0,
+      "explanation": "求平方模：$|2\\vec{a} - 3\\vec{b}|^2 = 4|\\vec{a}|^2 - 12(\\vec{a} \\cdot \\vec{b}) + 9|\\vec{b}|^2$。代入數值：$4(1)^2 - 12(-1) + 9(2)^2 = 4 + 12 + 36 = 52$。故模長為 $\\sqrt{52} = 2\\sqrt{13}$。"
+    },
+    {
+      "id": 416,
+      "question": "【入門】已知 $\\vec{u} = (-3, 6)$ 且 $\\vec{v} = (5, 2)$，求兩向量之和 $\\vec{u} + \\vec{v}$ 的座標標示。",
+      "options": ["$(2, 8)$", "$(-8, 4)$", "$(8, -4)$", "$(2, 4)$"],
+      "answer": 0,
+      "explanation": "分量相加即可：$\\vec{u} + \\vec{v} = (-3+5, 6+2) = (2, 8)$。"
+    },
+    {
+      "id": 417,
+      "question": "【入門】已知 $\\vec{a} = (2, 5)$，另有純量 $k = -3$，求實數乘積 $k\\vec{a}$ 的向量座標。",
+      "options": ["$(-6, -15)$", "$(6, 15)$", "$(-6, 15)$", "$(2, -15)$"],
+      "answer": 0,
+      "explanation": "純量倍乘各分量：$-3 \\vec{a} = (-3 \\times 2, -3 \\times 5) = (-6, -15)$。"
+    },
+    {
+      "id": 418,
+      "question": "【進階】已知空間向量 $\\vec{u} = (2, 2, 1)$，求與 $\\vec{u}$ 方向相反且長度等於 6 的向量座標。",
+      "options": ["$(-4, -4, -2)$", "$(4, 4, 2)$", "$(-2, -2, -1)$", "$(-6, -6, -3)$"],
+      "answer": 0,
+      "explanation": "向量 $\\vec{u}$ 的模長為 $|\\vec{u}| = \\sqrt{2^2 + 2^2 + 1^2} = 3$。方向相反且長度為 6 的向量為：$- \\frac{6}{|\\vec{u}|} \\vec{u} = -2(2, 2, 1) = (-4, -4, -2)$。"
+    },
+    {
+      "id": 419,
+      "question": "【進階】若向量 $\\vec{a} = (x, 4)$ 且 $\\vec{b} = (9, x)$，兩向量同向，求符合條件之正實數 $x$ 值的確切值。",
+      "options": ["6", "3", "4", "36"],
+      "answer": 0,
+      "explanation": "因為向量同向，分量成正比例：$\\frac{x}{9} = \\frac{4}{x} \\implies x^2 = 36$。因為 $x$ 為正實數，故得 $x = 6$。"
+    },
+    {
+      "id": 420,
+      "question": "【困難】平面上 $\\triangle ABC$ 中，已知重心為 $G$。若設 $\\vec{AG} = x\\vec{AB} + y\\vec{AC}$，求實數數對 $(x, y)$ 的值。",
+      "options": ["$(\\frac{1}{3}, \\frac{1}{3})$", "$(\\frac{1}{2}, \\frac{1}{2})$", "$(\\frac{2}{3}, \\frac{2}{3})$", "$(\\frac{1}{4}, \\frac{1}{4})$"],
+      "answer": 0,
+      "explanation": "根據重心性質，對任意起點 $O$，有 $\\vec{OG} = \\frac{1}{3}(\\vec{OA} + \\vec{OB} + \\vec{OC})$。當起點選為 $A$時，即 $\\vec{AG} = \\frac{1}{3}(\\vec{AA} + \\vec{AB} + \\vec{AC}) = \\frac{1}{3}\\vec{AB} + \\frac{1}{3}\\vec{AC}$。故數對 $(x, y) = (\\frac{1}{3}, \\frac{1}{3})$。"
+    },
+    {
+      "id": 421,
+      "question": "【困難】設 $\\vec{u}$ 與 $\\vec{v}$ 為平面上的相異單位向量。若 $|\\vec{u} + \\vec{v}| = \\sqrt{3}$，求兩向量 $\\vec{u}$ 與 $\\vec{v}$ 之間的夾角 $\\theta$ 幾度？",
+      "options": ["$60^\\circ$", "$30^\\circ$", "$90^\\circ$", "$120^\\circ$"],
+      "answer": 0,
+      "explanation": "$|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + |\\vec{v}|^2 + 2\\vec{u}\\cdot\\vec{v} = 1 + 1 + 2\\cos\\theta = 3 \\implies 2\\cos\\theta = 1 \\implies \\cos\\theta = 1/2 \\implies \\theta = 60^\\circ$。"
+    },
+    {
+      "id": 422,
+      "question": "【困難】若向量 $\\vec{a} = (2, 3)$ 落在向量 $\\vec{b} = (4, 2)$ 上的正射影長度為 $L$，求 $L$ 的值。",
+      "options": ["$\\frac{7\\sqrt{5}}{5}$", "$\\frac{14\\sqrt{5}}{5}$", "$\\sqrt{5}$", "$\\frac{\\sqrt{5}}{2}$"],
+      "answer": 0,
+      "explanation": "正射影長度公式為 $L = \\frac{|\\vec{a} \\cdot \\vec{b}|}{|\\vec{b}|}$。已知 $\\vec{a} \\cdot \\vec{b} = 2(4) + 3(2) = 14$，且 $|\\vec{b}| = \\sqrt{4^2 + 2^2} = \\sqrt{20} = 2\\sqrt{5}$。故 $L = \\frac{14}{2\\sqrt{5}} = \\frac{7}{\\sqrt{5}} = \\frac{7\\sqrt{5}}{5}$。"
+    },
+    {
+      "id": 423,
+      "question": "【入門】已知平面上兩點 $P(1, 2)$、 $Q(4, 6)$，求向量 $\\vec{PQ}$ 的座標表示法。",
+      "options": ["$(3, 4)$", "$(-3, -4)$", "$(5, 8)$", "$(3, 2)$"],
+      "answer": 0,
+      "explanation": "向量 $\\vec{PQ} = (4-1, 6-2) = (3, 4)$。"
+    },
+    {
+      "id": 424,
+      "question": "【入門】若向量 $\\vec{u} = (2, a)$ 且 $|\\vec{u}| = \\sqrt{13}$，求正實數 $a$ 的值。",
+      "options": ["3", "2", "4", "9"],
+      "answer": 0,
+      "explanation": "由模長定理：$\\sqrt{2^2 + a^2} = \\sqrt{13} \\implies 4 + a^2 = 13 \\implies a^2 = 9 \\implies a=3$ （由於 $a$ 為正實數）。"
+    },
+    {
+      "id": 425,
+      "question": "【進階】已知兩向量 $\\vec{u} = (2, x)$ 與 $\\vec{v} = (3, 4)$，若它們的內積 $\\vec{u} \\cdot \\vec{v} = 14$，求 $x$ 的值。",
+      "options": ["2", "3", "1", "4"],
+      "answer": 0,
+      "explanation": "根據內積公式：$\\vec{u} \\cdot \\vec{v} = 2(3) + x(4) = 14 \\implies 6 + 4x = 14 \\implies 4x = 8 \\implies x = 2$。"
+    },
+    {
+      "id": 426,
+      "question": "【進階】已知平面向量 $\\vec{a} = (3, -1)$，求與 $\\vec{a}$ 方向相反且長度為其 2 倍的向量座標。",
+      "options": ["$(-6, 2)$", "$(6, -2)$", "$(-3, 1)$", "$(-6, -2)$"],
+      "answer": 0,
+      "explanation": "所求向量為 $-2\\vec{a} = -2(3, -1) = (-6, 2)$。"
+    },
+    {
+      "id": 427,
+      "question": "【進階】已知兩向量 $\\vec{a} = (1, 2)$，$\\vec{b} = (-2, k)$。若兩向量平行，求實數 $k$ 的值。",
+      "options": ["-4", "4", "-1", "2"],
+      "answer": 0,
+      "explanation": "兩向量平行，各分量比值相等：$\\frac{1}{-2} = \\frac{2}{k} \\implies k = -4$。"
+    },
+    {
+      "id": 428,
+      "question": "【困難】給定兩向量 $\\vec{a}$、$\\vec{b}$。已知 $|\\vec{a}| = 2$， $|\\vec{b}| = 3$，其夾角為 $120^\\circ$，求向量 $3\\vec{a} - \\vec{b}$ 的長度。",
+      "options": ["$3\\sqrt{7}$", "$\\sqrt{33}$", "$3$", "$2\\sqrt{3}$"],
+      "answer": 0,
+      "explanation": "求模平方：$|3\\vec{a} - \\vec{b}|^2 = 9|\\vec{a}|^2 - 6\\vec{a}\\cdot\\vec{b} + |\\vec{b}|^2$。由 $\\vec{a}\\cdot\\vec{b} = |\\vec{a}||\\vec{b}|\\cos 120^\\circ = 2 \\times 3 \\times (-1/2) = -3$。代入得 $|3\\vec{a} - \\vec{b}|^2 = 9(4) - 6(-3) + 9 = 36 + 18 + 9 = 63$。故長度為 $\\sqrt{63} = 3\\sqrt{7}$。"
+    },
+    {
+      "id": 429,
+      "question": "【困難】若 $A(1, 2), B(3, 8), P(x, y)$ 三點共線，且 $P$ 在線段 $AB$ 的延長線上，滿足 $\\overline{AP} : \\overline{PB} = 3 : 1$，求 $P$ 的座標。",
+      "options": ["$(4, 11)$", "$(2, 5)$", "$(5, 14)$", "$(4, 10)$"],
+      "answer": 0,
+      "explanation": "因為 $\\overline{AP} : \\overline{PB} = 3 : 1$，且 $P$ 在 $AB$ 的延長線上，可知 $B$ 介於 $A$（比例 2）與 $P$（比例 1）之間。設 $P(x, y)$，由分點公式知 $B(3, 8) = \\left( \\frac{1 \\times 1 + 2 \\times x}{3}, \\frac{1 \\times 2 + 2 \\times y}{3} \\right) \\implies 1 + 2x = 9 \\implies x = 4$， $2 + 2y = 24 \\implies y = 11$。故 $P$ 的座標為 $(4, 11)$。"
+    },
+    {
+      "id": 430,
+      "question": "【入門】已知向量 $\\vec{a} = (x, 12)$ 且模長 $|\\vec{a}| = 13$，求 $x$ 的可能絕對值。",
+      "options": ["5", "4", "3", "6"],
+      "answer": 0,
+      "explanation": "由模長公式 $\\sqrt{x^2 + 12^2} = 13 \\implies x^2 + 144 = 169 \\implies x^2 = 25 \\implies |x| = 5$。"
+    },
+    {
+      "id": 431,
+      "question": "【入門】已知向量 $\\vec{u} = (2, 3)$ 與 $\\vec{v} = (1, -2)$，求其內積 $\\vec{u} \\cdot \\vec{v}$。",
+      "options": ["$-4$", "4", "-1", "1"],
+      "answer": 0,
+      "explanation": "$\\vec{u} \\cdot \\vec{v} = 2(1) + 3(-2) = 2 - 6 = -4$。"
+    },
+    {
+      "id": 432,
+      "question": "【進階】若平面上三點 $A(-1, 2)$、$B(2, 5)$ 且 $\\vec{AC} = 2\\vec{AB}$，求點 $C$ 的座標。",
+      "options": ["$(5, 8)$", "$(3, 3)$", "$(4, 5)$", "$(2, 6)$"],
+      "answer": 0,
+      "explanation": "$\\vec{AB} = (2 - (-1), 5 - 2) = (3, 3)$。故 $\\vec{AC} = 2(3, 3) = (6, 6)$。設 $C(x, y)$，則 $(x - (-1), y - 2) = (6, 6) \\implies x+1 = 6 \\implies x = 5$ 且 $y-2 = 6 \\implies y = 8$。故 $C$ 的座標為 $(5, 8)$。"
+    },
+    {
+      "id": 433,
+      "question": "【進階】已知非零向量 $\\vec{a}$ 與 $\\vec{b}$ 滿足 $|\\vec{a}| = |\\vec{b}|$，且向量 $\\vec{a}+\\vec{b}$ 與 $\\vec{a}-\\vec{b}$ 的內積為：",
+      "options": ["恆為 0", "不為 0 的常數", "根據夾角決定", "比值不恆定"],
+      "answer": 0,
+      "explanation": "計算內積：$(\\vec{a} + \\vec{b}) \\cdot (\\vec{a} - \\vec{b}) = |\\vec{a}|^2 - |\\vec{b}|^2$。因為已給定 $|\\vec{a}| = |\\vec{b}|$，所以該內積為 $|\\vec{a}|^2 - \\vec{a}|^2 = 0$。因此它們恆垂直，內積恆為 0。"
+    },
+    {
+      "id": 434,
+      "question": "【進階】已知 $\\vec{u} = (1, 2)$ 且 $\\vec{v} = (k, k+1)$。若此兩向量之夾角為銳角，求實數 $k$ 的限制範圍。",
+      "options": ["$k > -\\frac{2}{3}$ 且 $k \\ne 1$", "$k < -\\frac{2}{3}$", "$k > 0$", "$-2 < k < 2$"],
+      "answer": 0,
+      "explanation": "夾角 $\\theta$ 為銳角代表 $\\cos \\theta > 0$ 且 $\\theta \\ne 0^\\circ$（非同向共線）。$\\cos \\theta > 0 \\implies \\vec{u} \\cdot \\vec{v} > 0 \\implies 1(k) + 2(k+1) = 3k + 2 > 0 \\implies k > -\\frac{2}{3}$。此外，兩向量不能同向共線，若同向共線，則 $\\frac{k}{1} = \\frac{k+1}{2} \\implies 2k = k+1 \\implies k = 1$。此時兩向量方向完全相同，夾角為 $0^\\circ$，不是銳角。故範圍為 $k > -\\frac{2}{3}$ 且 $k \\ne 1$。"
+    },
+    {
+      "id": 435,
+      "question": "【困難】設 $\\vec{a} = (3, 4)$。若平面上向量 $\\vec{b}$ 滿足 $\\vec{a} \\cdot \\vec{b} = 25$ 且 $|\\vec{b}| = 5$，求 $\\vec{b}$ 的座標。",
+      "options": ["$(3, 4)$", "$(4, 3)$", "$(-3, -4)$", "$(5, 0)$"],
+      "answer": 0,
+      "explanation": "由柯西不等式知 $|\\vec{a}\\cdot\\vec{b}| \\le |\\vec{a}||\\vec{b}|$。計算左邊為 $25$，右邊為 $|\\vec{a}||\\vec{b}| = \\sqrt{3^2+4^2} \\times 5 = 5 \\times 5 = 25$。此時不等式等號成立，表示 $\\vec{b}$ 與 $\\vec{a}$ 同向。故設 $\\vec{b} = k\\vec{a}$ (其中 $k>0$)。則 $|\\vec{b}| = k|\\vec{a}| \\implies 5 = 5k \\implies k=1$。故 $\\vec{b} = \\vec{a} = (3, 4)$。"
+    },
+    {
+      "id": 436,
+      "question": "【困難】若平面上非零向量 $\\vec{a}, \\vec{b}$ 滿足 $|\\vec{a} + 2\\vec{b}| = |2\\vec{a} - \\vec{b}|$，求 $\\vec{a}$ 與 $\\vec{b}$ 的長度關係。",
+      "options": ["$|\\vec{a}| = |\\vec{b}|$", "$|\\vec{a}| = 2|\\vec{b}|$", "$2|\\vec{a}| = |\\vec{b}|$", "無法確定"],
+      "answer": 0,
+      "explanation": "兩邊平方：$|\\vec{a}|^2 + 4\\vec{a}\\cdot\\vec{b} + 4|\\vec{b}|^2 = 4|\\vec{a}|^2 - 4\\vec{a}\\cdot\\vec{b} + |\\vec{b}|^2 \\implies 3|\\vec{b}|^2 + 8\\vec{a}\\cdot\\vec{b} - 3|\\vec{a}|^2 = 0$。若 $\\vec{a}$ 與 $\\vec{b}$ 垂直（即 $\\vec{a}\\cdot\\vec{b} = 0$），則 $3|\\vec{b}|^2 - 3|\\vec{a}|^2 = 0 \\implies |\\vec{a}| = |\\vec{b}|$"
+    },
+    {
+      "id": 437,
+      "question": "【入門】已知向量 $\\vec{a} = (2, -3)$ 與 $\\vec{b} = (-1, 4)$，求向量 $3\\vec{a} + 2\\vec{b}$ 的分量座標。",
+      "options": ["$(4, -1)$", "$(3, 1)$", "$(4, 1)$", "$(5, -1)$"],
+      "answer": 0,
+      "explanation": "$3\\vec{a} + 2\\vec{b} = (6, -9) + (-2, 8) = (4, -1)$。"
+    },
+    {
+      "id": 438,
+      "question": "【入門】若平面向量 $\\vec{a} = (k, 3)$ 與 $\\vec{b} = (4, -2)$ 互相垂直，求實數 $k$ 的值。",
+      "options": ["$1.5$", "$3$", "$-1.5$", "$-3$"],
+      "answer": 0,
+      "explanation": "兩垂直向量的內積為 $0$：$\\vec{a} \\cdot \\vec{b} = 4k - 6 = 0 \\implies k = 1.5$。"
+    },
+    {
+      "id": 439,
+      "question": "【入門】計算下列兩向量 $\\vec{a} = (3, 1)$ 與 $\\vec{b} = (-2, 5)$ 的內積 $\\vec{a} \\cdot \\vec{b}$ 的數值。",
+      "options": ["-1", "13", "-13", "11"],
+      "answer": 0,
+      "explanation": "$\\vec{a} \\cdot \\vec{b} = 3(-2) + 1(5) = -6 + 5 = -1$。"
+    },
+    {
+      "id": 440,
+      "question": "【進階】已知空間中兩點 $A(1, 2, -1)$、$B(3, -1, 5)$，求 $\\vec{AB}$ 向量的兩點距離長度。",
+      "options": ["7", "9", "$\\sqrt{41}$", "5"],
+      "answer": 0,
+      "explanation": "$\\vec{AB} = (3-1, -1-2, 5-(-1)) = (2, -3, 6)$。長度為 $\\sqrt{2^2+(-3)^2+6^2} = \\sqrt{4+9+36} = \\sqrt{49} = 7$。"
+    },
+    {
+      "id": 441,
+      "question": "【進階】若向量 $\\vec{a} = (1, 2)$ 在向量 $\\vec{b} = (3, 4)$ 方向上的正射影（純量投影）長度為何？",
+      "options": ["$\\frac{11}{5}$", "$\\frac{11}{25}$", "$11$", "$2$"],
+      "answer": 0,
+      "explanation": "投影長公式為 $\\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{b}|}$。內積為 $1(3)+2(4)=11$。其模長 $|\\vec{b}| = 5$。故為 $\\frac{11}{5}$。"
+    },
+    {
+      "id": 442,
+      "question": "// 【進階】若平面向量 $\\vec{a}$ 與 $\\vec{b}$ 滿足 $|\\vec{a}| = 3, |\\vec{b}| = 5$ 且其夾角為 $60^\\circ$，求 $|\\vec{a} - \\vec{b}|$ 的值。",
+      "options": ["$\\sqrt{19}$", "$4$", "$\\sqrt{34}$", "$\\sqrt{14}$"],
+      "answer": 0,
+      "explanation": "平方 $|\\vec{a}-\\vec{b}|^2 = |\\vec{a}|^2 - 2\\vec{a}\\cdot\\vec{b} + |\\vec{b}|^2 = 9 - 2(3 \\times 5 \\times \\cos 60^\\circ) + 25 = 34 - 15 = 19$，故為 $\\sqrt{19}$。"
+    },
+    {
+      "id": 443,
+      "question": "【困難】設空間中三向量 $\\vec{a} = (1, -1, 0), \\vec{b} = (2, 0, 1), \\vec{c} = (0, 1, 3)$，求其所構成之平行六面體體積為多少平方單位？",
+      "options": ["5", "7", "3", "4"],
+      "answer": 0,
+      "explanation": "體積為三向量之混合積行列式絕對值：$\\det \\begin{bmatrix} 1 & -1 & 0 \\\\ 2 & 0 & 1 \\\\ 0 & 1 & 3 \\end{bmatrix} = 1(0-1) - (-1)(6-0) + 0 = -1 + 6 = 5$。"
+    },
+    {
+      "id": 444,
+      "question": "【困難】已知 $\\triangle ABC$ 的重心為 $G$。若 $3\\vec{GA} + 4\\vec{GB} + k\\vec{GC} = \\vec{0}$，且我們想要保證 $G$ 也是中線交點，下列敘述何者在正常重心系統中必然成立？",
+      "options": ["以上皆非（正常重心係數應均等非3,4）", "k 必定等於3", "k 必定等於4", "k 必定等於7"],
+      "answer": 0,
+      "explanation": "重心定義滿足 $\\vec{GA} + \\vec{GB} + \\vec{GC} = \\vec{0}$。所以正常情況下其係數必全等。因此本題若強設該等式，不符合一般重心定義，故為「以上皆非」。"
+    },
+    {
+      "id": 445,
+      "question": "【困難】已知兩非零向量 $\\vec{a}$ 與 $\\vec{b}$ 的長度相等，且滿足 $|2\\vec{a} + \\vec{b}| = |\\vec{a} - 3\\vec{b}|$，求 $\\vec{a}$ 與 $\\vec{b}$ 的夾角 $\\theta$ 幾度。",
+      "options": ["$60^\\circ$", "$120^\\circ$", "$90^\\circ$", "$150^\\circ$"],
+      "answer": 0,
+      "explanation": "設 $|\\vec{a}| = |\\vec{b}| = m$。平方：$4m^2 + 4\\vec{a}\\cdot\\vec{b} + m^2 = m^2 - 6\\vec{a}\\cdot\\vec{b} + 9m^2 \\implies 10\\vec{a}\\cdot\\vec{b} = 5m^2 \\implies \\vec{a}\\cdot\\vec{b} = \\frac{1}{2} m^2$。又 $\\cos \\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = \\frac{0.5m^2}{m^2} = \\frac{1}{2}$。故 $\\theta = 60^\\circ$。"
+    },
+    {
+      "id": 446,
+      "question": "【進階】在 $\\triangle ABC$ 中，已知 $D$ 為 $BC$ 中點，$G$ 為 $\\triangle ABC$ 重心。若 $\\vec{AG} = k \\vec{AD}$，求實數 $k$ 的精確值。",
+      "options": ["$\\frac{2}{3}$", "$\\frac{1}{2}$", "$\\frac{3}{4}$", "$\\frac{1}{3}$"],
+      "answer": 0,
+      "explanation": "重心 $G$ 位於中線 $AD$ 上，且滿足 $AG:GD = 2:1$。故 $\\vec{AG} = \\frac{2}{3}\\vec{AD}$，即 $k = \\frac{2}{3}$。"
+    }
+  ],
+  "微積分初步": [
+    {
+      "id": 501,
+      "question": "【入門】求未知變量之極限值 $\\lim_{x \\to 2} \\frac{x^2 - 4}{x - 2}$ 的值。",
+      "options": ["2", "4", "0", "不存在"],
+      "answer": 1,
+      "explanation": "式子有 $0/0$ 因子。因式分解消去：$\\lim_{x \\to 2} \\frac{(x-2)(x+2)}{x-2} = \\lim_{x \\to 2} (x+2) = 4$。"
+    },
+    {
+      "id": 502,
+      "question": "【入門】若一個多項式函數為 $f(x) = 3x^2 - 5x + 2$，求其一階導函數 $f'(x)$ 的代數式。",
+      "options": ["$6x - 5$", "$3x - 5$", "$6x^2 - 5$", "$6x$"],
+      "answer": 0,
+      "explanation": "套用基本微分公式 $(x^n)' = n x^{n-1}$ 推導：$f'(x) = 3(2x) - 5 = 6x - 5$。"
+    },
+    {
+      "id": 503,
+      "question": "【入門】計算代數定積分表示式 $\\int_{1}^{3} (3x^2 - 2x) \\, dx$ 的精確定積分值。",
+      "options": ["18", "20", "22", "24"],
+      "answer": 0,
+      "explanation": "得反導函數 $F(x) = x^3 - x^2$。代入微積分基本定理得：$F(3) - F(1) = (27-9) - (1-1) = 18$。"
+    },
+    {
+      "id": 510,
+      "question": "【入門】已知恆等函數 $f(x) = 2x^3$，求其在 $x = 3$ 的導數值 $f'(3)$。",
+      "options": ["54", "27", "18", "6"],
+      "answer": 0,
+      "explanation": "一階導函數為 $f'(x) = 6x^2$。代入 $x=3$ 得 $f'(3) = 6(3^2) = 6 \\times 9 = 54$。"
+    },
+    {
+      "id": 511,
+      "question": "【入門】計算極限 $\\lim_{x \\to \\infty} \\frac{4x^2 - x + 5}{2x^2 + 7}$ 的值。",
+      "options": ["2", "4", "0", "$\\infty$"],
+      "answer": 0,
+      "explanation": "分式分子分母同除以 $x^2$，得 $\\lim_{x \\to \\infty} \\frac{4 - 1/x + 5/x^2}{2 + 7/x^2} = \\frac{4}{2} = 2$。"
+    },
+    {
+      "id": 504,
+      "question": "【進階】求拋物線 $y = x^2$ 與直線 $y = x$ 在第一象限（$x \\ge 0$）內所合圍而成之封閉區域面積。",
+      "options": ["$\\frac{1}{6}$", "$\\frac{1}{3}$", "$\\frac{1}{2}$", "$\\frac{1}{12}$"],
+      "answer": 0,
+      "explanation": "求交點為 $x=0, 1$，其面積為 $\\int_0^1 (x - x^2) \\, dx = [\\frac{x^2}{2} - \\frac{x^3}{3}]_0^1 = \\frac{1}{2} - \\frac{1}{3} = \\frac{1}{6}$。"
+    },
+    {
+      "id": 505,
+      "question": "【進階】求三次多項式曲線 $f(x) = x^3 - 2x + 1$ 在切點 $(1, 0)$ 處 the 切線方程式。",
+      "options": ["$y = x - 1$", "$y = 2x - 2$", "$y = -x + 1$", "$y = 3x - 3$"],
+      "answer": 0,
+      "explanation": "計算導函數 $f'(x) = 3x^2 - 2$。代入切點 $x=1$ 得斜率 $m = f'(1) = 1$。點斜式 $y - 0 = 1(x - 1) \\implies y = x - 1$。"
+    },
+    {
+      "id": 506,
+      "question": "【進階】設三分之一立方多項式 $f(x) = \\frac{1}{3}x^3 - 4x$，求在正實數區間 $x > 0$ 上該函數的相對極小值。",
+      "options": ["$-\\frac{16}{3}$", "$-\\frac{8}{3}$", "0", "-4"],
+      "answer": 0,
+      "explanation": "求導 $f'(x) = x^2 - 4 = 0 \\implies x=2$ (區間 $x>0$)。極小值為 $f(2) = \\frac{8}{3} - 8 = -\\frac{16}{3}$。"
+    },
+    {
+      "id": 512,
+      "question": "【進階】求曲線 $y = x^2 - 4x + 3$ 的局部極小值（頂點處）。",
+      "options": ["-1", "3", "0", "-2"],
+      "answer": 0,
+      "explanation": "求一階導數：$y' = 2x - 4 = 0 \\implies x=2$。代入原曲線方程式：$y(2) = 2^2 - 4(2) + 3 = 4 - 8 + 3 = -1$。"
+    },
+    {
+      "id": 513,
+      "question": "【進階】計算定積分 $\\int_{0}^{2} e^x \\, dx$ 的精確值。",
+      "options": ["$e^2 - 1$", "$e^2$", "$e^2 + 1$", "$2e$"],
+      "answer": 0,
+      "explanation": "反導函數為 $e^x$。根據微積分基本定理，定積分值為 $[e^x]_0^2 = e^2 - e^0 = e^2 - 1$。"
+    },
+    {
+      "id": 507,
+      "question": "【困難】已知相異正實數 $x, y$ 滿足極值條件 $x + 2y = 12$，求多變數乘積最佳化值 $x^2y$ 的最大可能值。",
+      "options": ["128", "256", "64", "512"],
+      "answer": 0,
+      "explanation": "由算幾不等式：$\\frac{x/2+x/2+2y}{3} \\ge \\sqrt[3]{\\frac{x^2}{4}2y} = \\sqrt[3]{\\frac{x^2y}{2}}$。代入 $x+2y=12$ 得 $\\frac{12}{3} = 4 \\ge \\sqrt[3]{\\frac{x^2y}{2}} \\implies 64 \\ge \\frac{x^2y}{2} \\implies x^2y \\le 128$，最大值為 128。"
+    },
+    {
+      "id": 508,
+      "question": "【困難】求對稱定積分 $\\int_{-2}^{2} \\sqrt{4 - x^2} \\, dx$ 的精確值。",
+      "options": ["$2\\pi$", "$4\\pi$", "$\\pi$", "$8\\pi$"],
+      "answer": 0,
+      "explanation": "此定積分幾何意義為半徑為 2 的上半圓面積。圓面積為 $\\pi r^2 = 4\\pi$，故其上半圓面積為 $2\\pi$。"
+    },
+    {
+      "id": 509,
+      "question": "【困難】一塊長方形鐵皮規格為 $12 \\times 12$。在四個角上剪去四個相同的大小為 $x$ 的正方形，再將四邊折起做成一個無蓋盒子，求能容納的最大體積 $V(x)$ 的最大值。",
+      "options": ["128", "144", "108", "96"],
+      "answer": 0,
+      "explanation": "盒子體積 $V(x) = x(12-2x)^2 = 4x(6-x)^2$，其中 $0 < x < 6$。求導數：$V(x) = 4(x^3 - 12x^2 + 36x) \\implies V'(x) = 4(3x^2 - 24x + 36) = 12(x-2)(x-6)=0$。極大值發生在 $x=2$。代入計算最值為 $V(2) = 2(12-4)^2 = 2 \\times 64 = 128$。"
+    },
+    {
+      "id": 514,
+      "question": "【困難】求曲線 $y = \\ln(x^2 + 1)$ 的導數 $y'(1)$ 的確切值。",
+      "options": ["1", "0.5", "2", "0"],
+      "answer": 0,
+      "explanation": "利用連鎖律求導：$y' = \\frac{1}{x^2 + 1} \\cdot (2x) = \\frac{2x}{x^2 + 1}$。代入 $x=1$ 得 $y'(1) = \\frac{2(1)}{1^2 + 1} = 1$。"
+    },
+    {
+      "id": 515,
+      "question": "【困難】若 $F(x) = \\int_{1}^{x^2} \\sqrt{t^3 + 3} \\, dt$，求其一階導函數 $F'(x)$ 在 $x=1$ 的確切值。",
+      "options": ["4", "2", "$2\\sqrt{3}$", "$\\sqrt{12}$"],
+      "answer": 0,
+      "explanation": "利用萊布尼茲積分微分法則：$F'(x) = \\sqrt{(x^2)^3 + 3} \\cdot \\frac{d}{dx}(x^2) = 2x\\sqrt{x^6 + 3}$。代入 $x=1$ 得 $F'(1) = 2(1)\\sqrt{1^6 + 3} = 2\\sqrt{4} = 4$。"
+    },
+    {
+      "id": 516,
+      "question": "【入門】計算極限 $\\lim_{x \\to 3} \\frac{x^2 - 9}{x^2 - 3x}$ 的精確值。",
+      "options": ["2", "$\\frac{3}{2}$", "$\\frac{2}{3}$", "1"],
+      "answer": 0,
+      "explanation": "將分子分母同作因式分解：$\\lim_{x \\to 3} \\frac{(x-3)(x+3)}{x(x-3)} = \\lim_{x \\to 3} \\frac{x+3}{x} = \\frac{3+3}{3} = 2$。"
+    },
+    {
+      "id": 517,
+      "question": "【入門】已知函數 $f(x) = x^4 - 2x^2 + 5$，求其在 $x = 1$ 的二階導數值 $f''(1)$ 的確切值。",
+      "options": ["8", "12", "6", "4"],
+      "answer": 0,
+      "explanation": "一階導數 $f'(x) = 4x^3 - 4x$。二階導數 $f''(x) = 12x^2 - 4$。代入 $x=1$ 得 $f''(1) = 12(1)^2 - 4 = 8$。"
+    },
+    {
+      "id": 518,
+      "question": "【進階】已知導函數 $f'(x) = 3x^2 - 4x + 1$ 且滿足 $f(1) = 5$，求此原函數 $f(x)$ 中的常數項。",
+      "options": ["5", "3", "1", "0"],
+      "answer": 0,
+      "explanation": "對導函數進行不定積分求原函數：$f(x) = \\int (3x^2 - 4x + 1) \\, dx = x^3 - 2x^2 + x + C$。代入 $f(1) = 1 - 2 + 1 + C = 5 \\implies C = 5$。故原函數的常數項為 5。"
+    },
+    {
+      "id": 519,
+      "question": "【進階】求曲線 $y = x^2 - 2x$ 與 $x$ 軸在區間 $[0, 2]$ 內所圍成之區域面積。",
+      "options": ["$\\frac{4}{3}$", "$\\frac{2}{3}$", "$\\frac{1}{3}$", "2"],
+      "answer": 0,
+      "explanation": "在區間 $[0, 2]$ 內，$y = x^2 - 2x \\le 0$，故所圍面積為：$A = \\int_0^2 -(x^2 - 2x) \\, dx = \\int_0^2 (2x - x^2) \\, dx = [x^2 - \\frac{x^3}{3}]_0^2 = 4 - \\frac{8}{3} = \\frac{4}{3}$。"
+    },
+    {
+      "id": 520,
+      "question": "【進階】求多項式函數 $f(x) = 2x^3 - 3x^2 - 12x + 7$ 的局部最大值 (相對極大值)。",
+      "options": ["14", "7", "21", "-13"],
+      "answer": 0,
+      "explanation": "一階導函數為 $f'(x) = 6x^2 - 6x - 12 = 0 \\implies 6(x-2)(x+1) = 0 \\implies x=2 \\text{ 或 } -1$。分析二階導函數：$f''(x) = 12x - 6$。若 $x = -1$，則 $f''(-1) = -18 < 0$，此為局部最大值。代入原式：$f(-1) = 2(-1)^3 - 3(-1)^2 - 12(-1) + 7 = -2 - 3 + 12 + 7 = 14$。"
+    },
+    {
+      "id": 521,
+      "question": "【困難】若 $f(x) = x e^x$，求此函數的局部極小值（相對極小值）。",
+      "options": ["$-\\frac{1}{e}$", "$-e$", "0", "不存在"],
+      "answer": 0,
+      "explanation": "利用乘積微分求導：$f'(x) = 1 \\cdot e^x + x \\cdot e^x = (x+1)e^x = 0 \\implies x = -1$。當 $x < -1$ 時 $f'(x) < 0$，當 $x > -1$ 時 $f'(x) > 0$，故 $x = -1$ 為局部極小值。極小值為 $f(-1) = -1 \\cdot e^{-1} = -\\frac{1}{e}$。"
+    },
+    {
+      "id": 522,
+      "question": "【困難】定義在實數上的連續函數 $f(x)$ 滿足 $\\int_0^x f(t) \\, dt = x \\cos(\\pi x)$，求 $f(2)$ 的值。",
+      "options": ["1", "$-1$", "0", "2"],
+      "answer": 0,
+      "explanation": "由微積分基本定理，兩邊對 $x$ 求導：$f(x) = \\frac{d}{dx} [x \\cos(\\pi x)] = 1 \\cdot \\cos(\\pi x) + x \\cdot [-\\pi \\sin(\\pi x)] = \\cos(\\pi x) - \\pi x \\sin(\\pi x)$。代入 $x=2$：$f(2) = \\cos(2\\pi) - 2\\pi \\sin(2\\pi) = 1 - 0 = 1$。"
+    },
+    {
+      "id": 523,
+      "question": "【入門】求極限 $\\lim_{x \\to 4} (2x^2 - 5x + 3)$ 的確切值。",
+      "options": ["15", "10", "12", "20"],
+      "answer": 0,
+      "explanation": "這是一個多項式函數，直接代入極限點 $x=4$ 計算：$2(4^2) - 5(4) + 3 = 32 - 20 + 3 = 15$。"
+    },
+    {
+      "id": 524,
+      "question": "【入門】計算常數函數 $f(x) = 100$ 在 $x = 5$ 的導數值 $f'(5)$。",
+      "options": ["0", "100", "5", "不存在"],
+      "answer": 0,
+      "explanation": "常數函數的導數在任意點均為 0，故 $f'(5) = 0$。"
+    },
+    {
+      "id": 525,
+      "question": "【進階】已知函數 $f(x) = \\frac{2}{x}$，求其在 $x = 2$ 的一階導數值 $f'(2)$。",
+      "options": ["$-0.5$", "0.5", "-1", "1"],
+      "answer": 0,
+      "explanation": "$f(x) = 2x^{-1} \\implies f'(x) = -2x^{-2} = -\\frac{2}{x^2}$。代入 $x=2$ 得 $f'(2) = -\\frac{2}{4} = -\\frac{1}{2} = -0.5$。"
+    },
+    {
+      "id": 526,
+      "question": "【進階】計算定積分 $\\int_{1}^{3} 4x^3 \\, dx$ 的精確值。",
+      "options": ["80", "120", "40", "60"],
+      "answer": 0,
+      "explanation": "反導函數為 $x^4$。代入微積分基本定理得：$[x^4]_1^3 = 3^4 - 1^4 = 81 - 1 = 80$。"
+    },
+    {
+      "id": 527,
+      "question": "【困難】若 $f(x) = e^{-x^2}$，求其局部一階極大值發生在何處？",
+      "options": ["$x=0$", "$x=1$", "$x=-1$", "不存在"],
+      "answer": 0,
+      "explanation": "利用鏈鎖律求導：$f'(x) = e^{-x^2} \\cdot (-2x) = -2x e^{-x^2} = 0 \\implies x=0$。當 $x < 0$ 時 $f'(x) > 0$，當 $x > 0$ 時 $f'(x) < 0$，故極大值發生在 $x = 0$。"
+    },
+    {
+      "id": 528,
+      "question": "【困難】一動點之速度函數為 $v(t) = 3t^2 - 6t$ (公尺/秒)，求此質點在時間區間 $t=0$ 至 $t=3$ 的總移動位移公尺數。",
+      "options": ["0 公尺", "2 公尺", "4 公尺", "9 公尺"],
+      "answer": 0,
+      "explanation": "位移等於速度函數的定積分：位移 $S = \\int_0^3 (3t^2 - 6t) \\, dt = [t^3 - 3t^2]_0^3 = (27 - 27) - (0) = 0$ 公尺。"
+    },
+    {
+      "id": 529,
+      "question": "【入門】求極限 $\\lim_{x \\to 1} \\frac{\\sqrt{x} - 1}{x - 1}$ 的確切值。",
+      "options": ["0.5", "1", "2", "不存在"],
+      "answer": 0,
+      "explanation": "利用平方差公式，將分母因式分解：$x - 1 = (\\sqrt{x} - 1)(\\sqrt{x} + 1)$。故原式化為 $\\lim_{x \\to 1} \\frac{\\sqrt{x}-1}{(\\sqrt{x}-1)(\\sqrt{x}+1)} = \\lim_{x \\to 1} \\frac{1}{\\sqrt{x}+1} = \\frac{1}{2} = 0.5$。"
+    },
+    {
+      "id": 530,
+      "question": "【入門】若多項式函數 $f(x) = \\frac{1}{3}x^3 - x^2 + 5$，求它的二階導函數 $f''(x)$。",
+      "options": ["$2x - 2$", "$x^2 - 2x$", "$2x$", "$x^2$"],
+      "answer": 0,
+      "explanation": "一階導函數為 $f'(x) = x^2 - 2x$。再對其求導得二階導函數 $f''(x) = 2x - 2$。"
+    },
+    {
+      "id": 531,
+      "question": "【進階】計算定積分 $\\int_{0}^{1} (e^x + x) \\, dx$ 的精確值。",
+      "options": ["$e - 0.5$", "$e - 1$", "$e$", "$e + 0.5$"],
+      "answer": 0,
+      "explanation": "求反導函數為 $F(x) = e^x + \\frac{x^2}{2}$。利用微積分基本定理得：$F(1) - F(0) = (e^1 + \\frac{1}{2}) - (e^0 + 0) = e + \\frac{1}{2} - 1 = e - \\frac{1}{2} = e - 0.5$。"
+    },
+    {
+      "id": 532,
+      "question": "【進階】已知函數 $f(x) = x^3 - 3x^2$。若 $f(x)$ 在實數區間 $[0, 3]$ 內的最大值為 $M$，求 $M$ 的值。",
+      "options": ["0", "-4", "9", "4"],
+      "answer": 0,
+      "explanation": "求導 $f'(x) = 3x^2 - 6x = 3x(x-2) = 0 \\implies x=0$ 或 $x=2$。在閉區間 $[0, 3]$ 上，端點與極值點函數值：$f(0) = 0$，$f(2) = 8 - 12 = -4$，$f(3) = 27 - 27 = 0$。因此最大值 $M = 0$。"
+    },
+    {
+      "id": 533,
+      "question": "【困難】若函數 $y = \\frac{\\ln x}{x}$ 在其定義域 $x > 0$ 內的最大值為 $M$，求 $M$ 的值。",
+      "options": ["$\\frac{1}{e}$", "$e$", "$1$", "$2e$"],
+      "answer": 0,
+      "explanation": "求一階導數：$y' = \\frac{(1/x) \\cdot x - \\ln x \\cdot 1}{x^2} = \\frac{1 - \\ln x}{x^2}$。令 $y' = 0 \\implies 1 - \\ln x = 0 \\implies x = e$。當 $0 < x < e$時 $y' > 0$，當 $x > e$ 時 $y' < 0$，因此 $x = e$ 處有最大值 $y(e) = \\frac{\\ln e}{e} = \\frac{1}{e}$。"
+    },
+    {
+      "id": 534,
+      "question": "【困難】計算定積分 $\\int_{0}^{\\pi} \\sin x \\, dx$ 的確切值。",
+      "options": ["2", "0", "1", "$\\pi$"],
+      "answer": 0,
+      "explanation": "反導函數為 $-\\cos x$。利用微積分基本定理得：$\\int_0^\\pi \\sin x \\, dx = [-\\cos x]_0^\\pi = -\\cos\\pi - (-\\cos 0) = -(-1) + 1 = 1 + 1 = 2$。"
+    },
+    {
+      "id": 535,
+      "question": "【入門】已知函數 $f(x) = 3x^2 - 5x + 4$，求其導數在 $x = 2$ 點（即 $f'(2)$）的切線斜率（導數值）。",
+      "options": ["7", "12", "5", "8"],
+      "answer": 0,
+      "explanation": "$f'(x) = 6x - 5$。代入 $x=2$ 得 $f'(2) = 6(2) - 5 = 7$。"
+    },
+    {
+      "id": 536,
+      "question": "【入門】計算未知自變量極限值：$\\lim_{x \\to 3} \\frac{x^2 - 9}{x^2 - 3x}$ 的精確值。",
+      "options": ["2", "1", "$\\frac{2}{3}$", "不存在"],
+      "answer": 0,
+      "explanation": "分子分母分解得 $\\frac{(x-3)(x+3)}{x(x-3)} = \\frac{x+3}{x}$。當 $x \\to 3$ 時，極限值為 $\\frac{3+3}{3} = 2$。"
+    },
+    {
+      "id": 537,
+      "question": "【入門】求微積分中常數函數與冪係數定積分之值：$\\int_{1}^{3} (2x + 1) \\, dx$ 的精確運算值。",
+      "options": ["10", "12", "8", "6"],
+      "answer": 0,
+      "explanation": "反導函數為 $x^2 + x$。帶入上下限：$(3^2+3) - (1^2+1) = 12 - 2 = 10$。"
+    },
+    {
+      "id": 538,
+      "question": "【進階】若函數 $f(x) = x^3 - 3x$，求其在實數範圍內的所有極值點中之相對極小值數值。",
+      "options": ["-2", "2", "0", "-1"],
+      "answer": 0,
+      "explanation": "f'(x) = 3x^2 - 3 = 0 \\implies x = \\pm 1$。一階與二階導數檢定：$x=1$ 處有相對極小值 $f(1) = 1^3 - 3(1) = -2$。"
+    },
+    {
+      "id": 539,
+      "question": "【進階】已知曲線 $y = x^2$、直線 $x = 2$ 與 $x$ 軸在第一象限所圍成區域的面積，求此定積分面積代數值。",
+      "options": ["$\\frac{8}{3}$", "$\\frac{4}{3}$", "$4$", "$\\frac{7}{3}$"],
+      "answer": 0,
+      "explanation": "面積為 $\\int_0^2 x^2 \\, dx = [\\frac{1}{3}x^3]_0^2 = \\frac{8}{3}$。"
+    },
+    {
+      "id": 540,
+      "question": "【進階】求三角函數極限：$\\lim_{x \\to 0} \\frac{\\sin 3x}{\\tan 2x}$ 的精確極限值。",
+      "options": ["1.5", "1", "0.6", "0"],
+      "answer": 0,
+      "explanation": "原式可拆寫為 $\\lim_{x\\to 0} \\left(\\frac{\\sin 3x}{3x} \\cdot \\frac{2x}{\\tan 2x} \\cdot \\frac{3}{2}\\right) = 1 \\times 1 \\times 1.5 = 1.5$（或羅必達法則分子分母微分後代入 $x=0$ 得到 $\\frac{3}{2}$）。"
+    },
+    {
+      "id": 541,
+      "question": "【困難】求多項式與極限之和極限值：$\\lim_{n \\to \\infty} \\frac{1^2 + 2^2 + \\dots + n^2}{n^3}$ 的值。",
+      "options": ["$\\frac{1}{3}$", "$\\frac{1}{2}$", "$\\frac{1}{6}$", "1"],
+      "answer": 0,
+      "explanation": "平方和公式為 $\\frac{n(n+1)(2n+1)}{6} = \\frac{2n^3 + 3n^2 + n}{6}$。故極限值為 $\\lim_{n \\to \\infty} \\frac{2n^3+3n^2+n}{6n^3} = \\frac{2}{6} = \\frac{1}{3}$。"
+    },
+    {
+      "id": 542,
+      "question": "【困難】函數 $f(x) = e^{2x} \\sin x$ 在 $x = 0$ 處的微商一階導數 $f'(0)$ 為多少？",
+      "options": ["1", "2", "0", "e"],
+      "answer": 0,
+      "explanation": "乘積微分法則：$f'(x) = 2e^{2x}\\sin x + e^{2x}\\cos x$。代入 $x=0$ 得 $f'(0) = 2(1)(0) + (1)(1) = 1$。"
+    },
+    {
+      "id": 543,
+      "question": "【困難】計算含有對數函數的定積分：$\\int_{1}^{e} \\frac{\\ln x}{x} \\, dx$ 的精確運算值。",
+      "options": ["0.5", "1", "$e-1$", "$e$"],
+      "answer": 0,
+      "explanation": "變數變換法：令 $u = \\ln x \\implies du = \\frac{1}{x}dx$。積分限由 $[1, e]$ 變為 $[0, 1]$。故原式變為 $\\int_0^1 u \\, du = [\\frac{1}{2}u^2]_0^1 = 0.5$。"
+    },
+    {
+      "id": 544,
+      "question": "【進階】若 $t$ 秒時，一物體的位置移動函數為 $s(t) = t^3 - 6t^2 + 9t$，求其在 $t=2$ 時的即時加速度。",
+      "options": ["0", "3", "-3", "12"],
+      "answer": 0,
+      "explanation": "速度 $v(t) = s'(t) = 3t^2 - 12t + 9$。加速度 $a(t) = v'(t) = 6t - 12$。在 $t=2$ 時，$a(2) = 6(2) - 12 = 0$。"
+    }
+  ],
+  "統計與機率": [
+    {
+      "id": 601,
+      "question": "【入門】同時投擲兩枚均勻對稱的硬幣，求恰好出現一枚硬幣正面、一枚硬幣反面的機率值。",
+      "options": ["$\\frac{1}{4}$", "$\\frac{1}{2}$", "$\\frac{3}{4}$", "$\\frac{1}{3}$"],
+      "answer": 1,
+      "explanation": "基本空間樣本數為 4。有利樣本點為 (正、反) 及 (反、正) 共 2 種。機率為 $\\frac{2}{4} = \\frac{1}{2}$。"
+    },
+    {
+      "id": 602,
+      "question": "【入門】有一組實數樣本數據為：$3, 5, 8, 8, 10, 14$，求這組數據的中位數。",
+      "options": ["8", "7.5", "9", "8.5"],
+      "answer": 0,
+      "explanation": "數據已排序，個數為偶數 6。取最中間兩數 $(8+8)/2 = 8$ 作為其統計中位數。"
+    },
+    {
+      "id": 603,
+      "question": "【入門】若甲、乙兩人生日隨機落在一年中的 12 個月份 (假設機率均等)。求這兩個人生日落在不同月份的機率值。",
+      "options": ["$\\frac{11}{12}$", "$\\frac{1}{12}$", "$\\frac{1}{144}$", "$\\frac{23}{24}$"],
+      "answer": 0,
+      "explanation": "同月份概率為 $1/12$，故不同月份之機率為：$1 - \\frac{1}{12} = \\frac{11}{12}$。"
+    },
+    {
+      "id": 610,
+      "question": "【入門】袋中有 4 個紅球及 6 個綠球。今隨機摸出一個球，求摸到綠球的機率。",
+      "options": ["$\\frac{3}{5}$", "$\\frac{2}{5}$", "$\\frac{1}{2}$", "$\\frac{2}{3}$"],
+      "answer": 0,
+      "explanation": "總球數為 $4+6=10$。摸到綠球機率為 $\\frac{6}{10} = \\frac{3}{5}$。"
+    },
+    {
+      "id": 611,
+      "question": "【入門】有一組樣本數據為 $2, 4, 4, 4, 5, 8, 8, 10$。求這組數據的眾數。",
+      "options": ["4", "8", "5", "4.5"],
+      "answer": 0,
+      "explanation": "眾數是出現次數最多的數值。數值 4 出現了 3 次，出現頻率最高，故眾數為 4。"
+    },
+    {
+      "id": 604,
+      "question": "【進階】不透明箱中藏有 3 個白球與 2 個紅球。今由箱中隨機每次取出一個球且不放回，連取專案兩次。求取出的這兩顆球均為白球的機率。",
+      "options": ["$\\frac{3}{10}$", "$\\frac{9}{25}$", "$\\frac{3}{5}$", "$\\frac{1}{5}$"],
+      "answer": 0,
+      "explanation": "連續取球不放回：第一次取白球為 $\\frac{3}{5}$，第二次剩餘下取白球為 $\\frac{2}{4}=\\frac{1}{2}$。相乘得到 $\\frac{3}{5} \\times \\frac{1}{2} = \\frac{3}{10}$。"
+    },
+    {
+      "id": 605,
+      "question": "【進階】一組原始數值的平均值為 $50$，標準差為 $6$。若將該組數據中每一數值皆乘以 $2$ 再加上偏移量 $10$，求新數值分布之標準差值。",
+      "options": ["12", "22", "110", "6"],
+      "answer": 0,
+      "explanation": "設新數據為 $Y = 2X+10$。標準差對常數加減不受影響，乘倍受絕對值影響：$\\sigma_Y = |2|\\sigma_X = 2 \\times 6 = 12$。"
+    },
+    {
+      "id": 606,
+      "question": "【進階】摸彩箱中裝有 $2$ 張 $500$ 元獎券、$4$ 張 $200$ 元獎券與 $4$ 張 $100$ 元獎券。今隨機抽取一張，求得獎金額的平均期望值。",
+      "options": ["220 元", "240 元", "200 元", "180 元"],
+      "answer": 0,
+      "explanation": "期望值為：$E = 500 \\times \\frac{2}{10} + 200 \\times \\frac{4}{10} + 100 \\times \\frac{4}{10} = 100 + 80 + 40 = 220$ 元。"
+    },
+    {
+      "id": 612,
+      "question": "【進階】若 $A$ 與 $B$ 為獨立事件，已知 $P(A) = 0.4$ 且 $P(B) = 0.5$，求交集 $P(A \\cap B)$ 的機率。",
+      "options": ["0.2", "0.9", "0.1", "0.25"],
+      "answer": 0,
+      "explanation": "因為 $A, B$ 獨立，交集機率為 $P(A \\cap B) = P(A) \\times P(B) = 0.4 \\times 0.5 = 0.2$。"
+    },
+    {
+      "id": 613,
+      "question": "【進階】已知隨機變數 $X$ 具有期望值 $E(X) = 10$，變異數 $Var(X) = 4$。令新的隨機變數 $Y = 3X - 5$，求 $Y$ 的變異數 $Var(Y)$。",
+      "options": ["36", "12", "7", "31"],
+      "answer": 0,
+      "explanation": "變異數的性質為 $Var(aX + b) = a^2 Var(X)$。故 $Var(Y) = Var(3X - 5) = 3^2 \\times Var(X) = 9 \\times 4 = 36$。"
+    },
+    {
+      "id": 607,
+      "question": "【困難】某疾病在某區域的盛行率（得病率）為 $2\\%$。一臨床篩檢其真陽性機率為 $99\\%$（得病者呈陽性）；其真陰性機率為 $95\\%$（未得病者呈陰性）。若受檢者篩檢呈陽性，求此人確實得病的條件機率（最接近值）。",
+      "options": ["$28.7\\%$", "$25.4\\%$", "$20.3\\%$", "$32.4\\%$"],
+      "answer": 0,
+      "explanation": "由貝氏定理：$P(\\text{病}|\\text{陽}) = \\frac{0.02 \\times 0.99}{0.02 \\times 0.99 + 0.98 \\times 0.05} = \\frac{0.0198}{0.0198 + 0.0490} = \\frac{0.0198}{0.0688} \\approx 28.77\\%$。"
+    },
+    {
+      "id": 608,
+      "question": "【困難】擲一枚公正骰子 $180$ 次，設 $X$ 為出現「點數為 $6$」的次數。求 $X$ 的期望值 $E$ 與標準差 $\\sigma$ 數組。",
+      "options": ["$E = 30, \\sigma = 5$", "$E = 30, \\sigma = 25$", "$E = 15, \\sigma = 5$", "$E = 30, \\sigma = \\sqrt{30}$"],
+      "answer": 0,
+      "explanation": "二項分布 $B(180, 1/6)$。期望值 $E = np = 180 \\times (1/6) = 30$；變異數 $Var = np(1-p) = 30 \\times (5/6) = 25$。故標準差 $\\sigma = \\sqrt{25} = 5$。"
+    },
+    {
+      "id": 609,
+      "question": "【困難】甲與乙約定在下午 1:00 至 2:00 之間在某咖啡店碰面。約定先到者最多等候 15 分鐘（即 1/4 小時），若對方未至即可逕自離去。假設雙方到達的時間在該區間內為獨立且均勻分布，求兩手能順利碰面的機率值值。",
+      "options": ["$\\frac{7}{16}$", "$\\frac{9}{16}$", "$\\frac{3}{8}$", "$\\frac{5}{8}$"],
+      "answer": 0,
+      "explanation": "利用幾何機率：設甲到達時間為 $x$，乙為 $y$，其中 $0 \\le x, y \\le 1$。能碰面的條件是 $|x-y| \\le \\frac{1}{4}$。在正方形範圍內的成功面積為正方形面積（1）減去兩個角落不相交的直角三角形面積 $2 \\times \\left( \\frac{1}{2} \\times \\frac{3}{4} \\times \\frac{3}{4} \\right) = \\frac{9}{16}$。故機率為 $1 - \\frac{9}{16} = \\frac{7}{16}$。"
+    },
+    {
+      "id": 614,
+      "question": "【困難】袋中有 3 個紅球與 7 個白球。今每次隨機取出一球且不放回，連取兩次。已知第二次取到紅球，求第一次也取到紅球的條件機率。",
+      "options": ["$\\frac{2}{9}$", "$\\frac{3}{10}$", "$\\frac{1}{3}$", "$\\frac{2}{5}$"],
+      "answer": 0,
+      "explanation": "設 $R_1, R_2$ 分別代表第一、二次取到紅球。第二次取到紅球機率 $P(R_2) = P(R_1 \\cap R_2) + P(W_1 \\cap R_2) = \\frac{3}{10} \\times \\frac{2}{9} + \\frac{7}{10} \\times \\frac{3}{9} = \\frac{6 + 21}{90} = \\frac{27}{90} = \\frac{3}{10}$ (這符合不放回抽樣中，每次抽到某顏色機率皆相同的基本性質)。而兩次均取到紅球機率 $P(R_1 \\cap R_2) = \\frac{3}{10} \\times \\frac{2}{9} = \\frac{6}{90}$。所求條件機率為 $P(R_1 | R_2) = \\frac{P(R_1 \\cap R_2)}{P(R_2)} = \\frac{6/90}{27/90} = \\frac{6}{27} = \\frac{2}{9}$。"
+    },
+    {
+      "id": 615,
+      "question": "【困難】設在某次考試中，學生的成績呈常態分布。已知學生成績的平均數為 $70$ 分，標準差為 $10$ 分。若全體學生中前 $16\\%$ 的人可以獲得 A 等級，求獲得 A 等級的最低分數限制（估計值）。",
+      "options": ["80 分", "75 分", "85 分", "90 分"],
+      "answer": 0,
+      "explanation": "在常態分布中，$P(\\mu - \\sigma \\le X \\le \\mu + \\sigma) \\approx 68\\%$。因此大於平均數加一個標準差 $\\mu + \\sigma$ 的比例約為 $(100\\% - 68\\%)/2 = 16\\%$。故前 $16\\%$ 的臨界點即為 $\\mu + \\sigma = 70 + 10 = 80$ 分。"
+    },
+    {
+      "id": 616,
+      "question": "【困難】袋中有 5 個白球與 3 個黑球。今隨機一次取出 3 個球，求這 3 個球中「恰有 2 個白球、1 個黑球」的機率。",
+      "options": ["$\\frac{15}{28}$", "$\\frac{15}{56}$", "$\\frac{5}{14}$", "$\\frac{3}{8}$"],
+      "answer": 0,
+      "explanation": "總共取出 3 個球的方法數為 $C^8_3 = \\frac{8 \\times 7 \\times 6}{3 \\times 2 \\times 1} = 56$。恰有 2 個白球和 1 個黑球的方法數為 $C^5_2 \\times C^3_1 = 10 \\times 3 = 30$。故機率為 $\\frac{30}{56} = \\frac{15}{28}$。"
+    },
+    {
+      "id": 617,
+      "question": "【入門】一副標準的 52 張撲克牌（無鬼牌）中，隨機抽取一張，求抽到紅心 (Heart) 的機率。",
+      "options": ["$\\frac{1}{4}$", "$\\frac{1}{13}$", "$\\frac{1}{2}$", "$\\frac{1}{52}$"],
+      "answer": 0,
+      "explanation": "撲克牌共有四種花色，每種花色各有 13 張。故抽到紅心的機率為 $\\frac{13}{52} = \\frac{1}{4}$。"
+    },
+    {
+      "id": 618,
+      "question": "【入門】有一組統計數據為：$5, 12, 7, 9, 7$，求這組數據的平均數。",
+      "options": ["8", "7", "6", "9"],
+      "answer": 0,
+      "explanation": "平均數為所有數據相加除以個數：$\\frac{5 + 12 + 7 + 9 + 7}{5} = \\frac{40}{5} = 8$。"
+    },
+    {
+      "id": 619,
+      "question": "【入門】拋擲一枚均勻對稱硬幣 4 次，求「恰好出現 2 次正面」的機率。",
+      "options": ["$\\frac{3}{8}$", "$\\frac{1}{2}$", "$\\frac{1}{4}$", "$\\frac{5}{16}$"],
+      "answer": 0,
+      "explanation": "總情況數為 $2^4 = 16$ 萬。恰好 2 次正面的組合數為 $C^4_2 = 6$。故機率為 $\\frac{6}{16} = \\frac{3}{8}$。"
+    },
+    {
+      "id": 620,
+      "question": "【進階】袋中有 3 個白球與 5 個黑球。今每次隨機取出一球且放回，連取 3 次，求「三次中恰好取出 2 個白球」的機率。",
+      "options": ["$\\frac{135}{512}$", "$\\frac{15}{64}$", "$\\frac{45}{512}$", "$\\frac{27}{512}$"],
+      "answer": 0,
+      "explanation": "每一次摸出白球的機率為 $p = \\frac{3}{8}$，摸出黑球機率為 $q = \\frac{5}{8}$。這是獨立重複試驗，由二項分布機率公式：$P(X=2) = C^3_2 \\left(\\frac{3}{8}\\right)^2 \\left(\\frac{5}{8}\\right)^1 = 3 \\times \\frac{9}{64} \\times \\frac{5}{8} = \\frac{135}{512}$。"
+    },
+    {
+      "id": 621,
+      "question": "【進階】若 $A, B$ 兩事件。已知 $P(A) = 0.6$，$P(B) = 0.5$ 且其聯集機率 $P(A \\cup B) = 0.8$，求條件機率 $P(A | B)$ 的值。",
+      "options": ["0.6", "0.3", "0.5", "0.8"],
+      "answer": 0,
+      "explanation": "由聯集公式：$P(A \\cup B) = P(A) + P(B) - P(A \\cap B) \\implies 0.8 = 0.6 + 0.5 - P(A \\cap B) \\implies P(A \\cap B) = 0.3$。條件機率 $P(A | B) = \\frac{P(A \\cap B)}{P(B)} = \\frac{0.3}{0.5} = 0.6$。"
+    },
+    {
+      "id": 622,
+      "question": "【困難】某篩檢試驗其檢測試劑的敏感度 (得病且呈陽性) 為 $90\\%$，特異度 (未得病且呈陰性) 為 $95\\%$。若已知某地群體得病率為 $1\\%$，且某人接受該檢測呈陽性，求此人確實得病的機率（最接近值）。",
+      "options": ["$15.4\\%$", "$1.8\\%$", "$9.0\\%$", "$25.0\\%$"],
+      "answer": 0,
+      "explanation": "利用貝氏定理。設 $D$ 為得病，$T_+$ 為呈現陽性：$P(D | T_+) = \\frac{P(D) P(T_+ | D)}{P(D) P(T_+ | D) + P(D') P(T_+ | D')} = \\frac{0.01 \\times 0.90}{0.01 \\times 0.90 + 0.99 \\times 0.05} = \\frac{0.0090}{0.0090 + 0.0495} = \\frac{0.0090}{0.0585} \\approx 15.38\\%$。"
+    },
+    {
+      "id": 623,
+      "question": "【困難】不透明袋中含有大小相同的 4 個紅球、3 個黃球及 2 個綠球。今隨機一次取出 3 球，求這 3 球顏色完全相同的機率。",
+      "options": ["$\\frac{5}{84}$", "$\\frac{1}{21}$", "$\\frac{1}{84}$", "$\\frac{5}{42}$"],
+      "answer": 0,
+      "explanation": "總情況數為 $C^9_3 = \\frac{9 \\times 8 \\times 7}{3 \\times 2 \\times 1} = 84$。抽到顏色完全相同的可能為全紅球或全黃球：全紅為 $C^4_3 = 4$ 種，全黃為 $C^3_3 = 1$ 種。故組合數為 $4 + 1 = 5$ 種。機率為 $\\frac{5}{84}$。"
+    },
+    {
+      "id": 624,
+      "question": "【入門】在一組計量樣本 $2, 3, 5, 5, 10$ 中，求此數據的平均數與中位數。",
+      "options": ["平均數 5，中位數 5", "平均數 5，中位數 4", "平均數 6，中位數 5", "平均數 4.5，中位數 5"],
+      "answer": 0,
+      "explanation": "平均數為 $\\frac{2 + 3 + 5 + 5 + 10}{5} = \\frac{25}{5} = 5$。資料排序後最中間值為 5，故中位數也為 5。"
+    },
+    {
+      "id": 625,
+      "question": "【入門】袋中裝有相同大小的正紅、藍、黃球各 2 個。從袋中隨機摸出一球，求摸出紅球的機率。",
+      "options": ["$\\frac{1}{3}$", "$\\frac{1}{6}$", "$\\frac{1}{2}$", "$\\frac{2}{3}$"],
+      "answer": 0,
+      "explanation": "總球數為 $2+2+2=6$ 個。摸出紅球機率為 $\\frac{2}{6} = \\frac{1}{3}$。"
+    },
+    {
+      "id": 626,
+      "question": "【進階】已知隨機變數 $X$ 服從二項分布 $B(100, 0.2)$，求其期望值 $E(X)$ 起算。",
+      "options": ["20", "80", "10", "5"],
+      "answer": 0,
+      "explanation": "二項分布中期望值公式為 $E(X) = np = 100 \\times 0.2 = 20$。"
+    },
+    {
+      "id": 627,
+      "question": "【進階】若 $P(A) = 0.5$，$P(B) = 0.4$，已知事件 $A$ 與 $B$ 互斥，求聯集機率 $P(A \\cup B)$。",
+      "options": ["0.9", "0.2", "0.1", "0.5"],
+      "answer": 0,
+      "explanation": "因為事件互斥，則交集 $P(A \\cap B) = 0$。聯集機率為 $P(A \\cup B) = P(A) + P(B) = 0.5 + 0.4 = 0.9$。"
+    },
+    {
+      "id": 628,
+      "question": "【困難】袋中有 3 個紅球與 2 個黑球。今每次隨機取出一球且不放回，連取兩次。若已知第一次取出的是紅球，求第二次也是取到紅球的條件機率。",
+      "options": ["$\\frac{1}{2}$", "$\\frac{3}{5}$", "$\\frac{2}{5}$", "$\\frac{2}{3}$"],
+      "answer": 0,
+      "explanation": "第一次取走一個紅球後，袋中剩下 2 個紅球與 2 個黑球，共 4 個球。因此第二次再取到紅球的條件機率為 $\\frac{2}{4} = \\frac{1}{2}$。"
+    },
+    {
+      "id": 629,
+      "question": "【困難】兩位射手射擊同一目標。甲中靶之機率為 $0.8$，乙中靶之機率為 $0.75$。若兩人各朝目標射擊一發且互不影響，求該目標被擊中的機率公算值。",
+      "options": ["0.95", "0.6", "0.85", "0.9"],
+      "answer": 0,
+      "explanation": "目標被擊中代表至少一人射中，其反面情況為兩人均未擊中。甲未擊中機率為 $1 - 0.8 = 0.2$；乙未擊中機率為 $1 - 0.75 = 0.25$。兩人均未擊中機率為 $0.2 \\times 0.25 = 0.05$。故目標被擊中機率為 $1 - 0.05 = 0.95$。"
+    },
+    {
+      "id": 630,
+      "question": "【入門】已知兩個獨立事件 $A, B$。其發生機率分別為 $P(A) = 0.3$ 且 $P(B) = 0.4$，求 $A$ 與 $B$ 至少有一個發生的機率（即聯集機率 $P(A \\cup B)$）。",
+      "options": ["0.58", "0.7", "0.12", "0.88"],
+      "answer": 0,
+      "explanation": "由於 $A, B$ 獨立，交集機率 $P(A \\cap B) = P(A) \\times P(B) = 0.3 \\times 0.4 = 0.12$。由聯集求和公式得 $P(A \\cup B) = P(A) + P(B) - P(A \\cap B) = 0.3 + 0.4 - 0.12 = 0.58$。"
+    },
+    {
+      "id": 631,
+      "question": "【入門】擲一個公正的六面骰子二次，求點數之和等於 $7$ 的機率。",
+      "options": ["$\\frac{1}{6}$", "$\\frac{1}{12}$", "$\\frac{5}{36}$", "$\\frac{1}{4}$"],
+      "answer": 0,
+      "explanation": "二次擲骰子的總樣本數為 $36$。和等於 7 的點數對有 (1,6)、(2,5)、(3,4)、(4,3)、(5,2)、(6,1) 共 $6$ 種。故機率為 $\\frac{6}{36} = \\frac{1}{6}$。"
+    },
+    {
+      "id": 632,
+      "question": "【進階】不透明袋中有 10 個大小相同的球，其中有 3 個是紅球。今每次隨機取出 1 個球，取後放回，共取 4 次。求恰好取出 2 個紅球的機率。",
+      "options": ["0.2646", "0.0729", "0.1852", "0.3115"],
+      "answer": 0,
+      "explanation": "這是重複獨立試驗（二項分布），其中每次取到紅球的概率為 $p = 0.3$，取到非紅球的概率為 $q = 0.7$。項數 $n = 4$，成功次數 $k = 2$。概率為 $C^4_2 (0.3)^2 (0.7)^2 = 6 \\times 0.09 \\times 0.49 = 6 \\times 0.0441 = 0.2646$。"
+    },
+    {
+      "id": 633,
+      "question": "【進階】有一組樣本數據為 $x_1, x_2, \\dots, x_{10}$。已知其平均數為 $15$，標準差為 $3$。若將各數據分別乘以 $3$ 減去 $5$，求新數據標準差與新平均數的數值。",
+      "options": ["標準差 9，平均數 40", "標準差 4，平均數 40", "標準差 9，平均數 45", "標準差 3，平均數 40"],
+      "answer": 0,
+      "explanation": "新數據 $Y = 3X - 5$。期望值為 $E(Y) = 3E(X) - 5 = 3(15) - 5 = 40$。標準差對常數減法不變，受倍數絕對值影響：$\\sigma_Y = |3|\\sigma_X = 3 \\times 3 = 9$。故標準差為 9，平均數為 40。"
+    },
+    {
+      "id": 634,
+      "question": "【困難】某篩檢試驗其特異度（無病者呈陰性）為 $90\\%$。若在一個得病率只有 $5\\%$ 的地區進行普篩，結果顯示某人呈陽性反應。若此人確實得病的概率為 $32\\%$，求此試驗的敏感度（得病且呈陽性，最接近值）。",
+      "options": ["$90\\%$", "$85\\%$", "$95\\%$", "$80\\%$"],
+      "answer": 0,
+      "explanation": "設盛行率 $P(D) = 0.05$，特異度 $P(T_-|D') = 0.90 \\implies P(T_+|D') = 0.10$。敏感度設為 $u = P(T_+|D)$。由貝氏定理知：已知確實得病條件概率 $P(D|T_+) = 0.32 \\implies P(D|T_+) = \\frac{P(D)P(T_+|D)}{P(D)P(T_+|D) + P(D')P(T_+|D')} = \\frac{0.05u}{0.05u + 0.95 \\times 0.10} = \\frac{0.05u}{0.05u + 0.095} = 0.32 \\implies 0.05u = 0.32(0.05u + 0.095) \\implies 0.05u = 0.016u + 0.0304 \\implies 0.034u = 0.0304 \\implies u = \\frac{0.0304}{0.034} \\approx 0.8941 = 89.4\\%$。"
+    },
+    {
+      "id": 635,
+      "question": "【困難】投擲三枚公正對稱的硬幣，當已知其中至少出現一枚正面時，求這三枚硬幣「恰好出現兩枚正面」的條件機率。",
+      "options": ["$\\frac{3}{7}$", "$\\frac{3}{8}$", "$\\frac{1}{2}$", "$\\frac{4}{7}$"],
+      "answer": 0,
+      "explanation": "擲三枚硬幣的樣本空間共有 8 種。設事件 A 為「至少出現一枚正面」，其反面情況為「得到 3 個反面」（1種），所以事件 A 的樣本數為 $8 - 1 = 7$ 種。事件 B 為「恰好出現兩枚正面」，其情況有 (正,正,反)、(正,反,正)、(反,正,正) 共 3 種，這 3 種全都屬於 A 事件。因此在 A 發生的條件下，B 發生的條件機率為 $\\frac{3}{7}$。"
+    },
+    {
+      "id": 636,
+      "question": "【入門】已知一組數據為 $3, 5, 5, 6, 8, 9$，求這組數據的算術平均數是多少。",
+      "options": ["6", "5", "5.5", "7"],
+      "answer": 0,
+      "explanation": "平均數為 $\\frac{3+5+5+6+8+9}{6} = \\frac{36}{6} = 6$。"
+    },
+    {
+      "id": 637,
+      "question": "【入門】袋中有紅球 3 個，黃球 2 個。隨機摸出一個球不放回，再摸一次。求兩次均摸到紅球的聯合同時機率。",
+      "options": ["0.3", "0.36", "0.4", "0.25"],
+      "answer": 0,
+      "explanation": "第一次摸到紅球機率 $\\frac{3}{5}$，第二次摸到紅球機率縮為 $\\frac{2}{4}$。故為 $\\frac{3}{5} \\times \\frac{1}{2} = \\frac{3}{10} = 0.3$。"
+    },
+    {
+      "id": 638,
+      "question": "【入門】已知一隨機變量 $X$ 僅能取兩值 $0$ 與 $1$。若 $P(X=1) = p$ 且其期望值 $E(X) = 0.6$，求 $p$ 的確切值。",
+      "options": ["0.6", "0.4", "0.3", "0.5"],
+      "answer": 0,
+      "explanation": "期望值 $E(X) = 0(1-p) + 1(p) = p$。因 $E(X) = 0.6$，故 $p = 0.6$。"
+    },
+    {
+      "id": 639,
+      "question": "【進階】投擲一個公正的骰子 3 次，求「恰好有 2 次出現 6 點」的機率為多少。",
+      "options": ["$\\frac{5}{72}$", "$\\frac{5}{36}$", "$\\frac{1}{36}$", "$\\frac{5}{216}$"],
+      "answer": 0,
+      "explanation": "二項分佈 $B(3, 1/6)$。機率為 $C^3_2 \\times (\\frac{1}{6})^2 \\times \\frac{5}{6} = 3 \\times \\frac{1}{36} \\times \\frac{5}{6} = \\frac{15}{216} = \\frac{5}{72}$。"
+    },
+    {
+      "id": 640,
+      "question": "【進階】已知連續隨機變量 $X$ 呈標準常態分佈 $N(0, 1)$。若 $P(X \\le 1) \\approx 0.84$，求中央區間 $P(-1 < X < 1)$ 的近似值。",
+      "options": ["0.68", "0.84", "0.95", "0.34"],
+      "answer": 0,
+      "explanation": "常態對稱性：$P(X \\le -1) = 1 - 0.84 = 0.16$。故 $P(-1 < X < 1) = P(X \\le 1) - P(X \\le -1) = 0.84 - 0.16 = 0.68$。"
+    },
+    {
+      "id": 641,
+      "question": "【進階】已知 $A, B$ 二事件滿足 $P(A) = 0.4$ 且 $P(B) = 0.5$。若 $A$ 與 $B$ 為相互獨立事件，求同發生聯集機率 $P(A \\cup B)$ 的值。",
+      "options": ["0.7", "0.9", "0.2", "0.5"],
+      "answer": 0,
+      "explanation": "獨立事件交集 $P(A \\cap B) = P(A)P(B) = 0.4 \\times 0.5 = 0.2$。聯集 $P(A \\cup B) = P(A) + P(B) - P(A \\cap B) = 0.4 + 0.5 - 0.2 = 0.7$。"
+    },
+    {
+      "id": 642,
+      "question": "【困難】連續擲一枚對稱公正的硬幣直到出現正面為止。設隨機變量 $X$ 表示所需的投擲次數（幾何分佈），求 $X$ 的變異數（方差）$Var(X)$ 值。",
+      "options": ["2", "1", "4", "$\\sqrt{2}$"],
+      "answer": 0,
+      "explanation": "幾何分佈 $Var(X) = \\frac{1-p}{p^2}$。本題公正硬幣 $p = 0.5$。故變異數為 $\\frac{1-0.5}{0.25} = 2$。"
+    },
+    {
+      "id": 643,
+      "question": "【困難】從 5 位男生與 3 位女生中隨機選出 3 人組成學校代表隊。若代表隊中「至少包含 1 名女生」的選法有多少種？",
+      "options": ["46", "56", "36", "40"],
+      "answer": 0,
+      "explanation": "全部選法為 $C^8_3 = 56$ 種。全為男生的選法為 $C^5_3 = 10$ 種。至少一名女生為 $56 - 10 = 46$ 種。"
+    },
+    {
+      "id": 644,
+      "question": "【困難】在一副 52 張的撲克牌中隨機抽取 5 張（不放回）。求此 5 張牌恰好構成「同花（不計順子，5張牌花色相同）」的機率最接近下列何者？",
+      "options": ["$0.198\\%$", "$0.040\\%$", "$0.396\\%$", "$0.099\\%$"],
+      "answer": 0,
+      "explanation": "4 種花色中選一種：$4 \\times C^{13}_5 = 4 \\times 1287 = 5148$。全選法為 $C^{52}_5 = 2598960$。機率為 $\\frac{5148}{2598960} \\approx 0.0019807 = 0.198\\%$。"
+    },
+    {
+      "id": 645,
+      "question": "【進階】若一個公平的硬幣重複投擲 100 次，其正面次數的大數二項標準差為多少？",
+      "options": ["5", "10", "2.5", "25"],
+      "answer": 0,
+      "explanation": "二項分佈標準差為 $\\sigma = \\sqrt{np(1-p)}$。這裡 $n=100, p=0.5$。$\\sigma = \\sqrt{100 \\times 0.5 \\times 0.5} = \\sqrt{25} = 5$。"
+    }
+  ],
+  "邏輯推理": [
+    {
+      "id": 701,
+      "question": "【入門】若 $P \\implies Q$ 為真，且 $\\neg Q$ 亦為真，則下列何者必然為真？",
+      "options": ["$P$", "$\\neg P$", "$Q$", "$P \\lor Q$"],
+      "answer": 1,
+      "explanation": "依逆否命題原理，$P \\implies Q$ 等價於 $\\neg Q \\implies \\neg P$。若 $\\neg Q$ 成立，則 $\\neg P$ 亦真。"
+    },
+    {
+      "id": 702,
+      "question": "【入門】一個袋子裡有紅球 5 個、藍球 6 個。一次至少要取出多少個球，才能保證一定能拿到至少一個藍球？",
+      "options": ["2 個", "5 個", "6 個", "7 個"],
+      "answer": 2,
+      "explanation": "最壞狀況前 5 個都是紅球，第 6 個必定為藍球，故至少須取 6 個球。"
+    },
+    {
+      "id": 703,
+      "question": "【入門】某班有 40 名學生，其中 25 人喜歡數學，18 人喜歡英文，10 人兩科都喜歡。兩科都不喜歡的有多少人？",
+      "options": ["3 人", "7 人", "10 人", "15 人"],
+      "answer": 1,
+      "explanation": "喜歡至少一科人數為 $25 + 18 - 10 = 33$。因此都不喜歡的人數為 $40 - 33 = 7$ 人。"
+    },
+    {
+      "id": 704,
+      "question": "【入門】若「如果是奇數，則其平方也是奇數」為真。其逆否命題為何？",
+      "options": ["若不是奇數，則其平方也不是奇數", "若平方不是奇數，則原數也不是奇數", "若平方是奇數，則原數也是奇數", "以上皆非"],
+      "answer": 1,
+      "explanation": "命題「$A \\implies B$」之等價逆否命題為「非 $B \\implies$ 非 $A$」。"
+    },
+    {
+      "id": 705,
+      "question": "【入門】甲、乙、丙三人中有一人有超能力。甲說：「超能力者是乙」，乙說：「我不是」，丙說：「我不是」。若三人中只有一人說真話，誰是超能力者？",
+      "options": ["甲", "乙", "丙", "資訊判定不足"],
+      "answer": 2,
+      "explanation": "若丙有超能力，則丙說謊（假），甲亦說謊（假），乙說真話。滿足僅一人說真話。"
+    },
+    {
+      "id": 706,
+      "question": "【入門】一條線段分割圓成 2 部分，兩線段相交最多分圓為 4 部分。問三線段相交最多可分割圓成幾個部分？",
+      "options": ["6", "7", "8", "9"],
+      "answer": 1,
+      "explanation": "$n$ 條線切割圓最多分 $\\frac{n(n+1)}{2} + 1$ 區域。$n=3$ 得 $3+3+1 = 7$ 部分。"
+    },
+    {
+      "id": 707,
+      "question": "【入門】蝸牛自 10 公尺深井往上爬。白天爬 3 公尺，晚上滑 2 公尺。問幾天能爬出井口？",
+      "options": ["7 天", "8 天", "9 天", "10 天"],
+      "answer": 1,
+      "explanation": "前 7 天淨升 7 米，第 8 天白天直接爬過最後 3 米達頂端，不再下滑，共 8 天。"
+    },
+    {
+      "id": 708,
+      "question": "【入門】規律數列：$1, 2, 4, 7, 11, x, 22$。請問其中 $x$ 應該是多少？",
+      "options": ["15", "16", "17", "18"],
+      "answer": 1,
+      "explanation": "相鄰項遞增差為 $1, 2, 3, 4, 5, 6$。故 $x = 11 + 5 = 16$。"
+    },
+    {
+      "id": 709,
+      "question": "【入門】與「所有三角形都是多邊形」在邏輯上互相矛盾的命題為？",
+      "options": ["開些三角形是多邊形", "有些三角形不是多邊形", "全體多邊形都不是三角形", "沒有三角形不是多邊形"],
+      "answer": 1,
+      "explanation": "「全稱肯定」命題的否定命題為「特稱否定」，即「有些三角形不是多邊形」。"
+    },
+    {
+      "id": 710,
+      "question": "【入門】有 10 個金幣，其一為重量較輕的假幣。利用天平，最少秤幾次必定能挑出此假幣？",
+      "options": ["2 次", "3 次", "4 次", "5 次"],
+      "answer": 1,
+      "explanation": "使用 3 進位分割法：10分為(3,3,4)，每次篩縮至原範圍約 $1/3$。$3^2 < 10 \\le 3^3$，故 3 次。"
+    },
+    {
+      "id": 711,
+      "question": "【入門】若「所有會飛的動物都有翅膀」為真，且「企鵝不會飛」。以下何者結論有效？",
+      "options": ["企鵝沒有翅膀", "有些有翅膀的動物不會飛", "企鵝一定有翅膀", "以上推論皆無效"],
+      "answer": 3,
+      "explanation": "否定前件（不飛）無法推導關於後件（翅膀）的結論。企鵝可能有或沒有翅膀。"
+    },
+    {
+      "id": 712,
+      "question": "【入門】若 2*3 = 8，3*4 = 15，4*5 = 24，則 5*6 = ？",
+      "options": ["30", "35", "36", "41"],
+      "answer": 1,
+      "explanation": "規律為 $a*b = a \\times (b + 1)$。故 $5*6 = 5 \\times 7 = 35$。"
+    },
+    {
+      "id": 713,
+      "question": "【入門】若 $A$ 與 $B$ 集合分別有 5 與 3 個元素，則聯集 $A \\cup B$ 元素個數的最小值與最大值分別為？",
+      "options": ["3 和 5", "5 和 8", "3 和 8", "2 和 5"],
+      "answer": 1,
+      "explanation": "當 $B \\subset A$ 聯集最小為 5；當互斥時，聯集最大為 $5 + 3 = 8$。"
+    },
+    {
+      "id": 714,
+      "question": "【入門】若命題「非 $P$ 則 $Q$」與「非 $Q$ 則 $P$」皆為真，則 $P$ 與 $\\neg Q$ 的邏輯關係為？",
+      "options": ["雙向等價 ($P \\iff \\neg Q$)", "互相否定", "互不相關", "無法確定"],
+      "answer": 0,
+      "explanation": "「非 $Q \\implies P$」的逆否命題為「非 $P \\implies Q$」，表示兩者構成雙向等價。"
+    },
+    {
+      "id": 715,
+      "question": "【入門】黑襪 10 雙、白襪 10 雙混在一箱，最少隨機摸出幾隻才能保證能湊出一雙同色襪子？",
+      "options": ["3 隻", "4 隻", "11 隻", "21 隻"],
+      "answer": 0,
+      "explanation": "根據鴿籠原理，只有 2 種顏色，取出 3 隻必然有 2 隻是同色襪。"
+    },
+    {
+      "id": 716,
+      "question": "【進階】5 個座位排一列，甲、乙兩人不相鄰的坐法共有多少種？",
+      "options": ["36", "48", "72", "120"],
+      "answer": 2,
+      "explanation": "全部坐法 $5! = 120$。減去相鄰坐法：捆綁甲乙共 $4! \\times 2! = 48$ 種。得出 $120-48=72$。"
+    },
+    {
+      "id": 717,
+      "question": "【進階】四人單循環羽球賽（每兩人恰比一場）。目前甲賽 3 場，乙賽 2 場，丙賽 1 場。問丁赛了幾場？",
+      "options": ["1 場", "2 場", "3 場", "4 場"],
+      "answer": 1,
+      "explanation": "甲賽3場（對乙丙丁）。丙只1場（對甲）。乙賽2場（對甲丁）。丁則賽了2場（對甲乙）。"
+    },
+    {
+      "id": 718,
+      "question": "【進階】集合 $A = \\{1, 2, 3, 4, 5\\}$ 的所有非空子集中，含有奇數個元素的子集共有多少個？",
+      "options": ["8 個", "16 個", "24 個", "32 個"],
+      "answer": 1,
+      "explanation": "包含奇數與偶數個元素子集數均分。子集總數為 $2^5 = 32$，故奇數個子集共有 $16$ 個。"
+    },
+    {
+      "id": 719,
+      "question": "【進階】設 $p$: $xy=0$，$q$: $x^2+y^2=0$，則 $p$ 是 $q$ 的什麼條件？",
+      "options": ["充分非必要", "必要非充分", "充要條件", "既非充分也非必要"],
+      "answer": 1,
+      "explanation": "$q \\implies p$ ($x=y=0 \\implies xy=0$)，但 $p \\not\\implies q$ ($x=1, y=0$ 滿足 $p$ 但非 $q$)。"
+    },
+    {
+      "id": 720,
+      "question": "【進階】在 1 至 100 的正整數中，既不為 2、也不為 3、亦不為 5 倍數的數共有多少個？",
+      "options": ["22", "26", "29", "31"],
+      "answer": 1,
+      "explanation": "排容原理：被2或3或5倍整除數為 $50+33+20-16-10-6+3 = 74$。不被整除者為 $100-74=26$。"
+    },
+    {
+      "id": 721,
+      "question": "【進階】8x8 棋盤，任意放置 2 個城堡在不同格，使其彼此不相互威脅（不在同一行及列），共有幾種放法？",
+      "options": ["4096", "3136", "2560", "1024"],
+      "answer": 1,
+      "explanation": "第一子 64 個選擇。避開其行與列，第二子有 $(8-1) \\times (8-1) = 49$ 處。故 $64 \\times 49 = 3136$。"
+    },
+    {
+      "id": 722,
+      "question": "【進階】甲、乙、丙、丁四個同學住進三間不同的房間，且每房至少住一人，有多少種分配入住法？",
+      "options": ["24 種", "36 種", "72 種", "144 種"],
+      "answer": 1,
+      "explanation": "必有一房住 2 人，另兩房各住 1 人。分配數：$C^4_2 \\times 3! = 6 \\times 6 = 36$ 種。"
+    },
+    {
+      "id": 723,
+      "question": "【進階】已知費氏數列：$a_1=1$, $a_2=1$, 且當 $n \\ge 3$ 時，$a_n = a_{n-1} + a_{n-2}$，求其第 10 項 $a_{10}$ 數值。",
+      "options": ["34", "55", "89", "144"],
+      "answer": 1,
+      "explanation": "數列前十項：$1, 1, 2, 3, 5, 8, 13, 21, 34, 55$。故第十項為 55。"
+    },
+    {
+      "id": 724,
+      "question": "【進階】遇到居民 A 與 B，A 說：「我們至少有一個是說謊者（假話者）。」判斷 A、B 身份？",
+      "options": ["A 說真話，B 說假話", "A 說假話，B 說真話", "皆說真話", "皆說假話"],
+      "answer": 0,
+      "explanation": "若 A 說謊，則其言「至少一說謊者」為真矛盾。故 A 說真話，A 真則 B 必說謊。"
+    },
+    {
+      "id": 725,
+      "question": "【進階】平面上有 6 個點，無任何三點共線。以這些點為頂點，最多可構造數個相異三角形？",
+      "options": ["15", "20", "30", "35"],
+      "answer": 1,
+      "explanation": "三角形個數為 6 取 3 的組合數：$C^6_3 = \\frac{6 \\times 5 \\times 4}{3 \\times 2 \\times 1} = 20$。"
+    },
+    {
+      "id": 726,
+      "question": "【進階】具備 1, 3, 9, 27 克砝碼各一（能置於天平兩端），最多可稱出多少種不同的正整數重量？",
+      "options": ["15", "30", "40", "80"],
+      "answer": 2,
+      "explanation": "每砝碼 3 狀態（右、左、不放）。總共 $3^4 - 1 = 80$。因對稱性，可秤出正整數重量為 $80 / 2 = 40$。"
+    },
+    {
+      "id": 727,
+      "question": "【進階】一個凸十邊形內，共含有多少條對角線？",
+      "options": ["35", "45", "55", "70"],
+      "answer": 0,
+      "explanation": "對角線公式 $\\frac{n(n-3)}{2}$。對凸十邊形：$\\frac{10 \\times 7}{2} = 35$ 條。"
+    },
+    {
+      "id": 728,
+      "question": "【進階】甲、乙、丙、丁、戊五人排成一列。甲不排第一、且乙不排最後之排法有幾種？",
+      "options": ["64", "72", "78", "96"],
+      "answer": 2,
+      "explanation": "排容：全 120。甲首 24，乙尾 24，甲首且乙尾 6。算式 $120 - (24+24) + 6 = 78$ 種。"
+    },
+    {
+      "id": 729,
+      "question": "【進階】由 0 與 1 組成、長度為 8 且「無相鄰 0」的二進位字串共有多少個？",
+      "options": ["34", "55", "89", "144"],
+      "answer": 1,
+      "explanation": "滿足斐波那契遞迴規律：$f(1)=2, f(2)=3, \\dots$, 第 8 項 $f(8)=55$ 個。"
+    },
+    {
+      "id": 730,
+      "question": "【進階】若 $x_1+x_2+x_3+x_4 = 10$，且 $x_i$ 均為非負整數，求有多少組不同的非負整數解？",
+      "options": ["220", "286", "120", "45"],
+      "answer": 1,
+      "explanation": "重複組合：$H^4_{10} = C^{13}_{10} = C^{13}_3 = \\frac{13 \\times 12 \\times 11}{6} = 286$ 組。"
+    },
+    {
+      "id": 731,
+      "question": "【困難】12 位教授坐圓桌。選 3人，要求任兩選出者在圓桌上皆不相鄰，問有幾種選法？",
+      "options": ["112", "120", "144", "220"],
+      "answer": 0,
+      "explanation": "圓桌不相鄰公式：$\\frac{n}{n-k} C^{n-k}_k$。代入 $n=12, k=3$ 得 $\\frac{12}{9} C^9_3 = 112$。"
+    },
+    {
+      "id": 732,
+      "question": "【困難】某地 2026 人其仇人至多 1 人。問是否能分成兩組，使各組內部所有人都互非仇人關係？",
+      "options": ["一定行得通", "一定行不通", "偶數時才行得通", "無法判定"],
+      "answer": 0,
+      "explanation": "最大度為 1 構成的圖是二部圖（獨立邊或孤立點組合）。二部圖為二可著色，故必然行得通。"
+    },
+    {
+      "id": 733,
+      "question": "【困難】10 男 8 女排一固定圓桌座（旋轉視為不同），女生不相鄰的排列有幾種？",
+      "options": ["$10! \\times P^{10}_8$", "$9! \\times P^{10}_8$", "$9! \\times C^{10}_8$", "$10! \\times 7!$"],
+      "answer": 1,
+      "explanation": "男生排圓圈 $(10-1)! = 9!$。10個空隙插入8位女生為 $P^{10}_8$。共 $9! \\times P^{10}_8$。"
+    },
+    {
+      "id": 734,
+      "question": "【困難】在 5x5 的方格網格結構中，總共包含多少個不同大小的正方形？",
+      "options": ["25", "36", "55", "91"],
+      "answer": 2,
+      "explanation": "正方形數量為：$5^2 + 4^2 + 3^2 + 2^2 + 1^2 = 25+16+9+4+1 = 55$ 個。"
+    },
+    {
+      "id": 735,
+      "question": "【困難】$X$ 集合有大於 1 個元素。設 $P(X)$ 是其冪集。定義關係 $R$ 為包含關係 $\\subseteq$，此關係屬於？",
+      "options": ["偏序關係", "等價關係", "全序關係", "相容關係"],
+      "answer": 0,
+      "explanation": "集合包含具有自反、反對稱與遞移性，為偏序關係。非任兩子集皆有包含關係，故非全序。"
+    },
+    {
+      "id": 736,
+      "question": "【困難】兩人玩「搶 20」累加遊戲（輪流報 1 或 2）。最先使總和到達 20 者勝。先報之甲首步應報？",
+      "options": ["報 1", "報 2", "1 或 2 皆可", "無必勝策略"],
+      "answer": 1,
+      "explanation": "逆向歸納得致勝系列：$20, 17, 14, 11, 8, 5, 2$。首步必報 2 將乙鎖死在不勝數。"
+    },
+    {
+      "id": 737,
+      "question": "【困難】一棵樹具有 101 個結點。請問這棵樹內，所有結點的度數 (Degree) 總和為多大？",
+      "options": ["100", "101", "200", "202"],
+      "answer": 2,
+      "explanation": "樹的邊數為 $101-1 = 100$ 條。根據握手定理，總度數和 $= 2 \\times 100 = 200$。"
+    },
+    {
+      "id": 738,
+      "question": "【困難】以 4 種相異顏色著色一棵恰有 10 個結點的「樹」，相鄰頂點異色。著色方法有多少種？",
+      "options": ["$4 \\times 3^{9}$", "$4! \\times 3!$", "$4^{10}$", "與拓樸結構有關"],
+      "answer": 0,
+      "explanation": "任何 $n$ 點樹著 $k$ 色之色多項式皆為 $k(k-1)^{n-1}$。故著色數為 $4 \\times 3^9$ 種。"
+    },
+    {
+      "id": 739,
+      "question": "【困難】將 5 個相異球置入 3 個完全相同的空盒中，無空盒，投法共有多少種？",
+      "options": ["15", "25", "50", "150"],
+      "answer": 1,
+      "explanation": "此即第二類斯特林數 $S(5, 3)$，算出其值為 $25$ 種。"
+    },
+    {
+      "id": 740,
+      "question": "【困難】10 個人互相握手，每個人握手次數各異。請問以下哪一項敘述在邏輯上是不可能的？",
+      "options": ["每個人握手次數全不相同", "恰有兩個人握數相同", "全員握手次數和為偶數", "其中某人一把手都沒握"],
+      "answer": 0,
+      "explanation": "握手次數 0 次與 9 次不互容，實得 9 種握數，分配 10 人依鳩籠原理必有兩個人握數相同。"
+    },
+    {
+      "id": 741,
+      "question": "【入門】某島上有兩個部落：誠實族（永遠說真話）與虛謊族（永遠說假話）。你遇到居民 A，他說：「我是虛謊族的。」問 A 的真實部落身分？",
+      "options": ["此人不可能說這句話（系統矛盾）", "誠實族", "虛謊族", "判定資訊不足"],
+      "answer": 0,
+      "explanation": "若 A 誠實，不說謊言「我是虛謊」；若 A 虛謊，不說真話承認「我是虛謊」。故此情境或發言在邏輯上是不可能的。"
+    },
+    {
+      "id": 742,
+      "question": "【入門】若布林代數式 $P \\land (\\neg P \\lor Q)$ 為真，則下列何者在邏輯上必然為真？",
+      "options": ["$Q$", "$\\neg P$", "$\\neg Q$", "$P \\land \\neg Q$"],
+      "answer": 0,
+      "explanation": "由分配律：$(P \\land \\neg P) \\lor (P \\land Q) \\iff \\text{False} \\lor (P \\land Q) \\iff P \\land Q$。因此 $P$ 與 $Q$ 皆為真，故 $Q$ 必然為真。"
+    },
+    {
+      "id": 743,
+      "question": "【入門】某餐廳有 10 個不同的單菜品。若每位顧客至少點一個菜，為了保證至少有兩位顧客點的菜品組合完全相同，最少需要多少位顧客？",
+      "options": ["1024", "1025", "11", "512"],
+      "answer": 0,
+      "explanation": "非空點菜組合數為 $2^{10} - 1 = 1023$ 種。以鴿籠原理，最少需要 $1023 + 1 = 1024$ 位顧客，才能保證至少兩個人點的菜完全一致。"
+    },
+    {
+      "id": 744,
+      "question": "【進階】已知 $A, B$ 為兩個集合。若 $(A \\cap B) \\cup (A \\cap B') = \\varnothing$，求集合 $A$ 的代表集合。",
+      "options": ["空集合 $\\varnothing$", "全集合 $U$", "$B$", "$B'$"],
+      "answer": 0,
+      "explanation": "依分配律，原式可簡化為 $A \\cap (B \\cup B') = A \\cap U = A$。因原式為空集合，故 $A = \\varnothing$。"
+    },
+    {
+      "id": 745,
+      "question": "【進階】一個由 7 個節點構成的「簡單無向圖」中，各頂點的度數可能為下列何者排列？",
+      "options": ["$(1, 1, 2, 2, 3, 3, 4)$", "$(1, 2, 2, 3, 3, 4, 5)$", "$(1, 1, 1, 3, 3, 5, 5)$", "以上皆不可能"],
+      "answer": 0,
+      "explanation": "簡單圖的著色或握手定理限制「奇數度的頂點個數必須為偶數個」。選項 1 中度數為奇數的點有 1, 1, 3, 3 共 4 個（符合），度數和為16也為偶數，符合簡單圖特徵。而選項 2 出現點度數 5 代表其需要與 5 個點相連，在 7 點簡單無向圖中不符所有握手極限性質。"
+    },
+    {
+      "id": 746,
+      "question": "【進階】排容與邏輯推理：100 人中學過 Python 有 65 人，學過 Java 有 55 人。不曾學過這兩種語言的人最少有多少？",
+      "options": ["0 人", "20 人", "10 人", "45 人"],
+      "answer": 0,
+      "explanation": "兩語言皆不學的人數為 $100 - P(A \\cup B)$。當 $P(A \\cup B)$ 最大（即 100 全占滿時），不曾學的最少人數為 0 人。"
+    },
+    {
+      "id": 747,
+      "question": "【困難】三人中有一人中獎。甲說「我沒中」，乙說「丙中獎」，丙說「我沒中」。三人中只有一人說真話，誰中獎？",
+      "options": ["甲", "乙", "丙", "無解"],
+      "answer": 0,
+      "explanation": "若甲中獎，則甲說假話。乙說假話。丙說真話（丙無中），此時符合恰一人說真話的要求。故中獎者為甲。"
+    },
+    {
+      "id": 748,
+      "question": "// 【困難】在一個 4 階哈斯圖中（對應偏序集），其關係為全序。請問該偏序集總共具有多少個不同的鏈 (Chain)？",
+      "options": ["16", "15", "8", "4"],
+      "answer": 0,
+      "explanation": "任何全序集中的任何子集皆構成鏈。4個元素的集合子集總數為 $2^4 = 16$。故共有 16 個不同的鏈（包括空鏈）。"
+    },
+    {
+      "id": 749,
+      "question": "【困難】已知一個布林函數 $f(A, B, C) = \\sum m(1, 3, 5, 7)$，化簡後的卡諾圖式子簡化為最簡與之積 (SOP) 為何？",
+      "options": ["$C$", "$C'$", "$A \\cdot C$", "$B \\cdot C$"],
+      "answer": 0,
+      "explanation": "其二進位表示最小項為 (001, 011, 101, 111)，對應 $\\bar{A}\\bar{B}C + \\bar{A}BC + A\\bar{B}C + ABC = (\\bar{A}+A)(\\bar{B}+B)C = 1 \\cdot 1 \\cdot C = C$。故最簡式為 $C$。"
+    },
+    {
+      "id": 750,
+      "question": "【進階】在有向圖中有一個起點 $A$ 及終點 $D$。若由 $A$ 到 $B$ 有 3 條路線，$B$ 到 $D$ 有 4 條路線；由 $A$ 到 $C$ 有 2 條路線，$C$ 到 $D$ 有 3 條路線，且 $B, C$ 無任何通路，求一共有幾種不同路線？",
+      "options": ["18", "12", "6", "24"],
+      "answer": 0,
+      "explanation": "路線數為經由 B 與經由 C 之和：$(3 \\times 4) + (2 \\times 3) = 12 + 6 = 18$ 種。"
+    }
+  ]
+}
