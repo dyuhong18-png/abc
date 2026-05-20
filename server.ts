@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenAI, Type, ThinkingLevel } from "@google/genai";
 import { createServer as createViteServer } from "vite";
 import dotenv from "dotenv";
 import { FALLBACK_PROBLEMS } from "./server_fallback_problems";
@@ -45,18 +45,18 @@ async function startServer() {
     // Guard: If there is no keys configured, we can immediately return fallbacks seamlessly rather than crashing
     if (!apiKey) {
       console.warn("API key not configured. Seamlessly falling back to curated curriculum data.");
-      const fallbackList = (FALLBACK_PROBLEMS[topic] || FALLBACK_PROBLEMS["基礎代數"]).slice(0, 5);
+      const fallbackList = (FALLBACK_PROBLEMS[topic] || FALLBACK_PROBLEMS["基礎代數"]).slice(0, 8);
       return res.json(fallbackList);
     }
 
     try {
-      const promptText = `產生 5 個關於「${topic}」的數學練習題，難度為「${difficulty}」。
+      const promptText = `產生 8 個關於「${topic}」的數學練習題，難度為「${difficulty}」。
 請確保：
 1. 語系全面使用繁體中文。
 2. 題目描述、選項以及解析都必須使用標準 LaTeX 格式包裹數學公式、算式或符號（請使用單錢符號 $...$ 或雙錢符號 $$...$$，例如 $x^2 + y = 0$)。
 3. 四個選項必須各不相同。
-4. ID 範圍為：1 到 5（請嚴格依序設定 id 屬性為 1, 2, 3, 4, 5）。
-5. 題目難度層次：ID 1-3 著重核心基礎概念、定義與直接運算；ID 4-5 著重延伸應用、公式變形、或進階觀念推導以深化實力。
+4. ID 範圍為：1 到 8（請嚴格依序設定 id 屬性為 1, 2, 3, ..., 8）。
+5. 題目難度層次：ID 1-4 著重核心基礎概念、定義與直接運算；ID 5-8 著重延伸應用、公式變形、或進階觀念推導以深化實力。
 6. 【超級重要 - 壓縮生成時間】：請直接切入重點，題目描述、選項和解析（explanation）務必直覺、極致精簡、沒有任何客套或冗餘說明（例如「因為...所以得到此結果」直接寫成「由...得...」，省去長篇大論）。這能大幅縮短系統生成時間。`;
 
       const response = await ai.models.generateContent({
@@ -64,6 +64,7 @@ async function startServer() {
         contents: promptText,
         config: {
           temperature: 0.1, // 降低溫度以更具決定性，減少生成時間與 Token 損耗
+          thinkingConfig: { thinkingLevel: ThinkingLevel.MINIMAL }, // 不使用思考，極速生成
           responseMimeType: "application/json",
           responseSchema: {
             type: Type.ARRAY,
@@ -72,7 +73,7 @@ async function startServer() {
               properties: {
                 id: {
                   type: Type.INTEGER,
-                  description: "問題的唯一識別 ID (1-5)。",
+                  description: "問題的唯一識別 ID (1-8)。",
                 },
                 question: {
                   type: Type.STRING,
@@ -108,7 +109,7 @@ async function startServer() {
     } catch (error: any) {
       console.warn("Gemini Generation failed or rate-limited. Activating curated offline fallback engine:", error.message || error);
       // Retrieve high-quality offline LaTeX curriculum problems for this topic
-      const fallbackList = (FALLBACK_PROBLEMS[topic] || FALLBACK_PROBLEMS["基礎代數"]).slice(0, 5);
+      const fallbackList = (FALLBACK_PROBLEMS[topic] || FALLBACK_PROBLEMS["基礎代數"]).slice(0, 8);
       res.json(fallbackList);
     }
   });
