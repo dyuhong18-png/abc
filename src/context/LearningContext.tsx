@@ -4,6 +4,7 @@ interface Progress {
   completedTopics: string[];
   totalScore: number;
   lastActive: Date;
+  streak: number;
 }
 
 interface LearningContextType {
@@ -16,18 +17,41 @@ interface LearningContextType {
 
 const LearningContext = createContext<LearningContextType | undefined>(undefined);
 
+// Helper to calculate calendar days between two dates
+function getDaysBetween(date1: Date, date2: Date): number {
+  const d1 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
+  const d2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate());
+  const diffTime = d2.getTime() - d1.getTime();
+  return Math.round(diffTime / (1000 * 60 * 60 * 24));
+}
+
 export function LearningProvider({ children }: { children: React.ReactNode }) {
   const [activeTopic, setActiveTopic] = useState('基礎代數');
   const [progress, setProgress] = useState<Progress>(() => {
     const saved = localStorage.getItem('mathwhiz_progress');
     if (saved) {
       const parsed = JSON.parse(saved);
-      return { ...parsed, lastActive: new Date(parsed.lastActive) };
+      const lastActive = new Date(parsed.lastActive);
+      let streak = parsed.streak || 0;
+
+      // On app load, check if the streak is broken (more than 1 full calendar day missed)
+      const today = new Date();
+      if (getDaysBetween(lastActive, today) > 1) {
+        streak = 0;
+      }
+
+      return {
+        completedTopics: parsed.completedTopics || [],
+        totalScore: parsed.totalScore || 0,
+        lastActive,
+        streak
+      };
     }
     return {
       completedTopics: [],
       totalScore: 0,
-      lastActive: new Date()
+      lastActive: new Date(),
+      streak: 0
     };
   });
 
@@ -35,22 +59,50 @@ export function LearningProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('mathwhiz_progress', JSON.stringify(progress));
   }, [progress]);
 
+  const recordActivity = (prev: Progress): { streak: number; lastActive: Date } => {
+    const today = new Date();
+    const diffDays = getDaysBetween(prev.lastActive, today);
+    let newStreak = prev.streak || 0;
+
+    if (newStreak === 0) {
+      newStreak = 1;
+    } else if (diffDays === 1) {
+      newStreak = newStreak + 1;
+    } else if (diffDays > 1) {
+      newStreak = 1;
+    }
+    // If diffDays is 0 (already practiced today), the streak is maintained but not incremented multiple times on the same day.
+
+    return {
+      streak: newStreak,
+      lastActive: today
+    };
+  };
+
   const addScore = (points: number) => {
-    setProgress(prev => ({
-      ...prev,
-      totalScore: prev.totalScore + points,
-      lastActive: new Date()
-    }));
+    setProgress(prev => {
+      const { streak, lastActive } = recordActivity(prev);
+      return {
+        ...prev,
+        totalScore: prev.totalScore + points,
+        streak,
+        lastActive
+      };
+    });
   };
 
   const completeTopic = (topic: string) => {
-    setProgress(prev => ({
-      ...prev,
-      completedTopics: prev.completedTopics.includes(topic) 
-        ? prev.completedTopics 
-        : [...prev.completedTopics, topic],
-      lastActive: new Date()
-    }));
+    setProgress(prev => {
+      const { streak, lastActive } = recordActivity(prev);
+      return {
+        ...prev,
+        completedTopics: prev.completedTopics.includes(topic) 
+          ? prev.completedTopics 
+          : [...prev.completedTopics, topic],
+        streak,
+        lastActive
+      };
+    });
   };
 
   return (

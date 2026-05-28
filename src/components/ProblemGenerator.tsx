@@ -140,7 +140,7 @@ export function ProblemGenerator() {
                     為了解鎖即時生成全新的高難度演算法題目，您可在 **Settings &gt; Secrets** 內設定您個人的付費 API 金鑰，或在部署環境（如 Render）中設定 `GEMINI_API_KEY`。
                   </p>
                   <p className="text-slate-500 font-normal mt-2">
-                    * 為了保證學習不中斷，系統已為您動態啟用<strong>離線精選 LaTeX 核心題庫（共 10 題）</strong>。您仍可以自由進行解題訓練與賺取學習積分！
+                    * 為了保證學習不中斷，系統已為您動態啟用<strong>備用題庫（優先載入 100 題後端自訂題庫及 10 題離線精選 LaTeX 核心考題）</strong>。您仍可以自由進行解題訓練與賺取學習積分！
                   </p>
                 </div>
               ) : fallbackReason === 'MISSING_KEY' ? (
@@ -152,7 +152,7 @@ export function ProblemGenerator() {
                     未偵測到您的 API 金鑰。請在 **Settings &gt; Secrets** 內設定 `api_key`（或專屬的付費 API 金鑰），或在您的部署環境設定 `GEMINI_API_KEY`。
                   </p>
                   <p className="text-slate-500 font-normal mt-2">
-                    * 系統已為您啟用<strong>高品質備用 LaTeX 題庫</strong>，支援完美的公式渲染與即時解析！
+                    * 系統已為您自動啟用<strong>備用題庫模式（優先整合您匯入的 100 題自訂題庫與備用 LaTeX 題庫）</strong>，支援完美的公式渲染與即時解析！
                   </p>
                 </div>
               ) : (
@@ -161,7 +161,7 @@ export function ProblemGenerator() {
                     ⚠️ <span>連線超時或生成限制 / Service Notice</span>
                   </div>
                   <p className="text-slate-700 font-medium">
-                    AI 伺服器回傳：當前無法配置新算式。我們已為您切換至<strong>精選 LaTeX 離線題目</strong>，完美照常累計積分。
+                    AI 伺服器回傳：當前無法配置新算式。我們已為您切換至<strong>備用與精選 LaTeX 離線題目</strong>，完美照常累計積分。
                   </p>
                 </div>
               )}
@@ -236,11 +236,11 @@ export function ProblemGenerator() {
 
           {fallbackReason && (
             <div className="mb-6 p-4 bg-amber-50/80 border border-amber-200 text-xs text-slate-700 font-medium">
-              <span className="font-bold text-amber-800">💡 離線精選 LaTeX 題庫模式：</span>
+              <span className="font-bold text-amber-800">💡 備用題庫載入模式：</span>
               {fallbackReason === 'QUOTA_LIMIT' 
-                ? '您的 API 免費請求次數 (20/日) 已達上限。如需無限客製新題，請於 Settings > Secrets 或部署平台(Render)設定您的付費金鑰。' 
+                ? '因您的 API 免費請求次數已達上限，系統已自備用題庫 (優先載入您的 100 題自訂題庫) 抽取高水準題目，答題可照常累計積分！如需無限 AI 出題，請於 Settings > Secrets 設定付費金鑰。' 
                 : fallbackReason === 'MISSING_KEY'
-                ? '未偵測到有效的 API 金鑰。請設定金鑰以解鎖無限 AI 智能出題，當前已為您啟用精選標準考題。'
+                ? '未偵測到 API 金鑰。系統已為您啟用備用題庫模式 (整合 100 題自訂考題與高品質精選題)，以完美 LaTeX 公式與解析陪伴您練習！'
                 : 'AI 生成服務受限，已自動切換為備用精選考題，答題仍可累計積分。'
               }
             </div>

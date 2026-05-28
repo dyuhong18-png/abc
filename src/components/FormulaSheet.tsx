@@ -4,7 +4,7 @@ import { X, Info } from 'lucide-react';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 
-const FORMULA_DATA: Record<string, { title: string, formulas: { label: string, math: string }[] }> = {
+export const FORMULA_DATA: Record<string, { title: string, formulas: { label: string, math: string }[] }> = {
   '基礎代數': {
     title: '代數核心公式',
     formulas: [

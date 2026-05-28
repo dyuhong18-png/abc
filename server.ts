@@ -207,9 +207,16 @@ async function startServer() {
     if (!apiKey) {
       console.warn("API key not configured. Seamlessly falling back to custom or curated curriculum data.");
       
-      let fallbackList = topicCustomProblems.length > 0 
-        ? filterCustomProblems(topicCustomProblems, difficulty)
-        : (FALLBACK_PROBLEMS[topic] || FALLBACK_PROBLEMS["基礎代數"]);
+      let fallbackList = [];
+      if (topicCustomProblems.length > 0) {
+        fallbackList = filterCustomProblems(topicCustomProblems, difficulty);
+        if (fallbackList.length === 0) {
+          fallbackList = topicCustomProblems;
+        }
+      }
+      if (fallbackList.length === 0) {
+        fallbackList = FALLBACK_PROBLEMS[topic] || FALLBACK_PROBLEMS["基礎代數"];
+      }
 
       fallbackList = limitToTenQuestions(fallbackList);
       const shuffled = shuffleOptionsAndDistributeAnswers(fallbackList);
@@ -309,21 +316,48 @@ async function startServer() {
       }
     } catch (error: any) {
       console.warn("Gemini Generation failed or rate-limited. Activating custom database or offline fallback:", error.message || error);
+      
+      // Determine if it is a rate limit or quota exceeded error with absolute certainty
+      let isQuotaLimit = false;
+      const errMessage = String(error.message || "").toLowerCase();
+      let errDetails = "";
+      try {
+        errDetails = JSON.stringify(error).toLowerCase();
+      } catch (err) {}
+
+      if (
+        error.status === 429 || 
+        error.statusCode === 429 || 
+        error.error?.code === 429 ||
+        error.error?.status === "RESOURCE_EXHAUSTED" ||
+        errMessage.includes("429") ||
+        errMessage.includes("quota") ||
+        errMessage.includes("resource_exhausted") ||
+        errMessage.includes("rate-limit") ||
+        errDetails.includes("429") ||
+        errDetails.includes("quota") ||
+        errDetails.includes("resource_exhausted")
+      ) {
+        isQuotaLimit = true;
+      }
+
       // Retrieve high-quality custom or offline LaTeX curriculum problems for this topic
-      let fallbackList = topicCustomProblems.length > 0 
-        ? filterCustomProblems(topicCustomProblems, difficulty)
-        : (FALLBACK_PROBLEMS[topic] || FALLBACK_PROBLEMS["基礎代數"]);
+      let fallbackList = [];
+      if (topicCustomProblems.length > 0) {
+        fallbackList = filterCustomProblems(topicCustomProblems, difficulty);
+        // If the filtering returned nothing, grab all custom problems for this topic
+        if (fallbackList.length === 0) {
+          fallbackList = topicCustomProblems;
+        }
+      }
+      // If we still have nothing or custom list was empty, use static curated offline database
+      if (fallbackList.length === 0) {
+        fallbackList = FALLBACK_PROBLEMS[topic] || FALLBACK_PROBLEMS["基礎代數"];
+      }
       
       fallbackList = limitToTenQuestions(fallbackList);
       const shuffled = shuffleOptionsAndDistributeAnswers(fallbackList);
       
-      const isQuotaLimit = error.status === 429 || 
-                           error.statusCode === 429 || 
-                           error.message?.includes("429") || 
-                           error.message?.includes("quota") || 
-                           error.message?.includes("RESOURCE_EXHAUSTED") || 
-                           error.message?.includes("Quota exceeded");
-
       res.json({
         problems: shuffled,
         isFallback: true,

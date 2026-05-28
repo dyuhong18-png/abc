@@ -3,14 +3,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { GraduationCap, Github, Twitter, Info, ChevronRight, Database } from 'lucide-react';
+import { GraduationCap, Github, Twitter, Info, ChevronRight, Database, Flame } from 'lucide-react';
 import { ProblemGenerator } from './components/ProblemGenerator';
-import { FormulaSheet } from './components/FormulaSheet';
+import { FormulaSheet, FORMULA_DATA } from './components/FormulaSheet';
 import { ImportProblems } from './components/ImportProblems';
 import { motion } from 'motion/react';
 import { useLearning } from './context/LearningContext';
 import { useState } from 'react';
 import { cn } from './lib/utils';
+import { BlockMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
 
 const TOPICS = ['基礎代數', '平面幾何', '三角函數', '向量單元', '微積分初步', '統計與機率', '邏輯推理'];
 
@@ -18,6 +20,9 @@ export default function App() {
   const { activeTopic, setActiveTopic, progress } = useLearning();
   const [currentPage, setCurrentPage] = useState<'home' | 'practice' | 'formulas' | 'profile' | 'import'>('home');
   const [isFormulaOpen, setIsFormulaOpen] = useState(false);
+  const [showSidebarFormulas, setShowSidebarFormulas] = useState(true);
+  const [formulaSelectedTopic, setFormulaSelectedTopic] = useState<string>('all');
+  const [formulaSearchQuery, setFormulaSearchQuery] = useState<string>('');
 
   const completedCount = progress.completedTopics.length;
   const progressPercent = (completedCount / TOPICS.length) * 100;
@@ -76,24 +81,143 @@ export default function App() {
             </div>
           </div>
         );
-      case 'practice':
+      case 'practice': {
+        // Filter formulas based on chosen topic and search query
+        let filteredFormulas: { topic: string; label: string; math: string }[] = [];
+        Object.entries(FORMULA_DATA).forEach(([topicKey, category]) => {
+          category.formulas.forEach(f => {
+            filteredFormulas.push({
+              topic: topicKey,
+              label: f.label,
+              math: f.math
+            });
+          });
+        });
+
+        const selectedTopicTopic = formulaSelectedTopic === 'active' || formulaSelectedTopic === '' ? activeTopic : formulaSelectedTopic;
+
+        if (formulaSelectedTopic !== 'all') {
+          filteredFormulas = filteredFormulas.filter(item => item.topic === selectedTopicTopic);
+        }
+
+        if (formulaSearchQuery.trim()) {
+          const q = formulaSearchQuery.toLowerCase();
+          filteredFormulas = filteredFormulas.filter(item => 
+            item.label.toLowerCase().includes(q) || 
+            item.topic.toLowerCase().includes(q) ||
+            item.math.toLowerCase().includes(q)
+          );
+        }
+
         return (
           <div className="flex flex-col gap-8">
-            <div className="flex items-center justify-between border-b border-slate-200 pb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 pb-6 gap-4">
               <div>
                 <h2 className="text-3xl font-black text-slate-800 tracking-tight">實戰練習場</h2>
                 <p className="text-xs font-mono text-slate-400 uppercase tracking-widest mt-1">Core Training Module / {activeTopic}</p>
               </div>
-              <button 
-                onClick={() => setCurrentPage('home')}
-                className="text-[10px] font-black text-slate-400 hover:text-slate-900 uppercase transition-colors"
-              >
-                返回儀表板
-              </button>
+              <div className="flex items-center gap-3 self-start sm:self-auto">
+                <button 
+                  onClick={() => setShowSidebarFormulas(!showSidebarFormulas)}
+                  className={cn(
+                    "px-4 py-2 text-xs font-black transition-all border flex items-center gap-2 cursor-pointer",
+                    showSidebarFormulas 
+                      ? "bg-indigo-600 text-white border-indigo-600 shadow-sm" 
+                      : "bg-white text-slate-700 border-slate-200 hover:border-slate-800"
+                  )}
+                >
+                  📖 {showSidebarFormulas ? '關閉側邊對照' : '在旁邊看所有算式'}
+                </button>
+                <button 
+                  onClick={() => setCurrentPage('home')}
+                  className="text-[10px] font-black text-slate-400 hover:text-slate-900 uppercase transition-colors"
+                >
+                  返回儀表板
+                </button>
+              </div>
             </div>
-            <ProblemGenerator />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left Column: Problem Generator */}
+              <div className={cn(showSidebarFormulas ? "lg:col-span-8 w-full" : "lg:col-span-12 w-full")}>
+                <ProblemGenerator />
+              </div>
+
+              {/* Right Column: Custom side-by-side formula handbook */}
+              {showSidebarFormulas && (
+                <div id="side-formula-panel" className="lg:col-span-4 bg-white border border-slate-200 p-6 flex flex-col gap-6 sticky top-24 max-h-[calc(100vh-10rem)] overflow-y-auto shadow-sm">
+                  <div className="flex justify-between items-center border-b border-slate-100 pb-4">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 bg-indigo-600"></span>
+                      <h3 className="text-xs font-black uppercase tracking-wider text-slate-800">側邊算式對照表</h3>
+                    </div>
+                    <span className="text-[9px] font-mono text-slate-300">FORMULA-AIDE</span>
+                  </div>
+
+                  <p className="text-xs font-semibold text-slate-500 leading-relaxed -mt-2">
+                    配合當前題目，您可以在右邊自由切換查看代數、幾何、微積分等各大單元的公式，不影響當前的答題狀態。
+                  </p>
+
+                  {/* Dropdown Topic Selector */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">1. 常規篩選主題</label>
+                    <select 
+                      value={formulaSelectedTopic} 
+                      onChange={(e) => setFormulaSelectedTopic(e.target.value)}
+                      className="w-full p-3 border border-slate-200 bg-slate-50 text-xs font-bold outline-none focus:border-indigo-600 transition-colors cursor-pointer"
+                    >
+                      <option value="active">當前練習單元 ({activeTopic})</option>
+                      <option value="all">列出所有單元算式 (All Topics)</option>
+                      {TOPICS.map(t => (
+                        <option key={t} value={t}>{t}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Quick Filter Search Box */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">2. 關鍵字快速檢索</label>
+                    <input 
+                      type="text"
+                      value={formulaSearchQuery}
+                      onChange={(e) => setFormulaSearchQuery(e.target.value)}
+                      placeholder="搜尋公式名稱或定義 (如: 畢氏、貝氏)..."
+                      className="w-full p-3 border border-slate-200 bg-transparent text-xs font-semibold outline-none focus:border-indigo-600 transition-colors"
+                    />
+                  </div>
+
+                  {/* Render filtered calculations list */}
+                  <div className="space-y-6 mt-2 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                    {filteredFormulas.length === 0 ? (
+                      <div className="p-6 text-center text-xs font-semibold text-slate-400 bg-slate-50 border border-slate-100 italic">
+                        未找到符合搜尋條件的算式。
+                      </div>
+                    ) : (
+                      filteredFormulas.map((f, i) => (
+                        <div key={i} className="flex flex-col gap-2 p-4 border border-slate-100 bg-slate-50/50 hover:bg-slate-50 transition-colors relative group">
+                          <div className="flex justify-between items-center">
+                            <span className="text-[10px] font-black text-indigo-600 uppercase tracking-tight">{f.topic}</span>
+                            <span className="text-[9px] font-mono text-slate-300">#{i + 1}</span>
+                          </div>
+                          <span className="text-xs font-bold text-slate-700">{f.label}</span>
+                          <div className="p-3 bg-white border border-slate-100 flex items-center justify-center overflow-x-auto select-all">
+                            <BlockMath math={f.math} />
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+
+                  <div className="pt-4 border-t border-slate-100 flex justify-between items-center text-[10px] font-mono text-slate-400 uppercase tracking-widest">
+                    <span>Precision Engine</span>
+                    <span>v1.2.1</span>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         );
+      }
       case 'formulas':
         return (
           <div className="flex flex-col gap-8">
@@ -132,7 +256,7 @@ export default function App() {
               <p className="text-xs font-mono text-slate-400 uppercase tracking-widest mt-1">Growth Data Analysis</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
               <div className="bg-white border border-slate-200 p-8 flex flex-col gap-4">
                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">累積綜合積分</span>
                 <span className="text-4xl font-black text-slate-900 italic">{progress.totalScore} <span className="text-xs not-italic text-slate-300">XP</span></span>
@@ -140,6 +264,12 @@ export default function App() {
               <div className="bg-white border border-slate-200 p-8 flex flex-col gap-4">
                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">已攻克單元</span>
                 <span className="text-4xl font-black text-indigo-600 italic">{completedCount} <span className="text-xs not-italic text-slate-300">/ {TOPICS.length}</span></span>
+              </div>
+              <div className="bg-white border border-slate-200 p-8 flex flex-col gap-4">
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">連續實踐天數</span>
+                <span className={cn("text-4xl font-black italic", progress.streak > 0 ? "text-orange-600" : "text-slate-950")}>
+                  {progress.streak} <span className="text-xs not-italic text-slate-300">天</span>
+                </span>
               </div>
               <div className="bg-white border border-slate-200 p-8 flex flex-col gap-4">
                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">解題正確率</span>
@@ -262,6 +392,49 @@ export default function App() {
                   transition={{ type: 'spring', damping: 20 }}
                   className="bg-indigo-600 h-full"
                 ></motion.div>
+              </div>
+
+              {/* Learning Streak Indicator */}
+              <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <motion.div
+                    key={`${progress.streak}-${progress.completedTopics.length}-${progress.totalScore}`}
+                    initial={{ scale: 1, rotate: 0 }}
+                    animate={{
+                      scale: [1, 1.45, 1.1, 1.15, 1],
+                      rotate: [0, -18, 18, -10, 10, 0],
+                    }}
+                    transition={{
+                      duration: 0.75,
+                      ease: [0.34, 1.56, 0.64, 1],
+                    }}
+                    className="flex items-center justify-center cursor-pointer"
+                  >
+                    <Flame 
+                      className={cn(
+                        "w-4 h-4 transition-colors duration-300",
+                        progress.streak > 0 
+                          ? "text-orange-500 fill-orange-500 animate-pulse" 
+                          : "text-slate-300"
+                      )} 
+                    />
+                  </motion.div>
+                  <div className="flex flex-col">
+                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">學習極限連擊</span>
+                    <span className="text-[10px] font-medium text-slate-500">
+                      {progress.streak > 0 ? "保持每日練習！" : "今天練習以啟動！"}
+                    </span>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <span className={cn(
+                    "text-lg font-black italic tracking-tighter",
+                    progress.streak > 0 ? "text-orange-600" : "text-slate-400"
+                  )}>
+                    {progress.streak}
+                  </span>
+                  <span className="text-[10px] text-slate-400 font-bold ml-0.5">🔥</span>
+                </div>
               </div>
             </div>
           </div>
