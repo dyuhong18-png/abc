@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { GraduationCap, Github, Twitter, Info, ChevronRight, Database, Flame } from 'lucide-react';
+import { GraduationCap, Github, Twitter, Info, ChevronRight, Database, Flame, Trophy, Target, Zap, Award, ShieldAlert, Sparkles, CheckCircle2 } from 'lucide-react';
 import { ProblemGenerator } from './components/ProblemGenerator';
 import { FormulaSheet, FORMULA_DATA } from './components/FormulaSheet';
 import { ImportProblems } from './components/ImportProblems';
@@ -11,18 +11,16 @@ import { motion } from 'motion/react';
 import { useLearning } from './context/LearningContext';
 import { useState } from 'react';
 import { cn } from './lib/utils';
-import { BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 
 const TOPICS = ['基礎代數', '平面幾何', '三角函數', '向量單元', '微積分初步', '統計與機率', '邏輯推理'];
 
 export default function App() {
-  const { activeTopic, setActiveTopic, progress } = useLearning();
+  const { activeTopic, setActiveTopic, progress, resetProgress } = useLearning();
   const [currentPage, setCurrentPage] = useState<'home' | 'practice' | 'formulas' | 'profile' | 'import'>('home');
   const [isFormulaOpen, setIsFormulaOpen] = useState(false);
-  const [showSidebarFormulas, setShowSidebarFormulas] = useState(true);
-  const [formulaSelectedTopic, setFormulaSelectedTopic] = useState<string>('all');
-  const [formulaSearchQuery, setFormulaSearchQuery] = useState<string>('');
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [showResetSuccess, setShowResetSuccess] = useState(false);
 
   const completedCount = progress.completedTopics.length;
   const progressPercent = (completedCount / TOPICS.length) * 100;
@@ -47,7 +45,7 @@ export default function App() {
                 </p>
                 <button 
                   onClick={() => setCurrentPage('practice')}
-                  className="mt-8 px-8 py-4 bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.2em] hover:bg-indigo-600 transition-all flex items-center gap-3"
+                  className="mt-8 px-8 py-4 bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.2em] hover:bg-indigo-600 transition-all flex items-center gap-3 cursor-pointer"
                 >
                   開始核心訓練 <ChevronRight className="w-4 h-4" />
                 </button>
@@ -63,52 +61,116 @@ export default function App() {
               </div>
             </section>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white border border-slate-200 p-8">
-                <h4 className="text-[10px] font-black uppercase tracking-widest text-indigo-600 mb-4">最新公告</h4>
-                <p className="text-sm font-medium text-slate-600 leading-relaxed">
-                  [更新] 幾何單元已新增 15 個進階挑戰題目，包含空間向量運算。
-                </p>
+            {/* Premium Learning Dashboard */}
+            <div className="bg-white border border-slate-200 p-8 flex flex-col gap-6">
+              <div className="flex justify-between items-center border-b border-slate-100 pb-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-indigo-600"></span>
+                  <h3 className="text-xs font-black uppercase tracking-wider text-slate-800 font-sans">學員智慧儀表板 Insights</h3>
+                </div>
+                <span className="text-[9px] font-mono text-indigo-600 font-bold uppercase tracking-wider">Level: {Math.floor(progress.totalScore / 50) + 1} 探險家</span>
               </div>
-              <div className="bg-slate-900 p-8 text-white">
-                <h4 className="text-[10px] font-black uppercase tracking-widest text-indigo-400 mb-4">快速入口</h4>
-                <div className="flex flex-wrap gap-4">
-                  <button onClick={() => setCurrentPage('formulas')} className="text-xs font-bold underline underline-offset-4 decoration-indigo-400">查閱公式手冊</button>
-                  <button onClick={() => setCurrentPage('profile')} className="text-xs font-bold underline underline-offset-4 decoration-indigo-400">查看我的 XP 排名</button>
-                  <button onClick={() => setCurrentPage('import')} className="text-xs font-bold text-indigo-300 hover:text-indigo-200 underline underline-offset-4 decoration-indigo-300">⚙️ 後端數據庫管理</button>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-slate-50/50 p-6 border border-slate-150 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-black text-slate-400 uppercase">單元覆蓋度 Topic Scope</span>
+                    <h5 className="text-3xl font-black text-slate-800 mt-1 italic">{completedCount} <span className="text-xs not-italic font-bold text-slate-300">/ {TOPICS.length}</span></h5>
+                  </div>
+                  <div className="w-full bg-slate-200 h-1.5 mt-4 overflow-hidden">
+                    <div className="bg-indigo-600 h-full transition-all duration-500" style={{ width: `${progressPercent}%` }}></div>
+                  </div>
+                </div>
+                <div className="bg-slate-50/50 p-6 border border-slate-150 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-black text-slate-400 uppercase">實作正確率 Accuracy</span>
+                    <h5 className="text-3xl font-black text-indigo-600 mt-1 italic">
+                      {progress.totalAnswersCount > 0 
+                        ? `${Math.round((progress.correctAnswersCount / progress.totalAnswersCount) * 100)}%` 
+                        : "0%"}
+                    </h5>
+                  </div>
+                  <span className="text-[10px] text-slate-400 mt-4 leading-normal font-sans font-medium">
+                    {progress.totalAnswersCount > 0 
+                      ? `已紀錄共 ${progress.totalAnswersCount} 次常規答題` 
+                      : "初始狀態，請至練習場開啟挑戰以分析正確率"}
+                  </span>
+                </div>
+                <div className="bg-slate-50/50 p-6 border border-slate-150 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-black text-slate-400 uppercase">已獲積分 Cumulative Score</span>
+                    <h5 className="text-3xl font-black text-slate-800 mt-1 italic">{progress.totalScore} <span className="text-xs not-italic font-bold text-slate-300">XP</span></h5>
+                  </div>
+                  <span className="text-[10px] text-slate-400 mt-4 leading-normal font-sans font-medium">
+                    答對一題累計 10 XP，解鎖更進階的個人成就勳章
+                  </span>
+                </div>
+              </div>
+
+              {/* Quick Topic link pills */}
+              <div className="mt-4 flex flex-col gap-3">
+                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">極速單元進場：</span>
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+                  {TOPICS.map(topic => {
+                    const isPassed = progress.completedTopics.includes(topic);
+                    return (
+                      <button
+                        key={topic}
+                        onClick={() => {
+                          setActiveTopic(topic);
+                          setCurrentPage('practice');
+                        }}
+                        className={cn(
+                          "p-3 text-center border text-xs font-bold transition-all relative flex flex-col items-center justify-center gap-1.5 cursor-pointer",
+                          isPassed 
+                            ? "bg-emerald-50/50 border-emerald-300 text-emerald-800 hover:bg-emerald-50" 
+                            : topic === activeTopic 
+                              ? "bg-indigo-50/30 border-indigo-400 text-indigo-700 hover:bg-indigo-50" 
+                              : "bg-white border-slate-200 hover:border-slate-800 h-14"
+                        )}
+                      >
+                        <span className="truncate w-full block">{topic}</span>
+                        {isPassed ? (
+                          <span className="text-[8px] bg-emerald-600 text-white font-black px-1.5 py-0.5 uppercase tracking-tighter scale-90">已通關</span>
+                        ) : (
+                          <span className="text-[8px] font-mono text-indigo-500">GO &rarr;</span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white border border-slate-200 p-8 flex flex-col justify-between">
+                <div>
+                  <h4 className="text-[10px] font-black uppercase tracking-widest text-indigo-600 mb-4">最新公告 System Bulletins</h4>
+                  <p className="text-sm font-medium text-slate-600 leading-relaxed font-sans">
+                    [更新] 本機離線高品質 LaTeX 資料庫已部署完畢！若外部 Gemini 網路不穩或免費額度受限，系統將極速載入高品質精選課程與導入的自訂題庫進行無縫學習。
+                  </p>
+                </div>
+                <div className="mt-4 border-t border-slate-100 pt-3 text-[10px] font-mono text-slate-400 uppercase font-bold">
+                  DATABASE CORNER: 200+ 精細精選 LaTeX 題目
+                </div>
+              </div>
+              <div className="bg-slate-900 p-8 text-white flex flex-col justify-between">
+                <div>
+                  <h4 className="text-[10px] font-black uppercase tracking-widest text-indigo-400 mb-4">快速入口 Quick Links</h4>
+                  <p className="text-sm text-slate-300 mb-4 leading-relaxed font-sans font-medium">
+                    輕鬆存取各大系統，查閱多維公式，查看 XP 勳章，或者是寫入全新手動精煉考題數據：
+                  </p>
+                  <div className="flex flex-wrap gap-x-6 gap-y-2">
+                    <button onClick={() => setCurrentPage('formulas')} className="text-xs font-bold underline underline-offset-4 decoration-indigo-400 hover:text-indigo-300 cursor-pointer">查閱公式手冊</button>
+                    <button onClick={() => setCurrentPage('profile')} className="text-xs font-bold underline underline-offset-4 decoration-indigo-400 hover:text-indigo-300 cursor-pointer">查看我的 XP 勳章</button>
+                    <button onClick={() => setCurrentPage('import')} className="text-xs font-bold text-indigo-300 hover:text-indigo-200 underline underline-offset-4 decoration-indigo-300 cursor-pointer">⚙️ 專人題庫導入與管理</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         );
-      case 'practice': {
-        // Filter formulas based on chosen topic and search query
-        let filteredFormulas: { topic: string; label: string; math: string }[] = [];
-        Object.entries(FORMULA_DATA).forEach(([topicKey, category]) => {
-          category.formulas.forEach(f => {
-            filteredFormulas.push({
-              topic: topicKey,
-              label: f.label,
-              math: f.math
-            });
-          });
-        });
-
-        const selectedTopicTopic = formulaSelectedTopic === 'active' || formulaSelectedTopic === '' ? activeTopic : formulaSelectedTopic;
-
-        if (formulaSelectedTopic !== 'all') {
-          filteredFormulas = filteredFormulas.filter(item => item.topic === selectedTopicTopic);
-        }
-
-        if (formulaSearchQuery.trim()) {
-          const q = formulaSearchQuery.toLowerCase();
-          filteredFormulas = filteredFormulas.filter(item => 
-            item.label.toLowerCase().includes(q) || 
-            item.topic.toLowerCase().includes(q) ||
-            item.math.toLowerCase().includes(q)
-          );
-        }
-
+      case 'practice':
         return (
           <div className="flex flex-col gap-8">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 pb-6 gap-4">
@@ -118,17 +180,6 @@ export default function App() {
               </div>
               <div className="flex items-center gap-3 self-start sm:self-auto">
                 <button 
-                  onClick={() => setShowSidebarFormulas(!showSidebarFormulas)}
-                  className={cn(
-                    "px-4 py-2 text-xs font-black transition-all border flex items-center gap-2 cursor-pointer",
-                    showSidebarFormulas 
-                      ? "bg-indigo-600 text-white border-indigo-600 shadow-sm" 
-                      : "bg-white text-slate-700 border-slate-200 hover:border-slate-800"
-                  )}
-                >
-                  📖 {showSidebarFormulas ? '關閉側邊對照' : '在旁邊看所有算式'}
-                </button>
-                <button 
                   onClick={() => setCurrentPage('home')}
                   className="text-[10px] font-black text-slate-400 hover:text-slate-900 uppercase transition-colors"
                 >
@@ -137,87 +188,11 @@ export default function App() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Left Column: Problem Generator */}
-              <div className={cn(showSidebarFormulas ? "lg:col-span-8 w-full" : "lg:col-span-12 w-full")}>
-                <ProblemGenerator />
-              </div>
-
-              {/* Right Column: Custom side-by-side formula handbook */}
-              {showSidebarFormulas && (
-                <div id="side-formula-panel" className="lg:col-span-4 bg-white border border-slate-200 p-6 flex flex-col gap-6 sticky top-24 max-h-[calc(100vh-10rem)] overflow-y-auto shadow-sm">
-                  <div className="flex justify-between items-center border-b border-slate-100 pb-4">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 bg-indigo-600"></span>
-                      <h3 className="text-xs font-black uppercase tracking-wider text-slate-800">側邊算式對照表</h3>
-                    </div>
-                    <span className="text-[9px] font-mono text-slate-300">FORMULA-AIDE</span>
-                  </div>
-
-                  <p className="text-xs font-semibold text-slate-500 leading-relaxed -mt-2">
-                    配合當前題目，您可以在右邊自由切換查看代數、幾何、微積分等各大單元的公式，不影響當前的答題狀態。
-                  </p>
-
-                  {/* Dropdown Topic Selector */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">1. 常規篩選主題</label>
-                    <select 
-                      value={formulaSelectedTopic} 
-                      onChange={(e) => setFormulaSelectedTopic(e.target.value)}
-                      className="w-full p-3 border border-slate-200 bg-slate-50 text-xs font-bold outline-none focus:border-indigo-600 transition-colors cursor-pointer"
-                    >
-                      <option value="active">當前練習單元 ({activeTopic})</option>
-                      <option value="all">列出所有單元算式 (All Topics)</option>
-                      {TOPICS.map(t => (
-                        <option key={t} value={t}>{t}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Quick Filter Search Box */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">2. 關鍵字快速檢索</label>
-                    <input 
-                      type="text"
-                      value={formulaSearchQuery}
-                      onChange={(e) => setFormulaSearchQuery(e.target.value)}
-                      placeholder="搜尋公式名稱或定義 (如: 畢氏、貝氏)..."
-                      className="w-full p-3 border border-slate-200 bg-transparent text-xs font-semibold outline-none focus:border-indigo-600 transition-colors"
-                    />
-                  </div>
-
-                  {/* Render filtered calculations list */}
-                  <div className="space-y-6 mt-2 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
-                    {filteredFormulas.length === 0 ? (
-                      <div className="p-6 text-center text-xs font-semibold text-slate-400 bg-slate-50 border border-slate-100 italic">
-                        未找到符合搜尋條件的算式。
-                      </div>
-                    ) : (
-                      filteredFormulas.map((f, i) => (
-                        <div key={i} className="flex flex-col gap-2 p-4 border border-slate-100 bg-slate-50/50 hover:bg-slate-50 transition-colors relative group">
-                          <div className="flex justify-between items-center">
-                            <span className="text-[10px] font-black text-indigo-600 uppercase tracking-tight">{f.topic}</span>
-                            <span className="text-[9px] font-mono text-slate-300">#{i + 1}</span>
-                          </div>
-                          <span className="text-xs font-bold text-slate-700">{f.label}</span>
-                          <div className="p-3 bg-white border border-slate-100 flex items-center justify-center overflow-x-auto select-all">
-                            <BlockMath math={f.math} />
-                          </div>
-                        </div>
-                      ))
-                    )}
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-100 flex justify-between items-center text-[10px] font-mono text-slate-400 uppercase tracking-widest">
-                    <span>Precision Engine</span>
-                    <span>v1.2.1</span>
-                  </div>
-                </div>
-              )}
+            <div className="w-full">
+              <ProblemGenerator />
             </div>
           </div>
         );
-      }
       case 'formulas':
         return (
           <div className="flex flex-col gap-8">
@@ -248,54 +223,151 @@ export default function App() {
         );
       case 'import':
         return <ImportProblems />;
-      case 'profile':
+      case 'profile': {
+        const hasHistory = progress.totalAnswersCount > 0;
+        const currentAccuracy = hasHistory 
+          ? `${Math.round((progress.correctAnswersCount / progress.totalAnswersCount) * 100)}%`
+          : "暫無數據";
+
+        // Dynamic unlocking lists of badges
+        const badges = [
+          {
+            title: "創始探險家",
+            desc: "踏出偉傑數學的首步，登錄本實驗室。",
+            unlocked: true,
+            icon: Trophy,
+            color: "text-amber-500 border-amber-400 bg-amber-500/10"
+          },
+          {
+            title: "求知起點",
+            desc: "成功在本機解答 1 道練習考題。",
+            unlocked: progress.totalAnswersCount >= 1,
+            icon: Target,
+            color: "text-blue-500 border-blue-400 bg-blue-500/10"
+          },
+          {
+            title: "火熱打卡連擊",
+            desc: "連續練習天數大於 0 天。",
+            unlocked: progress.streak > 0,
+            icon: Flame,
+            color: "text-orange-500 border-orange-400 bg-orange-500/10"
+          },
+          {
+            title: "代數探索家",
+            desc: "成功把「基礎代數」單元全盤擊破。",
+            unlocked: progress.completedTopics.includes("基礎代數"),
+            icon: Award,
+            color: "text-indigo-500 border-indigo-400 bg-indigo-500/10"
+          },
+          {
+            title: "幾何大師",
+            desc: "完成「平面幾何」單元全部核心挑戰。",
+            unlocked: progress.completedTopics.includes("平面幾何"),
+            icon: Sparkles,
+            color: "text-pink-500 border-pink-400 bg-pink-500/10"
+          },
+          {
+            title: "核心大師",
+            desc: "至少攻克 3 個核心單元並且答對率過關。",
+            unlocked: progress.completedTopics.length >= 3,
+            icon: Zap,
+            color: "text-purple-500 border-purple-400 bg-purple-500/10"
+          }
+        ];
+
         return (
           <div className="flex flex-col gap-10">
-            <div className="border-b border-slate-200 pb-6">
-              <h2 className="text-3xl font-black text-slate-800 tracking-tight">個人成長檔案</h2>
-              <p className="text-xs font-mono text-slate-400 uppercase tracking-widest mt-1">Growth Data Analysis</p>
+            <div className="border-b border-slate-200 pb-6 flex justify-between items-end">
+              <div>
+                <h2 className="text-3xl font-black text-slate-800 tracking-tight">個人成長檔案</h2>
+                <p className="text-xs font-mono text-slate-400 uppercase tracking-widest mt-1">Growth Data Analysis</p>
+              </div>
+              <span className="text-xs font-mono text-slate-400">UUID: {Math.random().toString(36).substring(2, 8).toUpperCase()}</span>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
               <div className="bg-white border border-slate-200 p-8 flex flex-col gap-4">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">累積綜合積分</span>
-                <span className="text-4xl font-black text-slate-900 italic">{progress.totalScore} <span className="text-xs not-italic text-slate-300">XP</span></span>
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">累積綜合積分 XP</span>
+                <span className="text-4xl font-black text-slate-900 italic">{progress.totalScore} <span className="text-xs not-italic text-slate-300 font-bold">XP</span></span>
               </div>
               <div className="bg-white border border-slate-200 p-8 flex flex-col gap-4">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">已攻克單元</span>
-                <span className="text-4xl font-black text-indigo-600 italic">{completedCount} <span className="text-xs not-italic text-slate-300">/ {TOPICS.length}</span></span>
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">已攻克單元 Topic Score</span>
+                <span className="text-4xl font-black text-indigo-600 italic">{completedCount} <span className="text-xs not-italic text-slate-300 font-bold">/ {TOPICS.length}</span></span>
               </div>
               <div className="bg-white border border-slate-200 p-8 flex flex-col gap-4">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">連續實踐天數</span>
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">連續實踐天數 Learning Streak</span>
                 <span className={cn("text-4xl font-black italic", progress.streak > 0 ? "text-orange-600" : "text-slate-950")}>
-                  {progress.streak} <span className="text-xs not-italic text-slate-300">天</span>
+                  {progress.streak} <span className="text-xs not-italic text-slate-300 font-bold">天</span>
                 </span>
               </div>
               <div className="bg-white border border-slate-200 p-8 flex flex-col gap-4">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">解題正確率</span>
-                <span className="text-4xl font-black text-slate-900 italic">87%</span>
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">解題正確率 Correct Ratio</span>
+                <span className="text-4xl font-black text-slate-900 italic">{currentAccuracy}</span>
               </div>
             </div>
 
+            {/* Achievement badges showcase */}
             <div className="bg-slate-900 p-10 text-white">
-              <h4 className="text-[10px] font-black uppercase tracking-widest text-indigo-400 mb-8">解鎖成就勳章 Achievements</h4>
-              <div className="flex gap-8">
-                <div className="flex flex-col items-center gap-3">
-                  <div className="w-16 h-16 bg-amber-400/20 border border-amber-400 flex items-center justify-center rotate-45">
-                    <div className="w-8 h-8 bg-amber-400 -rotate-45" />
-                  </div>
-                  <span className="text-[9px] font-bold uppercase tracking-tighter text-amber-200">創始探險家</span>
-                </div>
-                <div className="flex flex-col items-center gap-3 opacity-30">
-                  <div className="w-16 h-16 bg-slate-700 border border-slate-600 flex items-center justify-center">
-                    <div className="w-6 h-6 bg-slate-500 rounded-full" />
-                  </div>
-                  <span className="text-[9px] font-bold uppercase tracking-tighter">幾何大師</span>
-                </div>
+              <div className="border-b border-slate-800 pb-4 mb-8">
+                <h4 className="text-xs font-black uppercase tracking-widest text-indigo-400">解鎖成就勳章 Achievements &amp; Medals</h4>
+                <p className="text-xs text-slate-400 mt-1 font-sans">
+                  在這裡查閱您所有的榮譽點數。隨著答題次數以及通關單元升高，勳章將會自動啟用、變得鮮艷：
+                </p>
               </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {badges.map((badge, idx) => {
+                  const BIcon = badge.icon;
+                  return (
+                    <div 
+                      key={idx} 
+                      className={cn(
+                        "p-6 border flex gap-4 items-center transition-all duration-300",
+                        badge.unlocked 
+                          ? "bg-slate-950 border-slate-800 opacity-100" 
+                          : "border-slate-800/60 bg-slate-900/40 opacity-40 select-none cursor-not-allowed"
+                      )}
+                    >
+                      <div className={cn(
+                        "w-12 h-12 border flex items-center justify-center shrink-0 rotate-45",
+                        badge.unlocked ? badge.color : "border-slate-800 text-slate-700 bg-slate-900"
+                      )}>
+                        <BIcon className="w-5 h-5 -rotate-45" />
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-1.5">
+                          <span className={cn("text-xs font-black uppercase tracking-tight", badge.unlocked ? "text-slate-100" : "text-slate-500")}>
+                            {badge.title}
+                          </span>
+                          {badge.unlocked && <span className="text-[9px] bg-emerald-600/35 text-emerald-400 border border-emerald-500/25 px-1 font-bold">ACTIVE</span>}
+                        </div>
+                        <span className="text-[10px] text-slate-400 leading-normal font-sans font-medium">{badge.desc}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Danger Zone */}
+            <div className="bg-white border border-rose-200 p-8">
+              <h4 className="text-xs font-black uppercase tracking-widest text-rose-600 mb-2 flex items-center gap-2">
+                <ShieldAlert className="w-4 h-4" /> 危險專區 (Danger Zone)
+              </h4>
+              <p className="text-xs font-medium text-slate-500 mb-6 leading-relaxed font-sans">
+                重置您在【偉傑數學.Lab】的本機學習軌跡。這操作會立即清除您的 XP 積分、連續學習天數度、已攻克單元、答題統計與全部已解鎖徽章，使您的數據歸零。
+              </p>
+              <button
+                type="button"
+                onClick={() => setShowResetConfirm(true)}
+                className="px-5 py-3 border-2 border-rose-500 text-rose-600 hover:bg-rose-50 text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer"
+              >
+                🚨 清除本機學習軌跡 Reset Progress
+              </button>
             </div>
           </div>
         );
+      }
       default:
         return <div>404 Module Not Found</div>;
     }
@@ -470,6 +542,87 @@ export default function App() {
         isOpen={isFormulaOpen} 
         onClose={() => setIsFormulaOpen(false)} 
       />
+
+      {/* ⚠️ Custom Reset Confirmation Modal */}
+      {showResetConfirm && (
+        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 z-[9999]">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="w-full max-w-md bg-white border-2 border-rose-500 shadow-2xl p-8 flex flex-col gap-6"
+          >
+            <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+              <div className="w-10 h-10 bg-rose-50 flex items-center justify-center rounded-none shrink-0">
+                <ShieldAlert className="w-6 h-6 text-rose-600 animate-pulse" />
+              </div>
+              <div>
+                <h3 className="text-sm font-black uppercase tracking-widest text-slate-800">確定重置學習檔案嗎？</h3>
+                <p className="text-[10px] font-mono text-rose-600 uppercase tracking-widest font-bold mt-0.5">CRITICAL DATA RESET WARNING</p>
+              </div>
+            </div>
+
+            <p className="text-xs font-semibold text-slate-500 leading-relaxed font-sans">
+              此操作將會<strong>永久清除</strong>您的所有學習軌跡、累計積分、連續練習天數、答題正確率統計以及全部已解鎖徽章。此動作將對瀏覽器的 LocalStorage 進行清空且無法還原！
+            </p>
+
+            <div className="flex gap-3 justify-end pt-2 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => setShowResetConfirm(false)}
+                className="px-4 py-2 border border-slate-200 hover:bg-slate-50 text-[10px] font-black text-slate-700 uppercase tracking-widest cursor-pointer"
+              >
+                取消 Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  resetProgress();
+                  setShowResetConfirm(false);
+                  setShowResetSuccess(true);
+                }}
+                className="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-[10px] font-black uppercase tracking-widest cursor-pointer"
+              >
+                🚨 確認清除重置
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* 🎉 Custom Reset Success Modal */}
+      {showResetSuccess && (
+        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 z-[9999]">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="w-full max-w-md bg-white border-2 border-emerald-500 shadow-2xl p-8 flex flex-col gap-6"
+          >
+            <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+              <div className="w-10 h-10 bg-emerald-50 flex items-center justify-center rounded-none shrink-0">
+                <CheckCircle2 className="w-6 h-6 text-emerald-600" />
+              </div>
+              <div>
+                <h3 className="text-sm font-black uppercase tracking-widest text-slate-800">資料重置完畢</h3>
+                <p className="text-[10px] font-mono text-emerald-600 uppercase tracking-widest font-bold mt-0.5">RESET COMPLETED SUCCESS</p>
+              </div>
+            </div>
+
+            <p className="text-xs font-semibold text-slate-500 leading-relaxed font-sans">
+              您的學習軌跡已順利清空重置。現在一切數據已歸零，您將從 <strong>LV.1 探險家</strong> 重新出發探險學習！
+            </p>
+
+            <div className="flex justify-end pt-2 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => setShowResetSuccess(false)}
+                className="px-6 py-2.5 bg-slate-950 hover:bg-slate-850 text-white text-[10px] font-black uppercase tracking-widest cursor-pointer"
+              >
+                好的，出發！
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }

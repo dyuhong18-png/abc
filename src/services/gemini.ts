@@ -10,16 +10,16 @@ export interface ProblemResponse {
   problems: Problem[];
   isFallback: boolean;
   isCustom?: boolean;
-  fallbackReason?: 'MISSING_KEY' | 'QUOTA_LIMIT' | 'GENERIC_ERROR' | 'CONNECTION_ERROR';
+  fallbackReason?: 'MISSING_KEY' | 'QUOTA_LIMIT' | 'GENERIC_ERROR' | 'CONNECTION_ERROR' | 'FORCE_OFFLINE';
   errorMessage?: string;
 }
 
-export async function generatePracticeProblems(topic: string, difficulty: string, useCustomOnly?: boolean): Promise<ProblemResponse> {
+export async function generatePracticeProblems(topic: string, difficulty: string, useCustomOnly?: boolean, forceOffline?: boolean): Promise<ProblemResponse> {
   try {
     const response = await fetch('/api/generate-problems', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ topic, difficulty, useCustomOnly })
+      body: JSON.stringify({ topic, difficulty, useCustomOnly, forceOffline })
     });
     const data = await response.json();
     

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, ChevronRight, CheckCircle2, XCircle, Loader2 } from 'lucide-react';
 import { generatePracticeProblems } from '../services/gemini';
-import ReactMarkdown from 'react-markdown';
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { useLearning } from '../context/LearningContext';
+import { FORMULA_DATA } from './FormulaSheet';
+import { BlockMath, MathText } from './MathRenderer';
+import 'katex/dist/katex.min.css';
 
 interface Problem {
   id: number;
@@ -19,7 +19,7 @@ interface Problem {
 const DIFFICULTIES = ['入門', '進階', '困難'];
 
 export function ProblemGenerator() {
-  const { activeTopic, addScore, completeTopic } = useLearning();
+  const { activeTopic, addScore, completeTopic, recordAttempt } = useLearning();
   const [difficulty, setDifficulty] = useState(DIFFICULTIES[0]);
   const [problems, setProblems] = useState<Problem[]>([]);
   const [loading, setLoading] = useState(false);
@@ -29,9 +29,11 @@ export function ProblemGenerator() {
   const [sessionScore, setSessionScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [fallbackReason, setFallbackReason] = useState<'MISSING_KEY' | 'QUOTA_LIMIT' | 'GENERIC_ERROR' | 'CONNECTION_ERROR' | null>(null);
+  const [fallbackReason, setFallbackReason] = useState<'MISSING_KEY' | 'QUOTA_LIMIT' | 'GENERIC_ERROR' | 'CONNECTION_ERROR' | 'FORCE_OFFLINE' | null>(null);
   const [useCustomOnly, setUseCustomOnly] = useState(false);
+  const [forceOffline, setForceOffline] = useState(false);
   const [isCustomRecord, setIsCustomRecord] = useState(false);
+  const [showHint, setShowHint] = useState(false);
 
   // Reset when topic changes
   useEffect(() => {
@@ -39,6 +41,7 @@ export function ProblemGenerator() {
     setIsFinished(false);
     setErrorMsg(null);
     setFallbackReason(null);
+    setShowHint(false);
   }, [activeTopic]);
 
   const startPractice = async () => {
@@ -51,9 +54,10 @@ export function ProblemGenerator() {
     setUserAnswer(null);
     setShowExplanation(false);
     setIsFinished(false);
+    setShowHint(false);
     
     try {
-      const response = await generatePracticeProblems(activeTopic, difficulty, useCustomOnly);
+      const response = await generatePracticeProblems(activeTopic, difficulty, useCustomOnly, forceOffline);
       const problemList = response.problems;
       
       if (!Array.isArray(problemList) || problemList.length === 0) {
@@ -83,7 +87,12 @@ export function ProblemGenerator() {
     if (userAnswer !== null) return;
     setUserAnswer(idx);
     setShowExplanation(true);
-    if (idx === problems[currentIdx].answer) {
+    const isCorrect = idx === problems[currentIdx].answer;
+    
+    // Log user attempt in context for profile analytics
+    recordAttempt(isCorrect);
+
+    if (isCorrect) {
       setSessionScore(s => s + 1);
       addScore(10); // Persistence 10 pts per correct answer
     }
@@ -101,6 +110,7 @@ export function ProblemGenerator() {
       setCurrentIdx(i => i + 1);
       setUserAnswer(null);
       setShowExplanation(false);
+      setShowHint(false);
     } else {
       finishSession();
     }
@@ -185,17 +195,38 @@ export function ProblemGenerator() {
               </select>
             </div>
             
-            <div className="flex items-center gap-2 mt-2">
-              <input 
-                type="checkbox" 
-                id="useCustomOnly" 
-                checked={useCustomOnly} 
-                onChange={(e) => setUseCustomOnly(e.target.checked)}
-                className="w-4 h-4 text-indigo-600 border-slate-300 focus:ring-indigo-500 cursor-pointer"
-              />
-              <label htmlFor="useCustomOnly" className="text-xs font-semibold text-slate-600 cursor-pointer select-none">
-                優先載入後端自訂題庫模式 (Use Custom Database)
-              </label>
+            <div className="flex flex-col gap-2.5 mt-2">
+              <div className="flex items-center gap-2">
+                <input 
+                  type="checkbox" 
+                  id="useCustomOnly" 
+                  checked={useCustomOnly} 
+                  onChange={(e) => {
+                    setUseCustomOnly(e.target.checked);
+                    if (e.target.checked) setForceOffline(false);
+                  }}
+                  className="w-4 h-4 text-indigo-600 border-slate-300 focus:ring-indigo-500 cursor-pointer"
+                />
+                <label htmlFor="useCustomOnly" className="text-xs font-semibold text-slate-600 cursor-pointer select-none">
+                  優先載入後端自訂題庫模式 (Use Custom Database)
+                </label>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <input 
+                  type="checkbox" 
+                  id="forceOffline" 
+                  checked={forceOffline} 
+                  onChange={(e) => {
+                    setForceOffline(e.target.checked);
+                    if (e.target.checked) setUseCustomOnly(false);
+                  }}
+                  className="w-4 h-4 text-indigo-600 border-slate-300 focus:ring-indigo-500 cursor-pointer"
+                />
+                <label htmlFor="forceOffline" className="text-xs font-semibold text-slate-600 cursor-pointer select-none">
+                  強制限載「極速離線精選題庫」模式 (Force Offline Math Database)
+                </label>
+              </div>
             </div>
           </div>
           <button 
@@ -236,23 +267,56 @@ export function ProblemGenerator() {
 
           {fallbackReason && (
             <div className="mb-6 p-4 bg-amber-50/80 border border-amber-200 text-xs text-slate-700 font-medium">
-              <span className="font-bold text-amber-800">💡 備用題庫載入模式：</span>
-              {fallbackReason === 'QUOTA_LIMIT' 
+              <span className="font-bold text-amber-800">💡 備用與離線模組：</span>
+              {fallbackReason === 'FORCE_OFFLINE'
+                ? '已主動開啟極速離線精選題庫模式，為您載入最經典的 LaTeX 整合核心考題與解析，不消耗任何網路金鑰額度！答題仍可照常累計 XP 積分！'
+                : fallbackReason === 'QUOTA_LIMIT' 
                 ? '因您的 API 免費請求次數已達上限，系統已自備用題庫 (優先載入您的 100 題自訂題庫) 抽取高水準題目，答題可照常累計積分！如需無限 AI 出題，請於 Settings > Secrets 設定付費金鑰。' 
                 : fallbackReason === 'MISSING_KEY'
-                ? '未偵測到 API 金鑰。系統已為您啟用備用題庫模式 (整合 100 題自訂考題與高品質精選題)，以完美 LaTeX 公式與解析陪伴您練習！'
-                : 'AI 生成服務受限，已自動切換為備用精選考題，答題仍可累計積分。'
+                ? '未偵測到 API 金鑰。系統已為您啟用備用庫模式 (優先整合您的 100 題自訂考題與高品質精選題)，以完美 LaTeX 公式與解析維持高效率學習！'
+                : 'AI 出題服務可能受限或超時，已自動切換為備用精選考題，答題仍可累計積分。'
               }
             </div>
           )}
 
-          <div className="mb-10 p-8 border border-slate-100 bg-slate-50/50 relative overflow-hidden">
+          <div className="mb-8 p-8 border border-slate-100 bg-slate-50/50 relative overflow-hidden">
             <div className="absolute top-0 right-0 p-2 opacity-5 font-mono text-4xl font-bold italic">Q</div>
             <div className="prose prose-slate max-w-none text-base text-slate-800 relative z-10 antialiased font-medium leading-relaxed">
-              <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+              <MathText>
                 {problems[currentIdx].question}
-              </ReactMarkdown>
+              </MathText>
             </div>
+            
+            {/* Mindset Hint Toggle */}
+            <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <button
+                type="button"
+                onClick={() => setShowHint(!showHint)}
+                className="text-xs font-black uppercase text-indigo-600 hover:text-slate-900 tracking-wider flex items-center gap-2 transition-colors cursor-pointer"
+              >
+                💡 {showHint ? "隱藏思維指引" : "解題觀念思維提示 (Hint Clue)"}
+              </button>
+              <span className="text-[9px] text-slate-300 font-mono">TOPIC: {activeTopic}</span>
+            </div>
+
+            {showHint && (
+              <div className="mt-4 p-5 bg-indigo-50/30 border border-indigo-100 flex flex-col gap-3">
+                <span className="text-[9px] font-black uppercase text-indigo-800 tracking-widest block font-sans">核心考點引導公式 Reference Formulas</span>
+                <span className="text-xs text-slate-600 font-semibold leading-relaxed">
+                  本單元《{activeTopic}》常見之公式與邏輯結構如下。請對照分析題目中給出的代數關係：
+                </span>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-1">
+                  {(FORMULA_DATA[activeTopic] || FORMULA_DATA['基礎代數']).formulas.map((frm, idx) => (
+                    <div key={idx} className="p-3 bg-white border border-slate-200/60 flex flex-col justify-between">
+                      <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-tighter mb-1 select-none">{frm.label}</span>
+                      <div className="p-1 bg-slate-50/50 overflow-x-auto select-all text-xs flex items-center justify-center">
+                        <BlockMath math={frm.math} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-1 gap-4 mb-8">
@@ -272,14 +336,18 @@ export function ProblemGenerator() {
                         : "border-slate-100 bg-slate-50 opacity-40"
                 )}
               >
-                <div className="flex items-center gap-4">
-                  <span className="w-6 h-6 border border-current flex items-center justify-center text-[10px] font-mono">
+                <div className="flex items-center gap-4 w-full mr-4">
+                  <span className="w-6 h-6 border border-current flex items-center justify-center text-[10px] font-mono shrink-0">
                     {String.fromCharCode(65 + i)}
                   </span>
-                  <span className="text-sm">{opt}</span>
+                  <div className="text-sm font-semibold text-slate-800 text-left flex-1 prose prose-slate prose-p:my-0 max-w-none">
+                    <MathText>
+                      {opt}
+                    </MathText>
+                  </div>
                 </div>
-                {userAnswer !== null && i === problems[currentIdx].answer && <CheckCircle2 className="w-5 h-5 text-emerald-600" />}
-                {userAnswer !== null && i === userAnswer && i !== problems[currentIdx].answer && <XCircle className="w-5 h-5 text-rose-600" />}
+                {userAnswer !== null && i === problems[currentIdx].answer && <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />}
+                {userAnswer !== null && i === userAnswer && i !== problems[currentIdx].answer && <XCircle className="w-5 h-5 text-rose-600 shrink-0" />}
               </button>
             ))}
           </div>
@@ -303,9 +371,9 @@ export function ProblemGenerator() {
                       </span>
                     </div>
                     <div className="diagnostic-explanation correct text-[15px] text-slate-900 leading-relaxed font-semibold self-stretch">
-                      <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                      <MathText>
                         {problems[currentIdx].explanation}
-                      </ReactMarkdown>
+                      </MathText>
                     </div>
                   </div>
                 ) : (
@@ -320,9 +388,9 @@ export function ProblemGenerator() {
                       </span>
                     </div>
                     <div className="diagnostic-explanation wrong text-[15px] text-slate-900 leading-relaxed font-semibold self-stretch">
-                      <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                      <MathText>
                         {problems[currentIdx].explanation}
-                      </ReactMarkdown>
+                      </MathText>
                     </div>
                   </div>
                 )}

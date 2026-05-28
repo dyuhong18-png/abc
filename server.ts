@@ -62,10 +62,37 @@ async function startServer() {
     }
   }
 
+  const CACHE_FILE = path.join(process.cwd(), "generated_cache.json");
+
+  // Helper to load cache
+  function getCacheData(): Record<string, any[]> {
+    try {
+      if (fs.existsSync(CACHE_FILE)) {
+        const content = fs.readFileSync(CACHE_FILE, "utf-8");
+        return JSON.parse(content || "{}");
+      }
+    } catch (e) {
+      console.error("Error reading generated_cache.json from backend:", e);
+    }
+    return {};
+  }
+
+  // Helper to save cache
+  function saveCacheData(data: Record<string, any[]>) {
+    try {
+      fs.writeFileSync(CACHE_FILE, JSON.stringify(data, null, 2), "utf-8");
+    } catch (e) {
+      console.error("Error saving generated_cache.json to backend filesystem:", e);
+    }
+  }
+
   // API Routes
   app.post("/api/generate-problems", async (req, res) => {
-    const { topic, difficulty, useCustomOnly } = req.body;
-    console.log(`Generating problems for: ${topic} (${difficulty}), useCustomOnly: ${useCustomOnly}`);
+    const { topic, difficulty, useCustomOnly, forceOffline } = req.body;
+    console.log(`Generating problems for: ${topic} (${difficulty}), useCustomOnly: ${useCustomOnly}, forceOffline: ${forceOffline}`);
+
+    const cacheKey = `${topic}-${difficulty}`;
+    const cacheData = getCacheData();
 
     const customData = getCustomProblemsData();
     const topicCustomProblems = customData[topic] || [];
@@ -191,6 +218,31 @@ async function startServer() {
       return result;
     }
 
+    // Trigger force offline if requested
+    if (forceOffline) {
+      console.log(`[OFFLINE ACTIVATED] Force offline mode requested for topic: ${topic}, difficulty: ${difficulty}`);
+      let fallbackList = [];
+      if (topicCustomProblems.length > 0) {
+        fallbackList = filterCustomProblems(topicCustomProblems, difficulty);
+        if (fallbackList.length === 0) {
+          fallbackList = topicCustomProblems;
+        }
+      }
+      if (fallbackList.length === 0) {
+        fallbackList = FALLBACK_PROBLEMS[topic] || FALLBACK_PROBLEMS["基礎代數"];
+      }
+
+      fallbackList = limitToTenQuestions(fallbackList);
+      const shuffled = shuffleOptionsAndDistributeAnswers(fallbackList);
+      
+      return res.json({
+        problems: shuffled,
+        isFallback: true,
+        fallbackReason: "FORCE_OFFLINE",
+        errorMessage: "User forced offline math database"
+      });
+    }
+
     // Prioritize custom problems if requested
     if (useCustomOnly && topicCustomProblems.length > 0) {
       const filtered = filterCustomProblems(topicCustomProblems, difficulty);
@@ -200,6 +252,18 @@ async function startServer() {
         problems: shuffled,
         isFallback: false,
         isCustom: true
+      });
+    }
+
+    // Cache Check: Check if successfully generated questions for this topic and difficulty exist in cache
+    if (!useCustomOnly && cacheData[cacheKey] && cacheData[cacheKey].length > 0) {
+      console.log(`[CACHE HIT] Returning cached Gemini problems for: ${cacheKey}`);
+      const limited = limitToTenQuestions(cacheData[cacheKey]);
+      const shuffled = shuffleOptionsAndDistributeAnswers(limited);
+      return res.json({
+        problems: shuffled,
+        isFallback: false,
+        isCached: true
       });
     }
 
@@ -306,6 +370,11 @@ async function startServer() {
       const parsedList = JSON.parse(response.text || "[]");
       if (Array.isArray(parsedList) && parsedList.length > 0) {
         parsedList.sort((a, b) => (a.id || 0) - (b.id || 0));
+
+        // Cache the pristine generated response list to disk
+        cacheData[cacheKey] = parsedList;
+        saveCacheData(cacheData);
+
         const shuffled = shuffleOptionsAndDistributeAnswers(parsedList);
         res.json({
           problems: shuffled,

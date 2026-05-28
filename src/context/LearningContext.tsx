@@ -5,6 +5,8 @@ interface Progress {
   totalScore: number;
   lastActive: Date;
   streak: number;
+  correctAnswersCount: number;
+  totalAnswersCount: number;
 }
 
 interface LearningContextType {
@@ -13,6 +15,8 @@ interface LearningContextType {
   progress: Progress;
   addScore: (points: number) => void;
   completeTopic: (topic: string) => void;
+  recordAttempt: (isCorrect: boolean) => void;
+  resetProgress: () => void;
 }
 
 const LearningContext = createContext<LearningContextType | undefined>(undefined);
@@ -31,7 +35,7 @@ export function LearningProvider({ children }: { children: React.ReactNode }) {
     const saved = localStorage.getItem('mathwhiz_progress');
     if (saved) {
       const parsed = JSON.parse(saved);
-      const lastActive = new Date(parsed.lastActive);
+      const lastActive = new Date(parsed.lastActive || new Date());
       let streak = parsed.streak || 0;
 
       // On app load, check if the streak is broken (more than 1 full calendar day missed)
@@ -44,14 +48,18 @@ export function LearningProvider({ children }: { children: React.ReactNode }) {
         completedTopics: parsed.completedTopics || [],
         totalScore: parsed.totalScore || 0,
         lastActive,
-        streak
+        streak,
+        correctAnswersCount: parsed.correctAnswersCount || 0,
+        totalAnswersCount: parsed.totalAnswersCount || 0
       };
     }
     return {
       completedTopics: [],
       totalScore: 0,
       lastActive: new Date(),
-      streak: 0
+      streak: 0,
+      correctAnswersCount: 0,
+      totalAnswersCount: 0
     };
   });
 
@@ -105,8 +113,33 @@ export function LearningProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
+  const recordAttempt = (isCorrect: boolean) => {
+    setProgress(prev => {
+      const { streak, lastActive } = recordActivity(prev);
+      return {
+        ...prev,
+        totalAnswersCount: prev.totalAnswersCount + 1,
+        correctAnswersCount: prev.correctAnswersCount + (isCorrect ? 1 : 0),
+        streak,
+        lastActive
+      };
+    });
+  };
+
+  const resetProgress = () => {
+    localStorage.removeItem('mathwhiz_progress');
+    setProgress({
+      completedTopics: [],
+      totalScore: 0,
+      lastActive: new Date(),
+      streak: 0,
+      correctAnswersCount: 0,
+      totalAnswersCount: 0
+    });
+  };
+
   return (
-    <LearningContext.Provider value={{ activeTopic, setActiveTopic, progress, addScore, completeTopic }}>
+    <LearningContext.Provider value={{ activeTopic, setActiveTopic, progress, addScore, completeTopic, recordAttempt, resetProgress }}>
       {children}
     </LearningContext.Provider>
   );

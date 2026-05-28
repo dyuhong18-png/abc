@@ -36,6 +36,7 @@ export function ImportProblems() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
+  const [deleteCandidate, setDeleteCandidate] = useState<{ topic: string; id: number } | null>(null);
 
   // Load custom problems on component mount
   const refreshList = async () => {
@@ -87,11 +88,17 @@ export function ImportProblems() {
   };
 
   const handleDelete = async (topic: string, id: number) => {
-    if (!confirm("確定要將此題自後端資料庫永久刪除嗎？")) return;
+    setDeleteCandidate({ topic, id });
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteCandidate) return;
+    const { topic, id } = deleteCandidate;
     const res = await deleteCustomProblem(topic, id);
     if (res.success) {
       refreshList();
     }
+    setDeleteCandidate(null);
   };
 
   const loadDemo = () => {
@@ -311,6 +318,44 @@ export function ImportProblems() {
           )}
         </div>
       </div>
+
+      {/* ⚠️ Custom Delete Confirmation Modal */}
+      {deleteCandidate && (
+        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 z-[9999]">
+          <div className="w-full max-w-md bg-white border-2 border-rose-500 shadow-2xl p-8 flex flex-col gap-6 animate-in fade-in zoom-in duration-200">
+            <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+              <div className="w-10 h-10 bg-rose-50 flex items-center justify-center rounded-none shrink-0">
+                <AlertCircle className="w-6 h-6 text-rose-600 animate-pulse" />
+              </div>
+              <div>
+                <h3 className="text-sm font-black uppercase tracking-widest text-slate-800">確定要刪除此題嗎？</h3>
+                <p className="text-[10px] font-mono text-rose-600 uppercase tracking-widest font-bold mt-0.5">DELETE QUESTION DATABASE WARNING</p>
+              </div>
+            </div>
+
+            <p className="text-xs font-semibold text-slate-500 leading-relaxed font-sans">
+              此操作將會從【{deleteCandidate.topic}】單元的自訂題庫中<strong>永久刪除</strong>本道數學題目 (ID: {deleteCandidate.id})，且操作將無法還原。
+            </p>
+
+            <div className="flex gap-3 justify-end pt-2 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => setDeleteCandidate(null)}
+                className="px-4 py-2 border border-slate-200 hover:bg-slate-50 text-[10px] font-black text-slate-700 uppercase tracking-widest cursor-pointer"
+              >
+                取消 Cancel
+              </button>
+              <button
+                type="button"
+                onClick={confirmDelete}
+                className="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-[10px] font-black uppercase tracking-widest cursor-pointer"
+              >
+                🗑️ 確定刪除
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
