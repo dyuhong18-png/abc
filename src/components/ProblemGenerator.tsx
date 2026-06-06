@@ -7,6 +7,7 @@ import { useLearning } from '../context/LearningContext';
 import { FORMULA_DATA } from './FormulaSheet';
 import { BlockMath, MathText } from './MathRenderer';
 import 'katex/dist/katex.min.css';
+import { Scratchpad } from './Scratchpad';
 
 interface Problem {
   id: number;
@@ -246,7 +247,8 @@ export function ProblemGenerator() {
       )}
 
       {problems.length > 0 && !isFinished && (
-        <div className="flex-1 flex flex-col">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-7 flex flex-col w-full">
           <div className="flex justify-between items-center mb-8">
             <div className="flex flex-col">
               <span className="text-[10px] font-bold text-indigo-600 uppercase">進度</span>
@@ -403,6 +405,12 @@ export function ProblemGenerator() {
               </motion.div>
             )}
           </AnimatePresence>
+          </div>
+
+          {/* Right column dedicated to calculations */}
+          <div className="lg:col-span-5 lg:sticky lg:top-6 w-full flex flex-col">
+            <Scratchpad />
+          </div>
         </div>
       )}
 
