@@ -9,8 +9,15 @@ import { FALLBACK_PROBLEMS } from "./server_fallback_problems";
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+let _filename = "";
+let _dirname = "";
+try {
+  _filename = fileURLToPath(import.meta.url);
+  _dirname = path.dirname(_filename);
+} catch {
+  _filename = typeof __filename !== "undefined" ? __filename : "";
+  _dirname = typeof __dirname !== "undefined" ? __dirname : "";
+}
 
 async function startServer() {
   const app = express();
