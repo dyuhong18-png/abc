@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getCustomProblems, importProblems, deleteCustomProblem, Problem } from '../services/gemini';
 import { Upload, Trash2, CheckCircle, Database, HelpCircle, FileJson, AlertCircle, Eye } from 'lucide-react';
-import ReactMarkdown from 'react-markdown';
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
+import { MathText } from './MathRenderer';
 
 const TOPICS = ['基礎代數', '平面幾何', '三角函數', '向量單元', '微積分初步', '統計與機率', '邏輯推理'];
 
@@ -31,12 +29,26 @@ const DEMO_PROBLEMS = [
 export function ImportProblems() {
   const [activeTopic, setActiveTopic] = useState(TOPICS[0]);
   const [jsonText, setJsonText] = useState("");
+  const [debouncedJsonText, setDebouncedJsonText] = useState("");
   const [importedData, setImportedData] = useState<Record<string, Problem[]>>({});
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
+  const [showStoredProblems, setShowStoredProblems] = useState(false);
+  const [expandedTopics, setExpandedTopics] = useState<Record<string, boolean>>({});
+  const [topicVisibleLimits, setTopicVisibleLimits] = useState<Record<string, number>>({});
   const [deleteCandidate, setDeleteCandidate] = useState<{ topic: string; id: number } | null>(null);
+
+  // Debounce JSON text for preview so typing is 100% fluid
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedJsonText(jsonText);
+    }, 500);
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [jsonText]);
 
   // Load custom problems on component mount
   const refreshList = async () => {
@@ -47,6 +59,15 @@ export function ImportProblems() {
   useEffect(() => {
     refreshList();
   }, []);
+
+  const totalCustomCount = Object.values(importedData).reduce((acc, curr) => acc + curr.length, 0);
+
+  const toggleTopicExpand = (topic: string) => {
+    setExpandedTopics(prev => ({
+      ...prev,
+      [topic]: !prev[topic]
+    }));
+  };
 
   const handleImport = async () => {
     setSuccessMsg(null);
@@ -183,37 +204,55 @@ export function ImportProblems() {
 
               {previewOpen && jsonText.trim() && (
                 <div className="p-6 bg-slate-100/80 border border-slate-200">
-                  <h5 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">公式渲染預覽 (Live Math Preview)</h5>
+                  <div className="flex justify-between items-center mb-3">
+                    <h5 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">公式渲染預覽 (Live Math Preview)</h5>
+                    {jsonText !== debouncedJsonText && (
+                      <span className="text-[9px] font-semibold text-amber-600 animate-pulse">正在渲染公式中...</span>
+                    )}
+                  </div>
                   <div className="flex flex-col gap-4">
                     {(() => {
                       try {
-                        const parsed = JSON.parse(jsonText);
+                        if (!debouncedJsonText.trim()) {
+                          return <div className="text-xs text-slate-500 font-medium">請繼續輸入以產生預覽...</div>;
+                        }
+                        const parsed = JSON.parse(debouncedJsonText);
                         if (!Array.isArray(parsed)) return <div className="text-xs text-rose-500 font-medium">資料必須為陣列 []</div>;
-                        return parsed.map((p, idx) => (
-                          <div key={idx} className="bg-white border border-slate-200 p-4 shrink-0">
-                            <div className="text-[10px] font-mono font-bold text-indigo-600 mb-1">PREVIEW Q{idx+1}</div>
-                            <div className="prose prose-slate max-w-none text-xs text-slate-800 mb-2 font-medium">
-                              <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-                                {p.question || ""}
-                              </ReactMarkdown>
-                            </div>
-                            <div className="grid grid-cols-2 gap-2 mb-3">
-                              {Array.isArray(p.options) && p.options.map((o: string, index: number) => (
-                                <div key={index} className={`p-2 border text-[11px] font-semibold text-slate-600 ${index === p.answer ? 'border-emerald-300 bg-emerald-50 text-emerald-800' : 'border-slate-150'}`}>
-                                  {String.fromCharCode(65 + index)}. {o}
+                        
+                        const maxPreview = 4;
+                        const previewSlice = parsed.slice(0, maxPreview);
+                        const restCount = parsed.length - maxPreview;
+                        
+                        return (
+                          <div className="flex flex-col gap-4">
+                            {previewSlice.map((p, idx) => (
+                              <div key={idx} className="bg-white border border-slate-200 p-4 shrink-0">
+                                <div className="text-[10px] font-mono font-bold text-indigo-600 mb-1">PREVIEW Q{idx+1}</div>
+                                <div className="prose prose-slate max-w-none text-xs text-slate-800 mb-2 font-medium">
+                                  <MathText>{p.question || ""}</MathText>
                                 </div>
-                              ))}
-                            </div>
-                            {p.explanation && (
-                              <div className="p-3 bg-indigo-50/50 border-l-2 border-l-indigo-500 text-[11px] text-slate-700">
-                                <span className="font-bold text-indigo-900 block mb-1">解析與推導：</span>
-                                <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-                                  {p.explanation}
-                                </ReactMarkdown>
+                                <div className="grid grid-cols-2 gap-2 mb-3">
+                                  {Array.isArray(p.options) && p.options.map((o: string, index: number) => (
+                                    <div key={index} className={`p-2 border text-[11px] font-semibold text-slate-600 ${index === p.answer ? 'border-emerald-300 bg-emerald-50 text-emerald-800' : 'border-slate-150'}`}>
+                                      {String.fromCharCode(65 + index)}. <MathText>{o}</MathText>
+                                    </div>
+                                  ))}
+                                </div>
+                                {p.explanation && (
+                                  <div className="p-3 bg-indigo-50/50 border-l-2 border-l-indigo-500 text-[11px] text-slate-700">
+                                    <span className="font-bold text-indigo-900 block mb-1">解析與推導：</span>
+                                    <MathText>{p.explanation}</MathText>
+                                  </div>
+                                )}
+                              </div>
+                            ))}
+                            {restCount > 0 && (
+                              <div className="p-4 bg-amber-50/50 border border-dashed border-amber-200 text-center text-amber-800 text-[11px] font-bold">
+                                💡 系統已自動收合其餘 {restCount} 題的 LaTeX 即時預覽，以維持打字編輯的絕對順暢。點選下方寫入後，即可完整瀏覽所有題目。
                               </div>
                             )}
                           </div>
-                        ));
+                        );
                       } catch {
                         return <div className="text-xs text-amber-600 font-semibold">正在等待完整、合法的 JSON 輸入以渲染 LaTeX...</div>;
                       }
@@ -258,65 +297,125 @@ export function ImportProblems() {
 
       {/* Backend Databases Status Panel */}
       <div className="bg-white border border-slate-200 p-8">
-        <h4 className="text-xs font-black uppercase tracking-wider text-slate-800 mb-6 flex items-center gap-2">
-          <Database className="w-4 h-4 text-indigo-600" /> 目前已成功留存在後端的自訂題庫
-        </h4>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 pb-4 border-b border-slate-100">
+          <div>
+            <h4 className="text-xs font-black uppercase tracking-wider text-slate-800 flex items-center gap-2">
+              <Database className="w-4 h-4 text-indigo-600" /> 目前已成功留存在後端的自訂題庫
+            </h4>
+            <p className="text-[10px] text-slate-400 font-mono uppercase tracking-wider mt-0.5">Backend custom problem storage status</p>
+          </div>
+          <button
+            onClick={() => setShowStoredProblems(!showStoredProblems)}
+            className="px-4 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-black uppercase tracking-wider border border-indigo-100 transition-colors cursor-pointer"
+          >
+            {showStoredProblems ? "收起自訂題庫 ▲" : `展開自訂題庫 (共 ${totalCustomCount} 題) ▼`}
+          </button>
+        </div>
         
-        <div className="flex flex-col gap-8">
-          {TOPICS.map(topic => {
-            const list = importedData[topic] || [];
-            if (list.length === 0) return null;
-            return (
-              <div key={topic} className="border border-slate-100 p-6 bg-slate-50/30">
-                <div className="flex justify-between items-center mb-4 pb-2 border-b border-slate-200">
-                  <span className="text-xs font-black text-indigo-600">{topic}</span>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase">共 {list.length} 題已存於備用資料庫</span>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {list.map((p, index) => (
-                    <div key={p.id} className="bg-white border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
-                      <div>
-                        <div className="flex justify-between items-start gap-4 mb-3">
-                          <span className="bg-slate-100 text-[10px] font-bold text-slate-600 font-mono px-2 py-0.5">ID: {p.id}</span>
-                          <button 
-                            onClick={() => handleDelete(topic, p.id)}
-                            className="text-slate-400 hover:text-rose-600 transition-colors"
-                            title="從後端刪除題目"
+        {showStoredProblems ? (
+          <div className="flex flex-col gap-6">
+            {TOPICS.map(topic => {
+              const list = importedData[topic] || [];
+              const isExpanded = !!expandedTopics[topic];
+              const visibleLimit = topicVisibleLimits[topic] || 4;
+              const slicedList = list.slice(0, visibleLimit);
+              
+              return (
+                <div key={topic} className="border border-slate-200 bg-slate-50/20">
+                  {/* Topic Accordion Header */}
+                  <button
+                    onClick={() => toggleTopicExpand(topic)}
+                    className="w-full text-left px-6 py-4 bg-white hover:bg-slate-50 border-b border-slate-100 flex justify-between items-center transition-colors cursor-pointer group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-black text-indigo-600 group-hover:text-indigo-800">{topic}</span>
+                      <span className="bg-slate-100 text-[10px] font-bold font-mono text-slate-500 px-2.5 py-0.5 uppercase">
+                        自訂庫存：{list.length} 題
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-black uppercase text-indigo-700 tracking-wider">
+                      {list.length === 0 ? (
+                        <span className="text-slate-300">暫無題目</span>
+                      ) : isExpanded ? (
+                        "收起題目 ▲"
+                      ) : (
+                        "展開題目 👁️ ▼"
+                      )}
+                    </span>
+                  </button>
+
+                  {/* Topic Accordion Content (Only render LaTeX if expanded for optimal performance) */}
+                  {isExpanded && list.length > 0 && (
+                    <div className="p-6 bg-slate-50/50">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {slicedList.map((p, index) => (
+                          <div key={p.id} className="bg-white border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                              <div className="flex justify-between items-start gap-4 mb-3">
+                                <span className="bg-slate-100 text-[10px] font-bold text-slate-600 font-mono px-2 py-0.5">ID: {p.id}</span>
+                                <button 
+                                  onClick={() => handleDelete(topic, p.id)}
+                                  className="text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
+                                  title="從後端刪除題目"
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </button>
+                              </div>
+                              <div className="prose prose-slate max-w-none text-xs text-slate-800 font-semibold mb-3">
+                                <MathText>{p.question}</MathText>
+                              </div>
+                              <div className="space-y-1 mb-3">
+                                {p.options.map((opt, oIdx) => (
+                                  <div key={oIdx} className={`text-[11px] px-2.5 py-1 ${oIdx === p.answer ? 'bg-emerald-50 text-emerald-800 font-bold border border-emerald-200' : 'text-slate-500 font-medium'}`}>
+                                    {String.fromCharCode(65 + oIdx)}. <MathText>{opt}</MathText>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                            <div className="mt-3 pt-3 border-t border-slate-100 text-[11px] text-slate-600">
+                              <span className="font-bold text-indigo-900 block mb-1">解析邏輯：</span>
+                              <MathText>{p.explanation}</MathText>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Progressive 'Load More' button if there are more problems left in this topic */}
+                      {list.length > visibleLimit && (
+                        <div className="flex justify-center mt-6">
+                          <button
+                            onClick={() => setTopicVisibleLimits(prev => ({
+                              ...prev,
+                              [topic]: visibleLimit + 10
+                            }))}
+                            className="px-6 py-2.5 border border-indigo-200 bg-white hover:bg-slate-50 text-indigo-700 text-xs font-black uppercase tracking-wider transition-colors cursor-pointer"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            🔎 載入更多本單元題目 (剩餘 {list.length - visibleLimit} 題) ...
                           </button>
                         </div>
-                        <div className="prose prose-slate max-w-none text-xs text-slate-800 font-semibold mb-3">
-                          <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-                            {p.question}
-                          </ReactMarkdown>
-                        </div>
-                        <div className="space-y-1 mb-3">
-                          {p.options.map((opt, oIdx) => (
-                            <div key={oIdx} className={`text-[11px] px-2.5 py-1 ${oIdx === p.answer ? 'bg-emerald-50 text-emerald-800 font-bold border border-emerald-200' : 'text-slate-500 font-medium'}`}>
-                              {String.fromCharCode(65 + oIdx)}. {opt}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="mt-3 pt-3 border-t border-slate-100 text-[11px] text-slate-600">
-                        <span className="font-bold text-indigo-900 block mb-1">解析邏輯：</span>
-                        <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-                          {p.explanation}
-                        </ReactMarkdown>
-                      </div>
+                      )}
                     </div>
-                  ))}
+                  )}
                 </div>
+              );
+            })}
+            {Object.values(importedData).every(arr => arr.length === 0) && (
+              <div className="py-8 text-center text-xs font-medium text-slate-400 bg-slate-50/50 border border-dashed border-slate-200">
+                目前暫無自訂題目。點選右上角 [⚡ 帶入 LaTeX 範本] 以試用導入功能並儲存。
               </div>
-            );
-          })}
-          {Object.values(importedData).every(arr => arr.length === 0) && (
-            <div className="py-8 text-center text-xs font-medium text-slate-400">
-              目前暫無自訂題目。點選右上角 [⚡ 帶入 LaTeX 範本] 以試用導入功能並儲存。
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        ) : (
+          <div className="text-center py-10 border border-dashed border-slate-200 bg-slate-50/50">
+            <p className="text-xs font-semibold text-slate-500">已自動收合後端自訂題庫，以避開大量 LaTeX 渲染導致的瀏覽器卡頓。</p>
+            <button
+              onClick={() => setShowStoredProblems(true)}
+              className="mt-3 px-4 py-2 border border-indigo-200 text-indigo-700 text-xs font-black hover:bg-indigo-50 transition-colors bg-white cursor-pointer"
+            >
+              🔎 點此展開詳細題庫清單 (共 {totalCustomCount} 題)
+            </button>
+          </div>
+        )}
       </div>
 
       {/* ⚠️ Custom Delete Confirmation Modal */}

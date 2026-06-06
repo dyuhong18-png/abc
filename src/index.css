@@ -87,3 +87,185 @@
   @apply bg-emerald-50 text-emerald-950;
 }
 
+
+/* ==========================================
+   PREMIUM DARK THEME INTEGRATION
+   ========================================== */
+
+.dark {
+  color-scheme: dark;
+}
+
+/* Global body override */
+.dark body, 
+.dark.w-full {
+  background-color: #020617 !important; /* slate-950 */
+  color: #f8fafc !important; /* slate-5 */
+}
+
+/* Structural blocks & cards */
+.dark header,
+.dark aside,
+.dark .geometric-card,
+.dark .bg-white {
+  background-color: #0f172a !important; /* slate-900 */
+  color: #f1f5f9 !important; /* slate-200 */
+  border-color: #334155 !important; /* slate-700 */
+}
+
+/* Secondary containers & highlights */
+.dark .bg-slate-50,
+.dark .bg-slate-50\/20,
+.dark .bg-slate-50\/30,
+.dark .bg-slate-50\/50,
+.dark .bg-slate-100,
+.dark .bg-slate-100\/80,
+.dark .bg-slate-150 {
+  background-color: #1e293b !important; /* slate-800 */
+  color: #cbd5e1 !important; /* slate-300 */
+  border-color: #334155 !important;
+}
+
+.dark .hover\:bg-slate-50:hover,
+.dark .hover\:bg-slate-100:hover {
+  background-color: #334155 !important;
+}
+
+/* Typography contrast colors */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark .text-slate-900,
+.dark .text-slate-850,
+.dark .text-slate-800,
+.dark .text-slate-705,
+.dark .text-slate-700,
+.dark .prose-slate {
+  color: #f8fafc !important; /* slate-50 */
+}
+
+.dark .text-slate-600,
+.dark .text-slate-500,
+.dark p {
+  color: #cbd5e1 !important; /* slate-300 */
+}
+
+.dark .text-slate-400 {
+  color: #94a3b8 !important; /* slate-400 */
+}
+
+/* Borders */
+.dark .border,
+.dark .border-b,
+.dark .border-t,
+.dark .border-l,
+.dark .border-r,
+.dark .border-slate-200,
+.dark .border-slate-150,
+.dark .border-slate-100 {
+  border-color: #334155 !important; /* slate-700 */
+}
+
+/* KaTeX custom contrast in dark theme */
+.dark .katex {
+  color: #f8fafc !important;
+}
+
+/* Correct Diagnostic Answers & Formulas */
+.dark .diagnostic-explanation.correct {
+  background-color: rgba(6, 78, 59, 0.45) !important;
+  border-color: #10b981 !important;
+  color: #f0fdf4 !important;
+}
+.dark .diagnostic-explanation.correct .katex,
+.dark .diagnostic-explanation.correct strong {
+  color: #a7f3d0 !important;
+  background-color: rgba(6, 78, 59, 0.2) !important;
+}
+
+/* Wrong Diagnostic Answers & Formulas */
+.dark .diagnostic-explanation.wrong {
+  background-color: rgba(120, 53, 4, 0.45) !important;
+  border-color: #f59e0b !important;
+  color: #fffbeb !important;
+}
+.dark .diagnostic-explanation.wrong .katex,
+.dark .diagnostic-explanation.wrong strong {
+  color: #fde68a !important;
+  background-color: rgba(120, 53, 4, 0.2) !important;
+}
+
+/* Custom pills inside練習場 */
+.dark .bg-indigo-50,
+.dark .bg-indigo-50\/30,
+.dark .bg-indigo-50\/50,
+.dark .text-indigo-700 {
+  background-color: rgba(79, 70, 229, 0.2) !important;
+  color: #c7d2fe !important;
+  border-color: rgba(79, 70, 229, 0.4) !important;
+}
+
+.dark .bg-emerald-50,
+.dark .bg-emerald-50\/30,
+.dark .bg-emerald-50\/50 {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  color: #a7f3d0 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+.dark .text-emerald-800 {
+  color: #34d399 !important;
+}
+
+.dark .bg-rose-50 {
+  background-color: rgba(244, 63, 94, 0.15) !important;
+  color: #fecdd3 !important;
+  border-color: rgba(244, 63, 94, 0.3) !important;
+}
+.dark .text-rose-700 {
+  color: #fb7185 !important;
+}
+
+/* Primary/Secondary Buttons in dark mode */
+.dark .bg-slate-900 {
+  background-color: #f8fafc !important; /* light button */
+  color: #0f172a !important; /* dark text */
+}
+.dark .bg-slate-900:hover {
+  background-color: #cbd5e1 !important;
+}
+
+.dark select,
+.dark textarea,
+.dark input[type="text"] {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #475569 !important;
+}
+
+/* Custom scrollbars in dark mode */
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #0f172a !important;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #334155 !important;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #475569 !important;
+}
+
+/* Whiteboard elements and grid patterns */
+.dark #scratchpad-widget .bg-white {
+  background-color: #090d16 !important; /* rich charcoal canvas */
+}
+.dark #scratchpad-widget svg pattern path {
+  stroke: #413a9d !important; /* high-contrast dark indigo grid lines */
+}
+.dark #scratchpad-widget .text-slate-300 {
+  color: #475569 !important;
+}
+.dark #scratchpad-widget .text-slate-800 {
+  color: #e2e8f0 !important;
+}
+
+

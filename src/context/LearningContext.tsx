@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+export const ALL_TOPICS = ['基礎代數', '平面幾何', '三角函數', '向量單元', '微積分初步', '統計與機率', '邏輯推理'];
+
 interface Progress {
   completedTopics: string[];
   totalScore: number;
@@ -17,6 +19,8 @@ interface LearningContextType {
   completeTopic: (topic: string) => void;
   recordAttempt: (isCorrect: boolean) => void;
   resetProgress: () => void;
+  darkMode: boolean;
+  toggleDarkMode: () => void;
 }
 
 const LearningContext = createContext<LearningContextType | undefined>(undefined);
@@ -138,8 +142,31 @@ export function LearningProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('mathwhiz_dark_mode');
+    return saved === 'true';
+  });
+
+  const toggleDarkMode = () => {
+    setDarkMode(prev => {
+      const next = !prev;
+      localStorage.setItem('mathwhiz_dark_mode', String(next));
+      return next;
+    });
+  };
+
   return (
-    <LearningContext.Provider value={{ activeTopic, setActiveTopic, progress, addScore, completeTopic, recordAttempt, resetProgress }}>
+    <LearningContext.Provider value={{ 
+      activeTopic, 
+      setActiveTopic, 
+      progress, 
+      addScore, 
+      completeTopic, 
+      recordAttempt, 
+      resetProgress,
+      darkMode,
+      toggleDarkMode
+    }}>
       {children}
     </LearningContext.Provider>
   );

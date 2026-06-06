@@ -3,27 +3,42 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { GraduationCap, Github, Twitter, Info, ChevronRight, Database, Flame, Trophy, Target, Zap, Award, ShieldAlert, Sparkles, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, Github, Twitter, Info, ChevronRight, ChevronLeft, Database, Flame, Trophy, Target, Zap, Award, ShieldAlert, Sparkles, CheckCircle2, Sun, Moon } from 'lucide-react';
 import { ProblemGenerator } from './components/ProblemGenerator';
 import { FormulaSheet, FORMULA_DATA } from './components/FormulaSheet';
 import { ImportProblems } from './components/ImportProblems';
 import { motion } from 'motion/react';
-import { useLearning } from './context/LearningContext';
+import { useLearning, ALL_TOPICS } from './context/LearningContext';
 import { useState } from 'react';
 import { cn } from './lib/utils';
 import 'katex/dist/katex.min.css';
 
-const TOPICS = ['基礎代數', '平面幾何', '三角函數', '向量單元', '微積分初步', '統計與機率', '邏輯推理'];
-
 export default function App() {
-  const { activeTopic, setActiveTopic, progress, resetProgress } = useLearning();
+  const { 
+    activeTopic, 
+    setActiveTopic, 
+    progress, 
+    resetProgress,
+    darkMode,
+    toggleDarkMode
+  } = useLearning();
+
   const [currentPage, setCurrentPage] = useState<'home' | 'practice' | 'formulas' | 'profile' | 'import'>('home');
   const [isFormulaOpen, setIsFormulaOpen] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [showResetSuccess, setShowResetSuccess] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(() => {
+    const saved = localStorage.getItem('mathwhiz_show_sidebar');
+    return saved !== 'false';
+  });
+
+  const handleToggleSidebar = (val: boolean) => {
+    setShowSidebar(val);
+    localStorage.setItem('mathwhiz_show_sidebar', String(val));
+  };
 
   const completedCount = progress.completedTopics.length;
-  const progressPercent = (completedCount / TOPICS.length) * 100;
+  const progressPercent = (completedCount / ALL_TOPICS.length) * 100;
 
   const renderPage = () => {
     switch (currentPage) {
@@ -75,7 +90,7 @@ export default function App() {
                 <div className="bg-slate-50/50 p-6 border border-slate-150 flex flex-col justify-between">
                   <div>
                     <span className="text-[10px] font-black text-slate-400 uppercase">單元覆蓋度 Topic Scope</span>
-                    <h5 className="text-3xl font-black text-slate-800 mt-1 italic">{completedCount} <span className="text-xs not-italic font-bold text-slate-300">/ {TOPICS.length}</span></h5>
+                    <h5 className="text-3xl font-black text-slate-800 mt-1 italic">{completedCount} <span className="text-xs not-italic font-bold text-slate-300">/ {ALL_TOPICS.length}</span></h5>
                   </div>
                   <div className="w-full bg-slate-200 h-1.5 mt-4 overflow-hidden">
                     <div className="bg-indigo-600 h-full transition-all duration-500" style={{ width: `${progressPercent}%` }}></div>
@@ -111,7 +126,7 @@ export default function App() {
               <div className="mt-4 flex flex-col gap-3">
                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">極速單元進場：</span>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
-                  {TOPICS.map(topic => {
+                  {ALL_TOPICS.map(topic => {
                     const isPassed = progress.completedTopics.includes(topic);
                     return (
                       <button
@@ -203,7 +218,7 @@ export default function App() {
               </div>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {TOPICS.map((t) => (
+              {ALL_TOPICS.map((t) => (
                 <div key={t} className="bg-white border border-slate-200 p-8">
                   <h3 className="text-sm font-black uppercase text-indigo-600 mb-6">{t}</h3>
                   <div className="space-y-6">
@@ -228,6 +243,7 @@ export default function App() {
         const currentAccuracy = hasHistory 
           ? `${Math.round((progress.correctAnswersCount / progress.totalAnswersCount) * 100)}%`
           : "暫無數據";
+        const profileCompletedCount = progress.completedTopics.length;
 
         // Dynamic unlocking lists of badges
         const badges = [
@@ -292,7 +308,7 @@ export default function App() {
               </div>
               <div className="bg-white border border-slate-200 p-8 flex flex-col gap-4">
                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">已攻克單元 Topic Score</span>
-                <span className="text-4xl font-black text-indigo-600 italic">{completedCount} <span className="text-xs not-italic text-slate-300 font-bold">/ {TOPICS.length}</span></span>
+                <span className="text-4xl font-black text-indigo-600 italic">{profileCompletedCount} <span className="text-xs not-italic text-slate-300 font-bold">/ {ALL_TOPICS.length}</span></span>
               </div>
               <div className="bg-white border border-slate-200 p-8 flex flex-col gap-4">
                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">連續實踐天數 Learning Streak</span>
@@ -374,7 +390,9 @@ export default function App() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col overflow-x-hidden select-none">
+    <div className={cn("w-full min-h-screen font-sans flex flex-col overflow-x-hidden select-none transition-colors duration-300", 
+      darkMode ? "dark bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"
+    )}>
       {/* Header Navigation */}
       <header className="h-20 bg-white border-b border-slate-200 flex items-center justify-between px-10 flex-shrink-0 sticky top-0 z-50">
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentPage('home')}>
@@ -416,6 +434,15 @@ export default function App() {
           </button>
         </nav>
         <div className="flex items-center gap-4">
+          <button 
+            type="button"
+            onClick={toggleDarkMode}
+            className="w-10 h-10 flex items-center justify-center border border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-50 cursor-pointer transition-colors"
+            title={darkMode ? "切換至淺色模式 (Switch to Light Mode)" : "切換至深色模式 (Switch to Dark Mode)"}
+          >
+            {darkMode ? <Sun className="w-5 h-5 text-amber-500" /> : <Moon className="w-5 h-5 text-slate-600" />}
+          </button>
+
           <div className="text-right mr-2 hidden sm:block">
             <div className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">學員等級</div>
             <div className="text-sm font-bold">LV. {Math.floor(progress.totalScore / 50) + 1} 探險家</div>
@@ -426,13 +453,40 @@ export default function App() {
         </div>
       </header>
 
-      <div className="flex flex-1 flex-col md:flex-row">
+      <div className="flex flex-1 flex-col md:flex-row relative">
+        {/* Toggle Sidebar tab when hidden */}
+        {!showSidebar && (
+          <button
+            onClick={() => handleToggleSidebar(true)}
+            className="fixed left-0 top-1/2 -translate-y-1/2 z-[45] bg-indigo-600 hover:bg-indigo-700 text-white rounded-r-lg shadow-lg py-5 px-2 flex flex-col items-center gap-2 border border-l-0 border-indigo-400 group transition-all duration-250 cursor-pointer"
+            title="展開核心單元"
+          >
+            <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 animate-pulse" />
+            <span className="text-[10px] [writing-mode:vertical-lr] font-black tracking-[0.2em] uppercase select-none">展開單元</span>
+          </button>
+        )}
+
         {/* Sidebar Modules */}
-        <aside className="w-full md:w-72 border-r border-slate-200 bg-white p-8 flex flex-col gap-10">
+        <aside className={cn(
+          "bg-white flex flex-col border-slate-200 transition-all duration-300 ease-in-out shrink-0 overflow-y-auto",
+          showSidebar 
+            ? "w-full md:w-72 border-r p-8 gap-10 opacity-100" 
+            : "w-0 h-0 md:h-auto md:p-0 md:border-r-0 md:gap-0 opacity-0 overflow-hidden"
+        )}>
           <div>
-            <h3 className="section-header">核心單元</h3>
+            <div className="flex justify-between items-center mb-6 pb-2 border-b border-slate-100">
+              <h3 className="text-xs font-black uppercase tracking-wider text-slate-800 font-sans">核心單元</h3>
+              <button
+                onClick={() => handleToggleSidebar(false)}
+                className="text-slate-400 hover:text-slate-700 cursor-pointer flex items-center justify-center bg-slate-150 hover:bg-slate-200 w-6 h-6 transition-colors"
+                title="隱藏核心單元欄"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
             <ul className="space-y-4 text-sm font-medium">
-              {TOPICS.map((topic) => (
+              {ALL_TOPICS.map((topic) => (
                 <li 
                   key={topic}
                   onClick={() => { setActiveTopic(topic); setCurrentPage('practice'); }}

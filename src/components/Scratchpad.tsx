@@ -130,8 +130,10 @@ export function Scratchpad() {
     ctx.beginPath();
     ctx.moveTo(coords.x, coords.y);
 
-    // Apply active brush tool configurations
-    ctx.strokeStyle = isEraser ? '#ffffff' : color;
+    // Apply active brush tool configurations with automatic contrast adjustment for dark mode
+    const isDark = !!document.querySelector('.dark');
+    const drawingColor = (color === '#1E293B' || color === '#1e293b') && isDark ? '#f8fafc' : color;
+    ctx.strokeStyle = isEraser ? (isDark ? '#090D16' : '#ffffff') : drawingColor;
     ctx.lineWidth = brushSize;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
